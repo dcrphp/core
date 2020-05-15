@@ -1,6 +1,6 @@
 {
-    "name": "junqing124/dcrphp",
-    "description": "dcrphp system",
+    "name": "dcrphp/core",
+    "description": "dcrphp",
     "authors": [
         {
             "name": "HuanJun Huang"
