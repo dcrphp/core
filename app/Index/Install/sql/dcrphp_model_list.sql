@@ -35,7 +35,7 @@ CREATE TABLE `model_list` (
   `ml_model_name` varchar(45) NOT NULL DEFAULT '',
   `ml_view_nums` int(11) NOT NULL DEFAULT '0' COMMENT '浏览次数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='模型列表：ml开头是为了模型实别字段';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='模型列表：ml开头是为了模型实别字段';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-12 12:14:05
+-- Dump completed on 2020-05-28 23:51:32

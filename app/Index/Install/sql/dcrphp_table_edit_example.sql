@@ -16,38 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `config_list_item`
+-- Table structure for table `table_edit_example`
 --
 
-DROP TABLE IF EXISTS `config_list_item`;
+DROP TABLE IF EXISTS `table_edit_example`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `config_list_item` (
+CREATE TABLE `table_edit_example` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_approval` tinyint(1) NOT NULL DEFAULT '1',
   `add_user_id` smallint(6) NOT NULL DEFAULT '0',
   `zt_id` smallint(6) NOT NULL DEFAULT '1',
-  `form_text` varchar(45) NOT NULL DEFAULT '',
-  `data_type` varchar(10) NOT NULL DEFAULT '',
-  `db_field_name` varchar(45) NOT NULL DEFAULT '',
-  `order_str` smallint(6) NOT NULL DEFAULT '1',
-  `default_str` varchar(45) NOT NULL DEFAULT '',
-  `is_system` tinyint(1) NOT NULL DEFAULT '0',
-  `cl_id` int(11) NOT NULL DEFAULT '0',
+  `string_input` varchar(45) NOT NULL DEFAULT '',
+  `text_input` text NOT NULL,
+  `select` varchar(45) NOT NULL DEFAULT '',
+  `radio` varchar(45) NOT NULL DEFAULT '',
+  `checkbox` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='表配置item列表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='table edit案例';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `config_list_item`
+-- Dumping data for table `table_edit_example`
 --
 
-LOCK TABLES `config_list_item` WRITE;
-/*!40000 ALTER TABLE `config_list_item` DISABLE KEYS */;
-INSERT INTO `config_list_item` VALUES (1,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'网站名','string','site_name',1,'',1,1),(4,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'模板名','select','template_name',1,'var.systemTemplateStr',1,2),(5,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'材质','string','material',1,'',0,4),(6,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'颜色','string','color',2,'',0,4),(7,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'产地','select','from',3,'江西,浙江',0,4);
-/*!40000 ALTER TABLE `config_list_item` ENABLE KEYS */;
+LOCK TABLES `table_edit_example` WRITE;
+/*!40000 ALTER TABLE `table_edit_example` DISABLE KEYS */;
+/*!40000 ALTER TABLE `table_edit_example` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:31
+-- Dump completed on 2020-05-28 23:51:30

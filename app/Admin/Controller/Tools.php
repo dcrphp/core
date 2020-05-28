@@ -348,9 +348,13 @@ class Tools
             }
         }
 
+        //dd($searchCol);
         if ($searchCol) {
             $searchCol = Common::generalHtmlForItem($searchCol, $searchData);
         }
+        //exit;
+        //dd($searchCol);
+        //dd($searchData);
         //dd($listCol);
         //dd($config);
 

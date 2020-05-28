@@ -26,7 +26,7 @@ CREATE TABLE `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `approval_status` tinyint(1) NOT NULL DEFAULT '1',
+  `is_approval` tinyint(1) NOT NULL DEFAULT '1',
   `add_user_id` smallint(6) NOT NULL DEFAULT '0',
   `zt_id` smallint(6) NOT NULL DEFAULT '1',
   `db_field_name` varchar(45) NOT NULL DEFAULT '' COMMENT '字段名',
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-12 12:14:05
+-- Dump completed on 2020-05-28 23:51:32

@@ -17,7 +17,11 @@ class Common
     public static function getDbBaseField()
     {
         $list = array(
-            'add_time', 'update_time', 'approval_status', 'add_user_id', 'zt_id',
+            'add_time',
+            'update_time',
+            'approval_status',
+            'add_user_id',
+            'zt_id',
         );
         return $list;
     }
@@ -43,22 +47,26 @@ class Common
             array('name' => '单选框', 'key' => 'radio'),
             array('name' => '多选框', 'key' => 'checkbox'),
             array('name' => '下拉框', 'key' => 'select'),
-            array('name' => '文件', 'key' => 'file'),
-            array('name' => '时间', 'key' => 'date'),
+            /*array('name' => '文件', 'key' => 'file'),
+            array('name' => '时间', 'key' => 'date'),*/
         );
     }
 
 
     /**
      * 通过配置好的字段各属性来生成html
-     * @param $configItemArr array('data_type'=>'数据类型','db_field_name'=>'数据库字段名','default'=>'默认值', 'is_input_hidden'=>'是不是hidden类型',如果是 则直接设置为hidden,这个只对date_type为date和string生效)
+     * @param $configItemArr array('data_type'=>'数据类型','db_field_name'=>'数据库字段名','default'=>'默认值', 'is_input_hidden'=>'是不是hidden类型，如果是 则直接设置为hidden,这个只对date_type为date和string生效',)
      * @param array $valueList 设置Input的值 比如想把site_name的值为 DcrPHP系统 则传入传情为 array('site_name'=>'DcrPHP系统');
      * @param array $varList 外部变量列表，这个是为了实现var.abc这样的配置项 一般传get_defined_vars()
      * @param array $option 额外的设置在这 array('input_name_pre'=>'input的name加上统一的前缀')
      * @return mixed
      */
-    public static function generalHtmlForItem($configItemArr, $valueList = array(), $varList = array(), $option = array())
-    {
+    public static function generalHtmlForItem(
+        $configItemArr,
+        $valueList = array(),
+        $varList = array(),
+        $option = array()
+    ) {
         foreach ($configItemArr as $itemKey => $itemInfo) {
             $keyList = self:: getFieldTypeList();
             $keyList = array_column($keyList, 'key');
@@ -74,7 +82,14 @@ class Common
                 $default = $varList[$var];
             }
 
+            //确定input值
+            //var_dump($itemInfo['db_field_name']);
+            if (is_array($valueList[$itemInfo['db_field_name']])) {
+                $valueList[$itemInfo['db_field_name']] = implode(',', $valueList[$itemInfo['db_field_name']]);
+            }
             $inputValue = isset($valueList[$itemInfo['db_field_name']]) ? $valueList[$itemInfo['db_field_name']] : $default;
+            //var_dump($inputValue);
+            //echo '<hr>';
             /*echo '<br><br><br>';
             dd($itemInfo['db_field_name']);
             dd($default);
@@ -87,11 +102,11 @@ class Common
             switch ($itemInfo['data_type']) {
                 case 'date':
                     $type = $itemInfo['is_input_hidden'] ? 'hidden' : 'text';
-                    $html = "<input class='input-text' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
+                    $html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
                     break;
                 case 'string':
                     $type = $itemInfo['is_input_hidden'] ? 'hidden' : 'text';
-                    $html = "<input class='input-text' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
+                    $html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
                     break;
                 case 'text':
                     $html = "<textarea name='{$inputNameId}' id='{$inputNameId}' class='textarea radius' >{$inputValue}</textarea>";
@@ -100,19 +115,23 @@ class Common
                 case 'checkbox':
                     $inputValueList = explode(',', $default);
                     foreach ($inputValueList as $inpValueDetail) {
-                        if ($inpValueDetail == $inputValue || 1 == $inputValue) {
-                            if (in_array($itemInfo['data_type'], array('radio','checkbox'))) {
+                        $additionStr = '';
+                        $inputValueArr = explode(',', $inputValue);//这里是为了有多选的情况
+                        if ($inpValueDetail == $inputValue ||
+                            in_array($inpValueDetail, $inputValueArr) ||
+                            1 == $inputValue) {
+                            if (in_array($itemInfo['data_type'], array('radio', 'checkbox'))) {
                                 $additionStr = ' checked ';
                             } else {
                                 $additionStr = ' selected ';
                             }
                         }
-                        $html .= "<label class='mr-10'><input type='{$itemInfo['data_type']}' {$additionStr} value='{$inpValueDetail}' name='{$inputNameId}'>{$inpValueDetail}</label>";
+                        $html .= "<label class='mr-10'><input type='{$itemInfo['data_type']}' {$additionStr} value='{$inpValueDetail}' name='{$inputNameId}[]'>{$inpValueDetail}</label>";
                     }
                     break;
                 case 'select':
                     $inputValueList = explode(',', $default);
-                    $html = "<select class='select' name='{$inputNameId}' id='{$inputNameId}'>";
+                    $html = "<select name='{$inputNameId}' id='{$inputNameId}'>";
                     $html .= "<option value=''>请选择</option>";
                     foreach ($inputValueList as $inpValueDetail) {
                         $additionStr = '';
@@ -155,7 +174,7 @@ class Common
     ) {
 
         $tablePreName = '';
-        if (!in_array($actionType, array('add', 'delete','edit'))) {
+        if (!in_array($actionType, array('add', 'delete', 'edit'))) {
             throw new \Exception('当前action为' . $actionType . ',操作类型只允许insert update delete');
         }
         if (in_array($actionType, array('edit', 'delete')) && !isset($option['id'])) {

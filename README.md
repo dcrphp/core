@@ -37,6 +37,13 @@ location / {
     try_files $uri $uri/ /index.php?$query_string;    
 }  
 ```
+
+1.0.4()
+    1、代码组织三层分层  
+    2、缓存层  
+    3、注解中心  
+    4、table edit全新案例及修正bug    
+    
 1.0.3(2020-05-12)  
     1、部份文件重新组织  
     2、后台JS统一化  
