@@ -11,3 +11,4 @@ env
 u.php
 Thumbs.db
 app/Index/Install/lock
+*Cache*

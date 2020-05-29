@@ -33,11 +33,11 @@ class Install
     public function executeSqlFiles($sqlDirPath)
     {
         ENV::init();
-        $host = env('MYSQL_DB_HOST');
-        $port = env('MYSQL_DB_PORT');
-        $username = env('MYSQL_DB_USERNAME');
-        $password = env('MYSQL_DB_PASSWORD');
-        $database = env('MYSQL_DB_DATABASE');
+        $host = env('MYSQL_HOST');
+        $port = env('MYSQL_PORT');
+        $username = env('MYSQL_USERNAME');
+        $password = env('MYSQL_PASSWORD');
+        $database = env('MYSQL_DATABASE');
 
         $sqlFileList = scandir($sqlDirPath);
         foreach ($sqlFileList as $sqlFile) {
@@ -81,12 +81,12 @@ class Install
         try {
             $data = Env::getData($envFileExample);
 
-            $data['config']['MYSQL_DB_HOST'] = $host;
-            $data['config']['MYSQL_DB_PORT'] = $port;
-            $data['config']['MYSQL_DB_DATABASE'] = $database;
-            $data['config']['MYSQL_DB_USERNAME'] = $username;
-            $data['config']['MYSQL_DB_PASSWORD'] = $password;
-            $data['config']['MYSQL_DB_CHARSET'] = $charset;
+            $data['config']['MYSQL_HOST'] = $host;
+            $data['config']['MYSQL_PORT'] = $port;
+            $data['config']['MYSQL_DATABASE'] = $database;
+            $data['config']['MYSQL_USERNAME'] = $username;
+            $data['config']['MYSQL_PASSWORD'] = $password;
+            $data['config']['MYSQL_CHARSET'] = $charset;
             Env::write($envFile, $data);
 
             //重新加载配置

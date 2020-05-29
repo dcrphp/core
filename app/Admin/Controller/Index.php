@@ -21,6 +21,7 @@ use dcr\Safe;
 class Index
 {
     private $model_name = '首页';
+
     /**
      * 首页
      * @return mixed
@@ -28,6 +29,10 @@ class Index
      */
     public function index()
     {
+        $cache = container('cache');
+        $cache->save('test_key', 111);
+        echo $cache->fetch('test_key') ;
+        exit;
         /*dd($_SESSION);
         exit;*/
         $assignData = array();
@@ -56,7 +61,7 @@ class Index
         $user = new User();
         $userInfo = $user->getInfo(Session::_get('username'));
         $assignData['user_info'] = $userInfo;
-        $assignData['db_type'] = env('MYSQL_DB_DRIVER', 'mysql');
+        $assignData['db_type'] = env('MYSQL_DRIVER', 'mysql');
         $version = config('info.version');
         $assignData['version'] = $version;
 

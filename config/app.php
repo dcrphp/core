@@ -16,6 +16,7 @@ return [
         'route'=> dcr\Route::class,
         'view'=> dcr\View::class,
         'response'=> dcr\Response::class,
+        'cache'=> dcr\Cache::class,
     ],
 
     //时区

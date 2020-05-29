@@ -384,7 +384,7 @@ class Tools
         $list = Db::select(
             array(
                 'table' => $config['table_name'],
-                'order' => $config['list_order'],
+                'order' => $config['list_order'] ? $config['list_order'] : 'id desc',
                 'where' => $whereArr,
                 'col' => '`' . implode('`,`', $cols) . '`',
                 'offset' => ($page - 1) * $pageNum,

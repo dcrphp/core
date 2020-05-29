@@ -23,7 +23,8 @@
         "matomo/ini": "*",
         "thamaraiselvam/mysql-import": "*",
         "phpdocumentor/reflection-docblock": "*",
-        "filp/whoops": "*"
+        "filp/whoops": "*",
+        "doctrine/cache": "*"
     },
     "autoload": {
         "psr-4":{

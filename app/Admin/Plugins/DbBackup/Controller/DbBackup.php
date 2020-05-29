@@ -100,11 +100,11 @@ class DbBackup extends Plugins
         try {
             $backupName = $backupDir . DS . 'backup';
             $clsDump = new \Phelium\Component\MySQLBackup(
-                env('MYSQL_DB_HOST'),
-                env('MYSQL_DB_USERNAME'),
-                env('MYSQL_DB_PASSWORD'),
-                env('MYSQL_DB_DATABASE'),
-                env('MYSQL_DB_PORT')
+                env('MYSQL_HOST'),
+                env('MYSQL_USERNAME'),
+                env('MYSQL_PASSWORD'),
+                env('MYSQL_DATABASE'),
+                env('MYSQL_PORT')
             );
             $clsDump->addTables($tableList);
             $clsDump->setFilename($backupName);
