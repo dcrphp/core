@@ -29,10 +29,6 @@ class Index
      */
     public function index()
     {
-        $cache = container('cache');
-        $cache->save('test_key', 111);
-        echo $cache->fetch('test_key') ;
-        exit;
         /*dd($_SESSION);
         exit;*/
         $assignData = array();
