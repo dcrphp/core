@@ -9,14 +9,14 @@ return [
 
     //别名
     'alias' => [
-        'config'=> dcr\Config::class,
+        'config'=> \DcrPHP\Config\Config::class,
         'request'=> dcr\Request::class,
         'rule'=> dcr\route\Rule::class,
         'rule_item'=> dcr\route\RuleItem::class,
         'route'=> dcr\Route::class,
         'view'=> dcr\View::class,
         'response'=> dcr\Response::class,
-        'cache'=> dcr\Cache::class,
+        'cache'=> \DcrPHP\Cache\Cache::class,
     ],
 
     //时区

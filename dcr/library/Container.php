@@ -33,13 +33,14 @@ class Container
      * @var string[]
      */
     private $defaultBindList = [
-        'config' => \dcr\Config::class,
-        'request' => \dcr\Request::class,
-        'rule' => \dcr\route\Rule::class,
-        'rule_item' => \dcr\route\RuleItem::class,
-        'route' => \dcr\Route::class,
-        'view' => \dcr\View::class,
-        'response' => \dcr\Response::class,
+        'config'=> \DcrPHP\Config\Config::class,
+        'request'=> \dcr\Request::class,
+        'rule'=> \dcr\route\Rule::class,
+        'rule_item'=> \dcr\route\RuleItem::class,
+        'route'=> \dcr\Route::class,
+        'view'=> \dcr\View::class,
+        'response'=> \dcr\Response::class,
+        'cache'=> \DcrPHP\Cache\Cache::class,
     ];
 
     /**
@@ -72,7 +73,7 @@ class Container
      */
     public function autoBind()
     {
-        $alias = container()->make(\dcr\Config::class)->get('app.alias');
+        $alias = container()->make(\DcrPHP\Config\Config::class)->get('app.alias');
         foreach ($alias as $key => $bindInfo) {
             $this->bind($key, $bindInfo);
         }
@@ -129,7 +130,6 @@ class Container
      */
     public function make($abstract)
     {
-        //先拿从bind里绑定来的 比如绑定config到dcr\Config 则行拿出来Config
         $concrete = $this->getConcrete($abstract);
 
         if (isset($this->instanceList[$concrete])) {

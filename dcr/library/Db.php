@@ -38,7 +38,7 @@ class Db extends DcrBase
     public static function formatConfig($config)
     {
         if (empty($config)) {
-            $config = Config::_get('database.mysql.main');
+            $config = config('database.mysql.main');
         }
         return $config;
     }
@@ -51,6 +51,7 @@ class Db extends DcrBase
     public static function getInstance($config = [], $name = '')
     {
         $config = self::formatConfig($config);
+
         if (empty($name)) {
             $name = md5(serialize($config));
         }

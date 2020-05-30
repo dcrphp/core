@@ -5,6 +5,7 @@
  * Date: 2019/7/28
  * Time: 22:25
  */
+
 use dcr\Container;
 use dcr\Session;
 
@@ -118,4 +119,30 @@ if (!function_exists('getIp')) {
         return $cip;
     }
 
+}
+if (!function_exists('cache')) {
+    /**
+     * @param mixed ...$args 一个参数表示获取 二个参数是设置 三个参数是设置加过期时间
+     */
+    function cache(...$args)
+    {
+        $clsCache = \container('cache');
+        $result = '';
+        switch (count($args)) {
+            case 2:
+                $result = $clsCache->save($args[0], $args[1], 0);
+                break;
+            case 3:
+                if (-1 == $args[2]) {
+                    $clsCache->delete($args[0]);
+                } else {
+                    $result = $clsCache->save($args[0], $args[1], $args[2]);
+                }
+                break;
+            default:
+                $result = $clsCache->fetch($args[0]);
+                break;
+        }
+        return $result;
+    }
 }

@@ -92,9 +92,9 @@ class Install
             //重新加载配置
             Env::init();
             $container = container();
-            $config = $container->make(\dcr\Config::class);
+            $config = $container->make(\DcrPHP\Config\Config::class);
             $config->loadConfig();
-            $container->instance(\dcr\Config::class, $config);
+            $container->instance(\DcrPHP\Config\Config::class, $config);
 
             //dd(file_get_contents( $envFile ));
 

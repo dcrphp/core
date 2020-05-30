@@ -8,10 +8,12 @@
 
 namespace dcr;
 
+use DcrPHP\Config\Config;
+
 class Route extends DcrBase
 {
-    private $configDirList = [];
-    private $configList = [];
+    private $configDirList = array();
+    private $configList = array();
 
     /**
      * @var Rule类实例
@@ -21,27 +23,23 @@ class Route extends DcrBase
     public function __construct()
     {
         $this->rule = container()->make('rule');
-        $this->configDirList[] = ROOT_FRAME . DS . '..'.DS . 'config' . DS . 'route' . DS;
+        $this->configDirList[] = ROOT_FRAME . DS . '..' . DS . 'config' . DS . 'route' . DS;
+
         $this->loadConfig();
     }
 
     public function loadConfig()
     {
-        //dd($this->configDirList);
-        //得出所有的配置文件列表
-        foreach ($this->configDirList as $dir) {
-            if (file_exists($dir)) {
-                $files = scandir($dir);
-                foreach ($files as $file) {
-                    if ('.' == $file || '..' == $file) {
-                        continue;
-                    }
-                    $filePath = $dir . $file;
-                    if (file_exists($filePath)) {
-                        $this->configList = require_once $dir . $file;
-                    }
-                }
-            }
+        $clsConfig = new Config();
+        foreach ($this->configDirList as $configDir) {
+            $clsConfig->addDirectory($configDir);
+        }
+        $clsConfig->setDriver('php');
+        $clsConfig->init();
+
+        $configAll = $clsConfig->get();
+        foreach ($configAll as $configDetail) {
+            $this->configList = array_merge($this->configList, $configDetail);
         }
     }
 

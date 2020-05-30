@@ -24,7 +24,8 @@
         "thamaraiselvam/mysql-import": "*",
         "phpdocumentor/reflection-docblock": "*",
         "filp/whoops": "*",
-        "doctrine/cache": "*"
+        "dcrphp/cache": "*",
+        "dcrphp/config": "*"
     },
     "autoload": {
         "psr-4":{

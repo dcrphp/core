@@ -9,6 +9,8 @@
 namespace dcr;
 
 use dcr\Route\RuleItem;
+use DcrPHP\Cache\Cache;
+use \DcrPHP\Config\Config;
 
 class App
 {
@@ -16,6 +18,7 @@ class App
      * @var $phpSapiName php运行模式
      */
     public static $phpSapiName;
+
     /**
      * 自动加载类
      */
@@ -31,10 +34,22 @@ class App
         Error::init();
         Env::init();
         $container = container();
+
         //加载配置
-        $config = $container->make(\dcr\Config::class);
-        $config->loadConfig();
-        $container->instance(\dcr\Config::class, $config);
+        $clsConfig = new Config();
+        $clsConfig->addDirectory(CONFIG_DIR);
+        $clsConfig->setDriver('php');//解析php格式的
+        $clsConfig->init();
+        $container->instance(\DcrPHP\Config\Config::class, $clsConfig);
+
+        //加载缓存
+        if (env('CACHE_ENABLE')) {
+            $clsCache = new Cache();
+            $clsCache->setConfigFile(CONFIG_DIR . DS . 'cache.php');
+            $clsCache->init();
+            $container->instance($clsConfig->get('app.alias.cache'), $clsCache);
+        }
+
         $container->autoBind();
         Session::init();
         // set default zt_id
@@ -42,7 +57,7 @@ class App
 
         //程序测试与否
         if (config('app.debug')) {
-            error_reporting(E_ALL ^ E_NOTICE ^  E_WARNING);
+            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
             @ini_set('display_errors', 'On');
         } else {
             @ini_set('display_errors', 'Off');

@@ -29,6 +29,9 @@ class Index
      */
     public function index()
     {
+        /*cache('test_key', 111);
+        var_dump( cache('test_key') ) ;
+        exit;*/
         /*dd($_SESSION);
         exit;*/
         $assignData = array();
