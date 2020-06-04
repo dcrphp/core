@@ -11,6 +11,7 @@ namespace dcr;
 use dcr\Route\RuleItem;
 use DcrPHP\Cache\Cache;
 use \DcrPHP\Config\Config;
+use \DcrPHP\Annotations\Annotations;
 
 class App
 {
@@ -111,16 +112,53 @@ class App
         try {
             $classObj = new $class;
             if (is_callable([$classObj, $action])) {
+                //获取注解
+
                 //获取当前操作方法的参数列表 如果有类就实例化一个
+
                 $reflect = new \ReflectionMethod($classObj, $action);
                 $dependencies = container()->resolveConstructor($reflect->getParameters());
-                $data = $reflect->invokeArgs($classObj, $dependencies);
+                //$data = $reflect->invokeArgs($classObj, $dependencies);
+                $data = self::execMethod($class, $classObj, $action, $dependencies);
             } else {
                 throw new \Exception('Not find the function[' . $action . '] or model[' . $class . ']');
             }
         } catch (Exception $e) {
             throw $e;
         }
+        return $data;
+    }
+
+    /**
+     * 执行function 这里是为了内部的function提供一个执行窗口，用来做注解功能，
+     * 比如原来是$user->getUser(),现在改成App::execMethod(User::class,$user,'getUser');
+     * @param $class 类名
+     * @param $instance 类实例
+     * @param $method 方法名
+     * @param array $args 参数列表
+     * @return
+     * @throws \Exception
+     */
+    public static function execMethod($class, $instance, $method, $args)
+    {
+        $startTime = microtime(true);
+        //$data = $instance->$method(...$args);
+        $data = call_user_func_array(array($instance, $method), $args);
+        $runTime = microtime(true) - $startTime;   //计算运行时间
+
+        //获取注解
+        $clsAnnotations = new Annotations();
+        $clsAnnotations->setClass($class);
+        $clsAnnotations->setMethod($method);
+        $annotationsList = $clsAnnotations->getMethodParameters();
+
+        //处理注解
+        $clsDcrAnnotations = new \dcr\Annotations();
+        $clsDcrAnnotations->setAnnotations($clsAnnotations);
+        $clsDcrAnnotations->setReturnData($data);
+        $clsDcrAnnotations->setAnnotationsList($annotationsList);
+        $clsDcrAnnotations->setRunTime($runTime);
+        $clsDcrAnnotations->exec();
         return $data;
     }
 }

@@ -25,7 +25,9 @@
         "phpdocumentor/reflection-docblock": "*",
         "filp/whoops": "*",
         "dcrphp/cache": "*",
-        "dcrphp/config": "*"
+        "dcrphp/config": "*",
+        "dcrphp/log": "*",
+        "dcrphp/annotations": "*"
     },
     "autoload": {
         "psr-4":{

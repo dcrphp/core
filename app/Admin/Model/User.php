@@ -161,7 +161,7 @@ class User
         //逻辑
         //如果有id就改id 没有就改当前用户的
         $where = '';
-        if ($user_id) {
+        if ($userId) {
             $where = "id={$userId}";
         } else {
             $where = "id=" . session('userId');
@@ -340,7 +340,10 @@ class User
     }
 
     /**
-     * @param $option 选项有order
+     * @log_0 {"type":"file","record":"run_time,return_var"}
+     * @log_1 {"level":"warning","type":"browser","record":"run_time,return_var"}
+     * @log_2 {"record":"run_time,return_var"}
+     * @param array $option 选项有order
      * @return mixed
      */
     public function getList($option = array())
