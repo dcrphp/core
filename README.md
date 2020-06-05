@@ -41,10 +41,11 @@ location / {
 
 1.0.4(未知)
 　　1、代码组织三层分层  
-　　2、缓存系统:dcrphp/cache  
+　　2、缓存:dcrphp/cache  
 　　3、注解中心  
-　　4、配置类:dcrphp/config  
-　　5、table edit全新案例及修正bug    
+　　4、配置:dcrphp/config  
+　　5、table edit全新案例及修正bug
+　　6、日志:dcrphp/log   
     
 1.0.3(2020-05-12)  
 　　1、部份文件重新组织  

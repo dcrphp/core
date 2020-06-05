@@ -24,6 +24,7 @@ class Index
 
     /**
      * 首页
+     * @log
      * @return mixed
      * @throws \Exception
      */

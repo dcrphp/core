@@ -10,7 +10,6 @@ namespace app\Admin\Controller;
 
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
-use dcr\App;
 use dcr\Page;
 use dcr\Db;
 
@@ -18,7 +17,6 @@ class User
 {
 
     private $model_name = '用户';
-
     /**
      * @permission /会员管理
      * @return mixed
@@ -41,9 +39,7 @@ class User
         }
 
         //总数量
-        $pageInfo = App::execMethod(MUser::class, $user, 'getList',
-            array('where' => $where, 'col' => array('count(id) as num')));
-        //$pageInfo = $user->getList();
+        $pageInfo = $user->getList(array('where' => $where, 'col' => array('count(id) as num')));
         $pageTotalNum = $pageInfo[0]['num'];
         $page = get('page');
         $page = $page ? (int)$page : 1;

@@ -20,9 +20,9 @@ class Factory
      * 输出后台页面 抽象出来 主要是为了做验证
      * @param $template
      * @param $dataList
-     * @param $templateViewDir 这里可以设置view目录，主要是为了兼容插件能设置自己的view目录
+     * @param string $templateViewDir 这里可以设置view目录，主要是为了兼容插件能设置自己的view目录
      * @return mixed
-     * @throws Exception
+     * @throws \ReflectionException
      */
     public static function renderPage($template, $dataList, $templateViewDir = '')
     {

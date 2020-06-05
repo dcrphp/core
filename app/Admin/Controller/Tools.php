@@ -67,6 +67,9 @@ class Tools
     /**
      * 插件的核心方法:通过不同的参数调用到插件的function
      * 具体请参看帮助中心的[插件开发]
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
      */
     public function pluginsAjax(Request $request)
     {
@@ -78,7 +81,7 @@ class Tools
         $clsPlugins = new Plugins();
         $pluginControllerName = $clsPlugins->getControllerClass($pluginName);
         if (!class_exists($pluginControllerName)) {
-            throw new \Exception($pluginControllerName . ':Crontroller不存在');
+            throw new \Exception($pluginControllerName . ':Controller不存在');
         }
 
         $pluginClass = new $pluginControllerName;

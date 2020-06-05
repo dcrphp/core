@@ -30,7 +30,7 @@ class Log
         //默认数据
         $type = $this->parameter['type'] ? $this->parameter['type'] : env('LOG_DRIVER');
         $level = $this->parameter['level'] ? $this->parameter['level'] : 'info';
-        $recordStr = $this->parameter['record'] ? $this->parameter['record'] : 'run_time,return_var';
+        $recordStr = $this->parameter['record'] ? $this->parameter['record'] : 'run_time';
         $recordList = explode(',', $recordStr);
         //dd($recordList);
         //得出内容来
