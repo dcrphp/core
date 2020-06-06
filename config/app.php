@@ -9,14 +9,14 @@ return [
 
     //别名
     'alias' => [
-        'config'=> \DcrPHP\Config\Config::class,
-        'request'=> dcr\Request::class,
-        'rule'=> dcr\route\Rule::class,
-        'rule_item'=> dcr\route\RuleItem::class,
-        'route'=> dcr\Route::class,
-        'view'=> dcr\View::class,
-        'response'=> dcr\Response::class,
-        'cache'=> \DcrPHP\Cache\Cache::class,
+        'config' => \DcrPHP\Config\Config::class,
+        'request' => dcr\Request::class,
+        'rule' => dcr\route\Rule::class,
+        'rule_item' => dcr\route\RuleItem::class,
+        'route' => dcr\Route::class,
+        'view' => dcr\View::class,
+        'response' => dcr\Response::class,
+        'cache' => \DcrPHP\Cache\Cache::class,
     ],
 
     //时区
@@ -29,5 +29,10 @@ return [
     'view_cache' => 0,
 
     //session过期时间
-    'session_life_time'=> 3600,
+    'session_life_time' => 3600,
+
+    //额外的错误处理
+    'error_handler' => array(
+        \app\Model\MyError::class,
+    ),
 ];

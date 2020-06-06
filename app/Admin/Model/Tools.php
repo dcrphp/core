@@ -9,14 +9,12 @@ class Tools
 {
     public function getTableEditEditAddition($key)
     {
-        $path = ROOT_APP . DS . 'Admin' . DS . 'Config' . DS . 'TableEdit' . DS . $key . DS . 'edit.php';
-        return $path;
+        return ROOT_APP . DS . 'Admin' . DS . 'Config' . DS . 'TableEdit' . DS . $key . DS . 'edit.php';
     }
 
     public function getTableEditDeleteAddition($key)
     {
-        $path = ROOT_APP . DS . 'Admin' . DS . 'Config' . DS . 'TableEdit' . DS . $key . DS . 'delete.php';
-        return $path;
+        return ROOT_APP . DS . 'Admin' . DS . 'Config' . DS . 'TableEdit' . DS . $key . DS . 'delete.php';
     }
 
     /**
@@ -25,17 +23,17 @@ class Tools
      */
     public function getDefaultFieldConfig()
     {
-        $config = array(
+        return array(
             'list' => array('id', 'add_time', 'name', 'title'),
             'search' => array('name', 'title'),
             'search_type' => 'like', //如果是搜索，则默认这个
         );
-        return $config;
     }
 
     /**
      * 把html中的代码实别出来，替换成实际的变量 比如get.a换成get('a')
      * @param $html html代码
+     * @return html代码|string|string[]
      */
     public function generateAdditionHtml($html)
     {
@@ -116,9 +114,11 @@ class Tools
 
     /**
      * 通过表名生成单表管理
+     * @param $pageModel
      * @param $keyword
-     * @param $table_name
-     * @param $page_title
+     * @param $tableName
+     * @param $pageTitle
+     * @return array|int[]
      */
     public function tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle)
     {

@@ -319,21 +319,24 @@ class Tools
         if (in_array('list_where', $allowConfigFromRequestArr) && $searchData['list_where']) {
             $whereArr[] = $searchData['list_where'];
         }
-        //dd($config);
+
         foreach ($searchData as $searchKey => $searchValue) {
             $searchType = $config['col'][$searchKey]['search_type'];
             switch ($searchType) {
                 case 'like':
-                    $whereArr[] = "{$searchKey} like '%{$searchValue}%'";
+                    $whereArr[] = "`{$searchKey}` like '%{$searchValue}%'";
                     break;
                 case 'like_left':
-                    $whereArr[] = "{$searchKey} like '{$searchValue}%'";
+                    $whereArr[] = "`{$searchKey}` like '{$searchValue}%'";
                     break;
                 case 'like_right':
-                    $whereArr[] = "{$searchKey} like '%{$searchValue}'";
+                    $whereArr[] = "`{$searchKey}` like '%{$searchValue}'";
                     break;
                 case 'equal':
-                    $whereArr[] = "{$searchKey}='{$searchValue}'";
+                    $whereArr[] = "`{$searchKey}`='{$searchValue}'";
+                    break;
+                default:
+                    $whereArr[] = "`{$searchKey}`='{$searchValue}'";
                     break;
             }
         }
