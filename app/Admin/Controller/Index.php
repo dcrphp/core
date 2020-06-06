@@ -24,7 +24,7 @@ class Index
 
     /**
      * 首页
-     * @log
+     * @11log 这里改成@log可以看效果
      * @return mixed
      * @throws \Exception
      */

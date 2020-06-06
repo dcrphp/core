@@ -37,8 +37,8 @@ class App
         $container = container();
 
         //加载配置
-        $clsConfig = new Config();
-        $clsConfig->addDirectory(CONFIG_DIR);
+        $clsConfig = new Config(CONFIG_DIR);
+        //$clsConfig->addDirectory(CONFIG_DIR);
         $clsConfig->setDriver('php');//解析php格式的
         $clsConfig->init();
         $container->instance(\DcrPHP\Config\Config::class, $clsConfig);

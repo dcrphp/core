@@ -30,7 +30,7 @@ class Route extends DcrBase
 
     public function loadConfig()
     {
-        $clsConfig = new Config();
+        $clsConfig = new Config($this->configDirList[0]);
         foreach ($this->configDirList as $configDir) {
             $clsConfig->addDirectory($configDir);
         }
