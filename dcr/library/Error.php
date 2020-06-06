@@ -23,14 +23,17 @@ class Error
         $whoops->pushHandler(new $handler);
 
         //配置的error handler
-        $clsConfig = new Config(CONFIG_DIR .DS. 'app.php');
-        $clsConfig->setDriver('php');
-        $clsConfig->init();
-        $configHandler = $clsConfig->get('app.error_handler');
-        if ($configHandler) {
-            foreach ($configHandler as $handlerClass) {
-                $whoops->pushHandler(new $handlerClass);
+        try {
+            $clsConfig = new Config(CONFIG_DIR . DS . 'app.php');
+            $clsConfig->setDriver('php');
+            $clsConfig->init();
+            $configHandler = $clsConfig->get('app.error_handler');
+            if ($configHandler) {
+                foreach ($configHandler as $handlerClass) {
+                    $whoops->pushHandler(new $handlerClass);
+                }
             }
+        } catch (\Exception $e) {
         }
 
         $whoops->register();

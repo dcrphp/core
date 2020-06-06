@@ -28,11 +28,13 @@ return [
     //开启模板缓存
     'view_cache' => 0,
 
-    //session过期时间
-    'session_life_time' => 3600,
-
     //额外的错误处理
     'error_handler' => array(
         \app\Model\MyError::class,
     ),
+
+    //session
+    'session_save_handler' => env('SESSION_SAVE_HANDLER', ''), //redis或file
+    'session_save_path'=> env('SESSION_SAVE_PATH', ''), //如果是redis则可配置如下:"tcp://127.0.0.1:3309"
+    'session_life_time' => env('SESSION_SAVE_LIFT_TIME', 3600),
 ];

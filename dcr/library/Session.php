@@ -17,9 +17,18 @@ class Session extends DcrBase
     public static function init()
     {
         $life_time = \config('app.session_life_time');
+        $handler = \config('app.session_save_handler');
+        $path = \config('app.session_save_path');
         //dd($life_time);
         if ($life_time) {
             @ini_set('session.gc_maxlifetime', $life_time);
+        }
+        if ($handler) {
+            ini_set('session.save_handler', $handler);
+
+        }
+        if ($path) {
+            ini_set('session.save_path', $path);
         }
         session_start();
     }
