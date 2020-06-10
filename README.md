@@ -46,6 +46,7 @@ location / {
 　　4、配置:dcrphp/config  
 　　5、table edit全新案例及修正bug
 　　6、日志:dcrphp/log   
+　　7、集成用户日志和系统日志  
     
 1.0.3(2020-05-12)  
 　　1、部份文件重新组织  
