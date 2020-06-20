@@ -6,7 +6,7 @@
 env
 *uploads*
 *ErrorFiles*
-/public/ueditor*
+*ueditor*
 *code_coverage*
 u.php
 Thumbs.db
