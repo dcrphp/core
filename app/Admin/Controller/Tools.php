@@ -8,7 +8,7 @@ use app\Admin\Model\Plugins;
 use dcr\Page;
 use dcr\Request;
 use dcr\View;
-use dcr\Db;
+use dcr\facade\Db;
 use app\Admin\Model\Tools as MTools;
 
 class Tools

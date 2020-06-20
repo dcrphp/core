@@ -28,7 +28,8 @@
         "dcrphp/config": "1.0.2-alpha1",
         "dcrphp/log": "1.0.2-alpha3",
         "dcrphp/annotations": "*",
-        "graylog2/gelf-php": "*"
+        "graylog2/gelf-php": "*",
+        "doctrine/orm": "*"
     },
     "autoload": {
         "psr-4":{

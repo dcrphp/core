@@ -6,7 +6,7 @@
  * Time: 18:27
  */
 
-namespace dcr\Route;
+namespace dcr\route;
 
 use dcr\DcrBase;
 

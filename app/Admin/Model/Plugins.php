@@ -4,7 +4,7 @@
 namespace app\Admin\Model;
 
 use app\Admin\Model\Admin;
-use dcr\Db;
+use dcr\facade\Db;
 use dcr\Request;
 
 class Plugins

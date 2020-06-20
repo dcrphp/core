@@ -1,6 +1,6 @@
 <?php
 
-use dcr\Db;
+use dcr\facade\Db;
 
 //先删除子表的
 Db::delete('config_table_edit_item', "ctel_id={$data['id']}");

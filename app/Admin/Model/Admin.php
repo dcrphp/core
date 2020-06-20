@@ -8,7 +8,7 @@
 
 namespace app\Admin\Model;
 
-use dcr\Db;
+use dcr\facade\Db;
 use dcr\View;
 use dcr\Session;
 

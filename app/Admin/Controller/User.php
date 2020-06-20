@@ -11,7 +11,7 @@ namespace app\Admin\Controller;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
 use dcr\Page;
-use dcr\Db;
+use dcr\facade\Db;
 
 class User
 {

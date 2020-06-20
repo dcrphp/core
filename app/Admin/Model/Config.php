@@ -9,7 +9,7 @@
 namespace app\Admin\Model;
 
 use app\Admin\Model\Common;
-use dcr\Db;
+use dcr\facade\Db;
 
 class Config
 {

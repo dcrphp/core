@@ -8,10 +8,11 @@
 
 namespace dcr;
 
-use dcr\Route\RuleItem;
+use dcr\route\RuleItem;
+use DcrPHP\Annotations\Annotations;
 use DcrPHP\Cache\Cache;
-use \DcrPHP\Config\Config;
-use \DcrPHP\Annotations\Annotations;
+use DcrPHP\Config\Config;
+use Doctrine\ORM\Tools\Setup;
 
 class App
 {
@@ -63,6 +64,17 @@ class App
         } else {
             @ini_set('display_errors', 'Off');
         }
+
+        //orm加载
+        $ormConfig = Setup::createAnnotationMetadataConfiguration(array(config('app.model_dir')), false);
+        $dbDriver = config('database.type');
+        $dbConn = config('database.' . $dbDriver);
+        $dbConn['driver'] = $dbDriver;
+
+        $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
+        //$entityManager->getConnection()
+        $container->instance('entity_manager', $entityManager);
+        $container->instance('em', $entityManager);
 
         //设置时区
         date_default_timezone_set(config('app.default_timezone'));

@@ -5,7 +5,7 @@ namespace app\Admin\Model;
 
 use app\Admin\Model\Admin;
 use app\Admin\Model\Config;
-use dcr\Db;
+use dcr\facade\Db;
 
 class Common
 {

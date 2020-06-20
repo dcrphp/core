@@ -6,7 +6,7 @@ namespace app\Index\Model;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User;
-use dcr\Db;
+use dcr\facade\Db;
 use dcr\ENV;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Style\SymfonyStyle;

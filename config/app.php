@@ -33,6 +33,9 @@ return [
         \app\Model\MyError::class,
     ),
 
+    //orm model目录
+    'model_dir'=> ROOT_APP . DS . 'Model',
+
     //session
     'session_save_handler' => env('SESSION_SAVE_HANDLER', ''), //redis或file
     'session_save_path'=> env('SESSION_SAVE_PATH', ''), //如果是redis则可配置如下:"tcp://127.0.0.1:3309"

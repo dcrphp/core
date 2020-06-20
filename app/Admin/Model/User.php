@@ -9,7 +9,7 @@
 namespace app\Admin\Model;
 
 use dcr\Session;
-use dcr\Db;
+use dcr\facade\Db;
 use dcr\Safe;
 use phpDocumentor\Reflection\DocBlockFactory;
 use Respect\Validation\Validator as v;

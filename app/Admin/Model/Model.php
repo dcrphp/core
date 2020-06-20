@@ -9,7 +9,7 @@
 namespace app\Admin\Model;
 
 use Aura\SqlQuery\QueryFactory;
-use dcr\Db;
+use dcr\facade\Db;
 use dcr\Session;
 use Respect\Validation\Validator as v;
 
@@ -73,9 +73,8 @@ class Model
             $option['join'][] = $join;
         }
         $option['table'] = 'model_list';
-        $list = DB::select($option);
         //echo DB::getLastSql();
-        return $list;
+        return DB::select($option);
     }
 
     /**

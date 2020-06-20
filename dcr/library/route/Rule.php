@@ -6,7 +6,7 @@
  * Time: 18:26
  */
 
-namespace dcr\Route;
+namespace dcr\route;
 
 class Rule
 {
