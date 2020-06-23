@@ -67,7 +67,7 @@ class Model
     {
         $join = array();
         if ($option['requestAddition']) {
-            $join = array('table' => 'model_addition', 'type' => 'left', 'condition' => 'ma_id=id');
+            $join = array('table' => 'model_addition', 'type' => 'left', 'condition' => 'ma_ml_id=model_list.id');
         }
         if (count($join)) {
             $option['join'][] = $join;

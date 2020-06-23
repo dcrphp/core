@@ -101,6 +101,7 @@ class Db
             $select->where($whereStr);
         }
         $sql = $select->getSQL();
+        self::$lastSql = $sql;
 
         return self::getConnection()->fetchAll($sql);
     }

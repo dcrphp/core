@@ -32,6 +32,7 @@ YZCODE;
         file_put_contents($userPath, $userCodeNew);
         //首页
         $html = file_get_contents('http://127.0.0.1/admin/index/index');
+        //echo $html;
         $this->assertRegExp('/我的桌面/', $html);
 
         try {
@@ -66,6 +67,8 @@ YZCODE;
                             echo "\r\n" . $viewUrl . "\r\n";*/
                             //exit;
                             $html = file_get_contents($viewUrl);
+                            /*echo $html;
+                            break;*/
 
                             $this->assertRegExp('/stylesheet/', $html);
                         }

@@ -4,11 +4,12 @@ namespace test;
 
 require_once __DIR__ . '/../dcr/bootstrap/init.php';
 
-use app\Model\Install;
-use PHPUnit\Framework\TestCase;
-use app\Admin\Model\User;
-use app\Admin\Model\Model;
 use app\Admin\Model\Config;
+use app\Admin\Model\Model;
+use app\Admin\Model\User;
+use app\Index\Model\Install;
+use dcr\facade\Db;
+use PHPUnit\Framework\TestCase;
 
 class TestBase extends TestCase
 {
@@ -16,13 +17,14 @@ class TestBase extends TestCase
     {
         $config = new Config();
 
-        $modelConfigList = $config->getConfigModelList();
+        $modelConfigList = $config->getConfigList(0, 'model');
+        //dd($modelConfigList);
 
-        $this->assertEquals(2, count($modelConfigList));
+        $this->assertEquals(3, count($modelConfigList));
 
         //$this->assertEquals(0, count($modelConfigList['info']));
-        $this->assertEquals(2, count($modelConfigList['product']));
-        $this->assertEquals(1, count($modelConfigList['news']));
+        //$this->assertEquals(3, count($modelConfigList['product']));
+        //$this->assertEquals(0, count($modelConfigList['news']));
     }
 
     public function testUser()
@@ -35,14 +37,14 @@ class TestBase extends TestCase
         $this->assertEquals(3, $userCount);
 
         //判断是不是3个有
-        $usernameList = array_keys(array_column($userList, 'u_username', 'u_username'));
+        $usernameList = array_keys(array_column($userList, 'username', 'username'));
         //dd($usernameList);
         $this->assertTrue(in_array('admin', $usernameList));
         $this->assertTrue(in_array('张三', $usernameList));
         $this->assertTrue(in_array('李四', $usernameList));
 
         //有没有空密码的
-        $userList = $user->getList(array( 'col'=>'u_id', 'where'=> 'char_length(u_password)<1' ));
+        $userList = $user->getList(array( 'col'=>'id', 'where'=> 'char_length(password)<1' ));
         $this->assertEquals(0, count($userList));
     }
 
@@ -56,9 +58,11 @@ class TestBase extends TestCase
 
         //admin是不是管理员
         $adminInfo = $user->getInfo('admin');
-        $userRole = $user->getRoleConfigList($adminInfo['u_id']);
+        $userRole = $user->getRoleConfigList($adminInfo['id']);
+        /*echo Db::getLastSql();
+        dd($userRole);*/
         $userRole = current($userRole);
-        $this->assertEquals(1, $userRole['urc_u_id']);
+        $this->assertEquals(1, $userRole['u_id']);
     }
 
     public function testModel()
@@ -79,7 +83,10 @@ class TestBase extends TestCase
         $this->assertEquals(0, count($modelList));
 
         //list数量
-        $modelList = $model->getList(array('requestAddition' => 1, 'col' => 'ml_id,ml_title,ma_id'));
+        $modelList = $model->getList(array(
+            'requestAddition' => 1,
+            'col' => 'model_list.id,ml_title,model_addition.id'
+        ));
         $this->assertEquals(11, count($modelList));
 
         //是否有以下几个标题
