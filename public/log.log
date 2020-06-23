@@ -1,6 +1,0 @@
-[2020-06-05T18:35:31.511784+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.061999082565308s"] [] []
-[2020-06-05T18:38:38.038439+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.078746795654297s"] [] []
-[2020-06-05T18:38:39.896389+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.022574901580811s"] [] []
-[2020-06-05T18:41:25.462888+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.080641984939575s"] [] []
-[2020-06-05T18:43:00.241938+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.060528039932251s"] [] []
-[2020-06-05T18:43:49.704516+08:00] dcrphp.INFO: \app\Admin\Controller\Index->index's result:["run:0.060431003570557s"] [] []
