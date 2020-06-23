@@ -25,7 +25,6 @@ class Session extends DcrBase
         }
         if ($handler) {
             ini_set('session.save_handler', $handler);
-
         }
         if ($path) {
             ini_set('session.save_path', $path);

@@ -76,6 +76,4 @@ class UserRole
      * @ORM\Column(name="is_approval", type="boolean", nullable=false, options={"default"="1"})
      */
     private $isApproval = true;
-
-
 }

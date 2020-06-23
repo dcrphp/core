@@ -153,6 +153,4 @@ class ConfigTableEditItem
      * @ORM\Column(name="ctel_id", type="integer", nullable=false)
      */
     private $ctelId = '0';
-
-
 }

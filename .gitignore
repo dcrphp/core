@@ -13,3 +13,4 @@ Thumbs.db
 app/Index/Install/lock
 *Cache*
 *storage*
+log.log

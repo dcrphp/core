@@ -83,6 +83,4 @@ class ConfigList
      * @ORM\Column(name="keyword", type="string", length=45, nullable=false, options={"comment"="关键字，可以用来给列表做区别"})
      */
     private $keyword = '';
-
-
 }

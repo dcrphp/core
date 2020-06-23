@@ -69,6 +69,4 @@ class UserRoleConfig
      * @ORM\Column(name="ur_id", type="integer", nullable=false, options={"comment"="角色id"})
      */
     private $urId = '0';
-
-
 }

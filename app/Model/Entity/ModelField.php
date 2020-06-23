@@ -76,6 +76,4 @@ class ModelField
      * @ORM\Column(name="mf_ml_id", type="integer", nullable=false)
      */
     private $mfMlId = '0';
-
-
 }

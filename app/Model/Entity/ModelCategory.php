@@ -76,6 +76,4 @@ class ModelCategory
      * @ORM\Column(name="parent_id", type="smallint", nullable=false)
      */
     private $parentId = '0';
-
-
 }

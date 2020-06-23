@@ -69,6 +69,4 @@ class UserPermission
      * @ORM\Column(name="version", type="string", length=13, nullable=false, options={"fixed"=true,"comment"="版本名"})
      */
     private $version = '';
-
-
 }

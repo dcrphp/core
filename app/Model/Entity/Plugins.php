@@ -97,6 +97,4 @@ class Plugins
      * @ORM\Column(name="title", type="string", length=45, nullable=false)
      */
     private $title = '';
-
-
 }
