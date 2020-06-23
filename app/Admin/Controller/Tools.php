@@ -14,7 +14,7 @@ use app\Admin\Model\Tools as MTools;
 class Tools
 {
 
-    private $model_name = '工具';
+    private $modelName = '工具';
 
     /**
      * @permission /系统工具
@@ -26,7 +26,7 @@ class Tools
 
         $assignData = array();
         $assignData['page_title'] = '插件中心';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         //得出本地插件列表
         $clsPlugins = new Plugins();
@@ -45,7 +45,7 @@ class Tools
 
         $assignData = array();
         $assignData['page_title'] = '已安装列表';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         $clsPlugins = new Plugins();
         $list = $clsPlugins->getInstalledList();
@@ -115,7 +115,7 @@ class Tools
         }
         $assignData = array();
         $assignData['page_title'] = $config['description'];
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         //调用插件的index
         $pluginControllerName = $clsPlugins->getControllerClass($pluginName);
         if (class_exists($pluginControllerName)) {
@@ -333,9 +333,6 @@ class Tools
                     $whereArr[] = "`{$searchKey}` like '%{$searchValue}'";
                     break;
                 case 'equal':
-                    $whereArr[] = "`{$searchKey}`='{$searchValue}'";
-                    break;
-                default:
                     $whereArr[] = "`{$searchKey}`='{$searchValue}'";
                     break;
             }

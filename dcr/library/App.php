@@ -12,6 +12,7 @@ use dcr\route\RuleItem;
 use DcrPHP\Annotations\Annotations;
 use DcrPHP\Cache\Cache;
 use DcrPHP\Config\Config;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 
 class App
@@ -66,15 +67,26 @@ class App
         }
 
         //orm加载
-        $ormConfig = Setup::createAnnotationMetadataConfiguration(array(config('app.model_dir')), false);
+        $ormConfig = Setup::createAnnotationMetadataConfiguration(
+            array(config('app.entity_dir')),
+            true,
+            null,
+            null,
+            false
+        );
+        //$ormConfig->setSecondLevelCacheEnabled(false);
         $dbDriver = config('database.type');
         $dbConn = config('database.' . $dbDriver);
         $dbConn['driver'] = $dbDriver;
 
-        $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
-        //$entityManager->getConnection()
-        $container->instance('entity_manager', $entityManager);
-        $container->instance('em', $entityManager);
+        try {
+            $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
+            //$entityManager->getConnection()
+            $container->instance('entity_manager', $entityManager);
+            $container->instance('em', $entityManager);
+        } catch (ORMException $e) {
+            throw $e;
+        }
 
         //设置时区
         date_default_timezone_set(config('app.default_timezone'));

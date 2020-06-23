@@ -10,7 +10,7 @@ use dcr\Page;
 
 class Model
 {
-    private $model_name = '模型';
+    private $modelName = '模型';
 
     /**
      * @permission /文章列表
@@ -21,9 +21,9 @@ class Model
     {
         $assignData = array();
         $assignData['page_title'] = '列表';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $modelName = current(container('request')->getParams());
-        $assignData['model_name'] = $modelName;
+        $assignData['modelName'] = $modelName;
         $where = array();
         $where[] = "ml_model_name='{$modelName}'";
         //开始搜索
@@ -91,7 +91,7 @@ class Model
     {
         $assignData = array();
         $assignData['page_title'] = '添加/编辑';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $model = new MModel();
         $config = new Config();
         $params = container('request')->getParams();
@@ -155,7 +155,7 @@ class Model
     {
         $assignData = array();
         $assignData['page_title'] = '分类列表';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $modelName = current(container('request')->getParams());
         $assignData['model_name'] = $modelName;
         $model = new MModel();
@@ -170,7 +170,7 @@ class Model
     {
         $assignData = array();
         $assignData['page_title'] = '分类编辑';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $model = new MModel();
         $param = container('request')->getParams();
         $modelName = $param[0];

@@ -8,19 +8,17 @@
 
 namespace app\Admin\Controller;
 
+use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
-use app\Admin\Model\Common;
+use app\Admin\Model\User as MUser;
 use dcr\Response;
+use dcr\Safe;
 use dcr\Session;
 use dcr\View;
-use app\Admin\Model\Admin;
-use app\Admin\Model\User;
-use app\Admin\Model\Config;
-use dcr\Safe;
 
 class Index
 {
-    private $model_name = '首页';
+    private $modelName = '首页';
 
     /**
      * 首页
@@ -35,13 +33,24 @@ class Index
         exit;*/
         /*dd($_SESSION);
         exit;*/
+        /*$userInfo = container('em')->find('\app\Model\Entity\Plugins', 10);
+        dd($userInfo);
+        dd($userInfo->getName());
+        exit;*/
+        /*$entityPlugins = new \app\Model\Entity\Plugins();
+        $entityPlugins->setTitle('test');
+        $entityPlugins->setAddTime(new \DateTime("now"));
+        $entityPlugins->setUpdateTime(new \DateTime("now"));
+        container('em')->persist($entityPlugins);
+        container('em')->flush();
+        exit;*/
         $assignData = array();
         $version = config('info.version');
         $appName = config('info.name');
         $assignData['version'] = $version;
         $assignData['app_name'] = $appName;
         $assignData['page_title'] = '首页';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         /*dd($assignData);
         exit;*/
         return Factory::renderPage('index/index', $assignData);
@@ -55,10 +64,10 @@ class Index
     {
         $assignData = array();
         $assignData['page_title'] = '欢迎页面';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         //获取用户信息
-        $user = new User();
+        $user = new MUser();
         $userInfo = $user->getInfo(Session::_get('username'));
         $assignData['user_info'] = $userInfo;
         $assignData['db_type'] = env('MYSQL_DRIVER', 'mysql');
@@ -73,7 +82,7 @@ class Index
      */
     public function logout()
     {
-        $user = new User();
+        $user = new MUser();
         $user->logout();
         /*dd($_SESSION);
         exit;*/
@@ -92,7 +101,7 @@ class Index
     {
         $assignData = array();
         $assignData['page_title'] = '登陆页';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         $username = post('username');
         $password = post('password');
@@ -107,7 +116,7 @@ class Index
         }
         //判断用户名
 
-        $user = new User();
+        $user = new MUser();
         $password = Safe::_encrypt($password);
         $yzResult = $user->check($username, $password);
 

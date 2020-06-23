@@ -6,11 +6,16 @@ namespace dcr\facade;
 class Db
 {
 
+    protected static $lastErrorCode;
+    protected static $lastErrorInfo;
+    protected static $lastSql;
+
     public static function getConnection()
     {
         $entityManager = container('em');
         return $entityManager->getConnection();
     }
+
     public static function createQueryBuilder()
     {
         return self::getConnection()->createQueryBuilder();
@@ -103,19 +108,31 @@ class Db
     /**
      * @param $sql
      * @return mixed
+     * @throws \Exception
      */
     public static function exec($sql)
     {
-        return self::getConnection()->exec($sql);
+        self::$lastSql = $sql;
+        $result = self::getConnection()->exec($sql);
+        self::recordError(self::getConnection());
+
+        //前面有错误会直接拦截 这里返回true
+        return true;
     }
 
     /**
      * @param $sql
      * @return mixed
+     * @throws \Exception
      */
     public static function query($sql)
     {
+        self::$lastSql = $sql;
+        $result = self::getConnection()->query($sql);
+        self::recordError(self::getConnection());
         return self::getConnection()->query($sql)->fetchAll();
+
+        return $result->fetchAll();
     }
 
     /**
@@ -123,6 +140,7 @@ class Db
      * @param $info
      * @param $where
      * @return mixed
+     * @throws \Exception
      */
     public static function update($table, $info, $where)
     {
@@ -140,6 +158,7 @@ class Db
      * @param $table
      * @param $info
      * @return mixed
+     * @throws \Exception
      */
     public static function insert($table, $info)
     {
@@ -149,15 +168,17 @@ class Db
             $insert = $insert->setValue($key, "'{$value}'");
         }
         $sql = $insert->getSql();
+        self::exec($sql);
         /*echo $sql;
         exit;*/
-        return self::exec($sql);
+        return self::getConnection()->lastInsertId();
     }
 
     /**
      * @param $table
      * @param $where
      * @return mixed
+     * @throws \Exception
      */
     public static function delete($table, $where)
     {
@@ -166,5 +187,48 @@ class Db
         $delete = $delete->where($where);
         $sql = $delete->getSql();
         return self::exec($sql);
+    }
+
+    public static function beginTransaction()
+    {
+        self::getConnection()->beginTransaction();
+    }
+
+    public static function commit()
+    {
+        self::getConnection()->commit();
+    }
+
+    public static function rollback()
+    {
+        self::getConnection()->rollback();
+    }
+
+    public static function getLastSql()
+    {
+        return self::$lastSql;
+    }
+
+    /**
+     * 显示或记录错误 如果有错误 这里会处理
+     * @param $conn
+     * @throws \Exception
+     */
+    private static function recordError($conn)
+    {
+        self::$lastErrorCode = $conn->errorCode();
+        self::$lastErrorInfo = $conn->errorInfo();
+        if ($conn->errorCode() != '0000') {
+            $errorInfo = self::getError();
+            $sql = self::getLastSql();
+            $msg = $sql ? 'Sql是:' . $sql . ',' : '';
+            throw new \Exception($msg . $errorInfo['msg']);
+        }
+    }
+
+    public static function getError()
+    {
+        $conn = self::getConnection();
+        return array('code' => $conn->errorCode(), 'msg' => implode(',', $conn->errorInfo()));
     }
 }

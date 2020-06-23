@@ -33,8 +33,8 @@ return [
         \app\Model\MyError::class,
     ),
 
-    //orm model目录
-    'model_dir'=> ROOT_APP . DS . 'Model',
+    //orm entity目录
+    'entity_dir'=> ROOT_APP . DS . 'Model' . DS . 'Entity' . DS,
 
     //session
     'session_save_handler' => env('SESSION_SAVE_HANDLER', ''), //redis或file

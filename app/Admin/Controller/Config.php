@@ -9,7 +9,7 @@ use dcr\Request;
 
 class Config
 {
-    private $model_name = '配置';
+    private $modelName = '配置';
 
     /**
      * @return mixed
@@ -19,7 +19,7 @@ class Config
     {
         $assignData = array();
         $assignData['page_title'] = '配置项配置';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $params = container('request')->getParams();
         $clType = $params[0] ? $params[0] : 'config';
 
@@ -42,7 +42,7 @@ class Config
 
         $assignData = array();
         $assignData['page_title'] = '配置项子项配置';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         $config = new MConfig();
         $list = $config->getConfigListItemByListId($listId);
@@ -65,7 +65,7 @@ class Config
         $id = $params[2];
         $assignData = array();
         $assignData['page_title'] = '添加编辑配置项';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $assignData['addition_id'] = $listId;
         $assignData['id'] = $id;
         $assignData['type'] = $type;
@@ -93,7 +93,7 @@ class Config
     {
         $assignData = array();
         $assignData['page_title'] = '基础配置';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
 
         $params = $request->getParams();
         $clsConfig = new MConfig();
@@ -133,7 +133,7 @@ class Config
 
         $assignData = array();
         $assignData['page_title'] = '模型配置';
-        $assignData['page_model'] = $this->model_name;
+        $assignData['page_model'] = $this->modelName;
         $assignData['define_list'] = Common::getModelDefine();
 
         $config = new MConfig();
