@@ -5,11 +5,11 @@ namespace app\Admin\Controller;
 use app\Admin\Model\Common;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
+use app\Admin\Model\Tools as MTools;
+use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
 use dcr\View;
-use dcr\facade\Db;
-use app\Admin\Model\Tools as MTools;
 
 class Tools
 {
@@ -320,7 +320,12 @@ class Tools
             $whereArr[] = $searchData['list_where'];
         }
 
+        //dd($searchData);
+        //改这里要注意:表的搜索用的这里，还有额外的list_where要解析
         foreach ($searchData as $searchKey => $searchValue) {
+            if (!$searchValue) {
+                continue;
+            }
             $searchType = $config['col'][$searchKey]['search_type'];
             switch ($searchType) {
                 case 'like':
@@ -332,8 +337,11 @@ class Tools
                 case 'like_right':
                     $whereArr[] = "`{$searchKey}` like '%{$searchValue}'";
                     break;
-                case 'equal':
-                    $whereArr[] = "`{$searchKey}`='{$searchValue}'";
+                default:
+                    //等于或其它的，都用=来判断
+                    if ('list_where' != $searchKey) {
+                        $whereArr[] = "`{$searchKey}`='{$searchValue}'";
+                    }
                     break;
             }
         }

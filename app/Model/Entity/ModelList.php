@@ -90,4 +90,254 @@ class ModelList
      * @ORM\Column(name="ml_view_nums", type="integer", nullable=false, options={"comment"="浏览次数"})
      */
     private $mlViewNums = '0';
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set addTime.
+     *
+     * @param \DateTime $addTime
+     *
+     * @return ModelList
+     */
+    public function setAddTime($addTime)
+    {
+        $this->addTime = $addTime;
+
+        return $this;
+    }
+
+    /**
+     * Get addTime.
+     *
+     * @return \DateTime
+     */
+    public function getAddTime()
+    {
+        return $this->addTime;
+    }
+
+    /**
+     * Set updateTime.
+     *
+     * @param \DateTime $updateTime
+     *
+     * @return ModelList
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->updateTime = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get updateTime.
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
+    }
+
+    /**
+     * Set isApproval.
+     *
+     * @param bool $isApproval
+     *
+     * @return ModelList
+     */
+    public function setIsApproval($isApproval)
+    {
+        $this->isApproval = $isApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get isApproval.
+     *
+     * @return bool
+     */
+    public function getIsApproval()
+    {
+        return $this->isApproval;
+    }
+
+    /**
+     * Set addUserId.
+     *
+     * @param int $addUserId
+     *
+     * @return ModelList
+     */
+    public function setAddUserId($addUserId)
+    {
+        $this->addUserId = $addUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get addUserId.
+     *
+     * @return int
+     */
+    public function getAddUserId()
+    {
+        return $this->addUserId;
+    }
+
+    /**
+     * Set ztId.
+     *
+     * @param int $ztId
+     *
+     * @return ModelList
+     */
+    public function setZtId($ztId)
+    {
+        $this->ztId = $ztId;
+
+        return $this;
+    }
+
+    /**
+     * Get ztId.
+     *
+     * @return int
+     */
+    public function getZtId()
+    {
+        return $this->ztId;
+    }
+
+    /**
+     * Set mlTitle.
+     *
+     * @param string $mlTitle
+     *
+     * @return ModelList
+     */
+    public function setMlTitle($mlTitle)
+    {
+        $this->mlTitle = $mlTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get mlTitle.
+     *
+     * @return string
+     */
+    public function getMlTitle()
+    {
+        return $this->mlTitle;
+    }
+
+    /**
+     * Set mlPicPath.
+     *
+     * @param string $mlPicPath
+     *
+     * @return ModelList
+     */
+    public function setMlPicPath($mlPicPath)
+    {
+        $this->mlPicPath = $mlPicPath;
+
+        return $this;
+    }
+
+    /**
+     * Get mlPicPath.
+     *
+     * @return string
+     */
+    public function getMlPicPath()
+    {
+        return $this->mlPicPath;
+    }
+
+    /**
+     * Set mlCategoryId.
+     *
+     * @param int $mlCategoryId
+     *
+     * @return ModelList
+     */
+    public function setMlCategoryId($mlCategoryId)
+    {
+        $this->mlCategoryId = $mlCategoryId;
+
+        return $this;
+    }
+
+    /**
+     * Get mlCategoryId.
+     *
+     * @return int
+     */
+    public function getMlCategoryId()
+    {
+        return $this->mlCategoryId;
+    }
+
+    /**
+     * Set mlModelName.
+     *
+     * @param string $mlModelName
+     *
+     * @return ModelList
+     */
+    public function setMlModelName($mlModelName)
+    {
+        $this->mlModelName = $mlModelName;
+
+        return $this;
+    }
+
+    /**
+     * Get mlModelName.
+     *
+     * @return string
+     */
+    public function getMlModelName()
+    {
+        return $this->mlModelName;
+    }
+
+    /**
+     * Set mlViewNums.
+     *
+     * @param int $mlViewNums
+     *
+     * @return ModelList
+     */
+    public function setMlViewNums($mlViewNums)
+    {
+        $this->mlViewNums = $mlViewNums;
+
+        return $this;
+    }
+
+    /**
+     * Get mlViewNums.
+     *
+     * @return int
+     */
+    public function getMlViewNums()
+    {
+        return $this->mlViewNums;
+    }
 }

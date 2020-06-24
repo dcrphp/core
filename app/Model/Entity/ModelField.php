@@ -76,4 +76,206 @@ class ModelField
      * @ORM\Column(name="mf_ml_id", type="integer", nullable=false)
      */
     private $mfMlId = '0';
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set addTime.
+     *
+     * @param \DateTime $addTime
+     *
+     * @return ModelField
+     */
+    public function setAddTime($addTime)
+    {
+        $this->addTime = $addTime;
+
+        return $this;
+    }
+
+    /**
+     * Get addTime.
+     *
+     * @return \DateTime
+     */
+    public function getAddTime()
+    {
+        return $this->addTime;
+    }
+
+    /**
+     * Set updateTime.
+     *
+     * @param \DateTime $updateTime
+     *
+     * @return ModelField
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->updateTime = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get updateTime.
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
+    }
+
+    /**
+     * Set isApproval.
+     *
+     * @param bool $isApproval
+     *
+     * @return ModelField
+     */
+    public function setIsApproval($isApproval)
+    {
+        $this->isApproval = $isApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get isApproval.
+     *
+     * @return bool
+     */
+    public function getIsApproval()
+    {
+        return $this->isApproval;
+    }
+
+    /**
+     * Set addUserId.
+     *
+     * @param int $addUserId
+     *
+     * @return ModelField
+     */
+    public function setAddUserId($addUserId)
+    {
+        $this->addUserId = $addUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get addUserId.
+     *
+     * @return int
+     */
+    public function getAddUserId()
+    {
+        return $this->addUserId;
+    }
+
+    /**
+     * Set ztId.
+     *
+     * @param int $ztId
+     *
+     * @return ModelField
+     */
+    public function setZtId($ztId)
+    {
+        $this->ztId = $ztId;
+
+        return $this;
+    }
+
+    /**
+     * Get ztId.
+     *
+     * @return int
+     */
+    public function getZtId()
+    {
+        return $this->ztId;
+    }
+
+    /**
+     * Set mfKeyword.
+     *
+     * @param string $mfKeyword
+     *
+     * @return ModelField
+     */
+    public function setMfKeyword($mfKeyword)
+    {
+        $this->mfKeyword = $mfKeyword;
+
+        return $this;
+    }
+
+    /**
+     * Get mfKeyword.
+     *
+     * @return string
+     */
+    public function getMfKeyword()
+    {
+        return $this->mfKeyword;
+    }
+
+    /**
+     * Set mfValue.
+     *
+     * @param string $mfValue
+     *
+     * @return ModelField
+     */
+    public function setMfValue($mfValue)
+    {
+        $this->mfValue = $mfValue;
+
+        return $this;
+    }
+
+    /**
+     * Get mfValue.
+     *
+     * @return string
+     */
+    public function getMfValue()
+    {
+        return $this->mfValue;
+    }
+
+    /**
+     * Set mfMlId.
+     *
+     * @param int $mfMlId
+     *
+     * @return ModelField
+     */
+    public function setMfMlId($mfMlId)
+    {
+        $this->mfMlId = $mfMlId;
+
+        return $this;
+    }
+
+    /**
+     * Get mfMlId.
+     *
+     * @return int
+     */
+    public function getMfMlId()
+    {
+        return $this->mfMlId;
+    }
 }

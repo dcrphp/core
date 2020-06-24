@@ -74,10 +74,11 @@ class Index
         $modelFieldDecList = $clsConfig->getConfigListItemByListId($clId);
         $modelFieldDecList = array_column($modelFieldDecList, 'form_text', 'db_field_name');
 
+        //dd($modelInfo);
         $this->viewCommon(
             $view,
             $modelInfo['list']['ml_title'],
-            "<a href='/'>首页</a> / <a> {$modelCategoryName} </a> / <a href='/index/index/list-view/product/{$modelInfo['list']['category_id']}'> {$categoryName} </a>"
+            "<a href='/'>首页</a> / <a> {$modelCategoryName} </a> / <a href='/index/index/list-view/product/{$modelInfo['list']['ml_category_id']}'> {$categoryName} </a>"
         );
         $view->assign('info', $modelInfo);
         $view->assign('model_dec', $modelFieldDecList);

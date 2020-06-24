@@ -8,13 +8,13 @@
 
 namespace app\Admin\Model;
 
-use dcr\Session;
 use dcr\facade\Db;
 use dcr\Safe;
+use dcr\Session;
 use phpDocumentor\Reflection\DocBlockFactory;
 use Respect\Validation\Validator as v;
-use Aura\SqlQuery\QueryFactory;
-use Symfony\Component\Console\Style\SymfonyStyle;
+
+//use Aura\SqlQuery\Query1Factory;
 
 class User
 {
@@ -229,6 +229,7 @@ class User
     }
 
     /**
+     * 1.0.4开始作废
      * 添加编辑会员
      * @param array $userInfo 格式如下
      * $userInfo = array(
@@ -241,10 +242,24 @@ class User
      * );
      * @param string $type 添加还是编辑
      * @return array
+     * @throws \Exception
      */
-    public function addEditUser(array $userInfo, string $type = 'add')
+    public function addEditUserAbandon(array $userInfo, string $type = 'add')
     {
         $type = $type ? $type : 'add';
+        $clsUser = new \app\Model\Entity\User();
+        $clsUser->setAddTime(new \DateTime("now"));
+        $clsUser->setUsername($userInfo['username']);
+        $clsUser->setPassword($userInfo['password']);
+        $clsUser->setUpdateTime(new \DateTime("now"));
+        $clsUser->setSex($userInfo['sex']);
+        $clsUser->setMobile($userInfo['mobile']);
+        $clsUser->setTel($userInfo['tel']);
+        $clsUser->setNote($userInfo['note']);
+        $clsUser->setIsSuper($userInfo['is_super']);
+        $clsUser->setIsApproval($userInfo['is_approval']);
+
+
         //加上帐套id
         $error = array();
         $usernameLimit = $this->getUsernameLengthLimit();
@@ -268,14 +283,7 @@ class User
         }
         $ztId = $userInfo['zt_id'] ? $userInfo['zt_id'] : Session::_get('ztId');
         if ('add' == $type) {
-            $queryFactory = new QueryFactory(config('database.mysql.main.driver'));
-            //判断用户名有没有
-            $select = $queryFactory->newSelect();
-            $select->from('user')->cols(array('id'))->where("zt_id={$ztId} and username='{$userInfo['username']}'")->limit(1);
-            $sql = $select->getStatement();
-            $info = DB::query($sql);
-
-            //dd($info);
+            $info = container('em')->getRepository('\app\Model\Entity\User')->findBy(array('username' => $userInfo['username']));
             if ($info) {
                 $error[] = '用户名已经被使用';
             }
@@ -379,7 +387,8 @@ class User
         return $list;
     }
 
-    /** 获取用户配置好的角色列表
+    /**
+     * 获取用户配置好的角色列表
      * @param $userId
      * @return mixed
      */
@@ -390,8 +399,7 @@ class User
             $userId = intval($userId);
             $option['where'] = "u_id={$userId}";
         }
-        $list = DB::select($option);
-        return $list;
+        return DB::select($option);
     }
 
 
@@ -421,9 +429,12 @@ class User
             $roleList = $this->getRoleConfigList($userId);
             $permissionNameList = array();
             if ($roleList) {
-                $roleIds = implode(',', array_column($roleList, 'id', 'id'));
+                //fix bug 20200624 id改为ur_id
+                $roleIds = implode(',', array_column($roleList, 'ur_id', 'ur_id'));
 
                 $permissionList = $this->getRoleList(array('where' => "id in({$roleIds})"));
+                /*echo DB::getLastSql();
+                dd($permissionList);*/
                 if ($permissionList) {
                     $permissionIds = implode(',', array_column($permissionList, 'permissions', 'permissions'));
                     $permissionNameList = $this->getPermissionList(array(
@@ -530,7 +541,13 @@ class User
         return Admin::commonReturn($result);
     }
 
-    public function roleEditPermission($data)
+    /**
+     * 1.0.4开始作废
+     * @param $data
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function roleEditPermissionAbandon($data)
     {
         $roleId = $data['id'];
         if (!$data['id']) {

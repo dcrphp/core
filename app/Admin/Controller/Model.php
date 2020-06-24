@@ -2,10 +2,10 @@
 
 namespace app\Admin\Controller;
 
-use app\Admin\Model\Model as MModel;
-use app\Admin\Model\Factory;
-use app\Admin\Model\Config;
 use app\Admin\Model\Common;
+use app\Admin\Model\Config;
+use app\Admin\Model\Factory;
+use app\Admin\Model\Model as MModel;
 use dcr\Page;
 
 class Model
@@ -20,16 +20,13 @@ class Model
     public function listView()
     {
         $assignData = array();
-        $assignData['page_title'] = '列表';
-        $assignData['page_model'] = $this->modelName;
         $modelName = current(container('request')->getParams());
-        $assignData['modelName'] = $modelName;
         $where = array();
         $where[] = "ml_model_name='{$modelName}'";
         //开始搜索
         $title = get('title');
         if ($title) {
-            $where[] = "title like '%{$title}%'";
+            $where[] = "ml_title like '%{$title}%'";
             $assignData['title'] = $title;
         }
         $categoryId = get('category_id');
@@ -39,9 +36,11 @@ class Model
         $dateStart = get('data_start');
         $dateEnd = get('data_end');
         if ($dateStart && $dateEnd) {
-            $timeStart = strtotime($dateStart);
-            $timeEnd = strtotime($dateStart);
-            $where[] = "add_time>{$timeStart} and update_time<{$timeEnd}";
+            //$timeStart = strtotime($dateStart);
+            //$timeEnd = strtotime($dateStart);
+            $where[] = "model_list.add_time>'{$dateStart}' and model_list.update_time<'{$dateEnd}'";
+            $assignData['data_start'] = $dateStart;
+            $assignData['data_end'] = $dateEnd;
         }
 
         $join = array('type' => 'left', 'table' => 'model_category', 'condition' => 'model_category.id=ml_category_id');
@@ -76,6 +75,9 @@ class Model
         $assignData['num'] = $pageTotalNum;
         $assignData['model_list'] = $list;
         $assignData['pages'] = $pageHtml;
+        $assignData['page_title'] = '列表';
+        $assignData['page_model'] = $this->modelName;
+        $assignData['model_name'] = $modelName;
         //$modelName = current(container('request')->getParams());
         //$assignData['config_list'] = $list;
 

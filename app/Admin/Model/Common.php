@@ -52,7 +52,6 @@ class Common
         );
     }
 
-
     /**
      * 通过配置好的字段各属性来生成html
      * @param $configItemArr array('data_type'=>'数据类型','db_field_name'=>'数据库字段名','default'=>'默认值', 'is_input_hidden'=>'是不是hidden类型，如果是 则直接设置为hidden,这个只对date_type为date和string生效',)
@@ -88,15 +87,6 @@ class Common
                 $valueList[$itemInfo['db_field_name']] = implode(',', $valueList[$itemInfo['db_field_name']]);
             }
             $inputValue = isset($valueList[$itemInfo['db_field_name']]) ? $valueList[$itemInfo['db_field_name']] : $default;
-            //var_dump($inputValue);
-            //echo '<hr>';
-            /*echo '<br><br><br>';
-            dd($itemInfo['db_field_name']);
-            dd($default);
-            dd($valueList);
-            dd($valueList['list_order']);
-            dd($inputValue);*/
-            $additionStr = '';
             $type = '';
             $inputNameId = $option['input_name_pre'] ? $option['input_name_pre'] . $itemInfo['db_field_name'] : $itemInfo['db_field_name'];
             switch ($itemInfo['data_type']) {

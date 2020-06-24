@@ -13,11 +13,11 @@
         <form action="#" method="get">
             分类:&nbsp;{{category_select_html|raw}}
             &nbsp;&nbsp;添加日期:&nbsp;
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })"
-                   class="input-text Wdate" style="width:120px;" value="{{data_start}}" name="data_start">
+            <input type="text" onfocus="WdatePicker()"
+                   class="input-text Wdate" style="width:120px;" autocomplete="off" value="{{data_start}}" name="data_start">
             -
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })"
-                   class="input-text Wdate" style="width:120px;" value="{{data_start}}" name="data_start">
+            <input type="text" onfocus="WdatePicker()" autocomplete="off"
+                   class="input-text Wdate" style="width:120px;" value="{{data_end}}" name="data_end">
             <input type="text" name="title" value="{{title}}" placeholder="标题" style="width:250px" class="input-text">
             <button name="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
         </form>

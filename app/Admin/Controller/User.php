@@ -8,15 +8,16 @@
 
 namespace app\Admin\Controller;
 
+use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
 use dcr\Page;
-use dcr\facade\Db;
 
 class User
 {
 
     private $modelName = '用户';
+
     /**
      * @permission /会员管理
      * @return mixed
@@ -170,6 +171,7 @@ class User
     /**
      * 添加或修改用户
      * @return mixed
+     * @throws \Exception
      */
     public function addEditAjax()
     {
@@ -193,8 +195,8 @@ class User
         }
         //dd($type);
         //dd(get());
-        $user = new MUser();
-        $result = $user->addEditUser($userInfo, $type);
+        $clsUser = new \app\Model\User();
+        $result = $clsUser->addEditUser($userInfo, $type);
         return Factory::renderJson($result);
     }
 
@@ -324,8 +326,8 @@ class User
 
     public function roleEditPermissionAjax()
     {
-        $user = new MUser();
-        $result = $user->roleEditPermission(post());
+        $clsRoleConfig = new \app\Model\UserRole();
+        $result = $clsRoleConfig->updateRolePermission(post('id'), post('permission_id'));
         return Factory::renderJson($result);
     }
 }

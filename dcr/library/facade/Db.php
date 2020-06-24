@@ -148,7 +148,7 @@ class Db
         $update = self::createQueryBuilder();
         $update = $update->update($table);
         foreach ($info as $key => $value) {
-            $update = $update->set($key, "'{$value}'");
+            $update = $update->set("`{$key}`", "'{$value}'");
         }
         $update = $update->where($where);
         $sql = $update->getSql();
@@ -166,7 +166,7 @@ class Db
         $insert = self::createQueryBuilder();
         $insert = $insert->insert($table);
         foreach ($info as $key => $value) {
-            $insert = $insert->setValue($key, "'{$value}'");
+            $insert = $insert->setValue("`{$key}`", "'{$value}'");
         }
         $sql = $insert->getSql();
         self::exec($sql);

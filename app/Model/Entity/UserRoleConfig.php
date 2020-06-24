@@ -69,4 +69,182 @@ class UserRoleConfig
      * @ORM\Column(name="ur_id", type="integer", nullable=false, options={"comment"="角色id"})
      */
     private $urId = '0';
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set addTime.
+     *
+     * @param \DateTime $addTime
+     *
+     * @return UserRoleConfig
+     */
+    public function setAddTime($addTime)
+    {
+        $this->addTime = $addTime;
+
+        return $this;
+    }
+
+    /**
+     * Get addTime.
+     *
+     * @return \DateTime
+     */
+    public function getAddTime()
+    {
+        return $this->addTime;
+    }
+
+    /**
+     * Set updateTime.
+     *
+     * @param \DateTime $updateTime
+     *
+     * @return UserRoleConfig
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->updateTime = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get updateTime.
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
+    }
+
+    /**
+     * Set isApproval.
+     *
+     * @param bool $isApproval
+     *
+     * @return UserRoleConfig
+     */
+    public function setIsApproval($isApproval)
+    {
+        $this->isApproval = $isApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get isApproval.
+     *
+     * @return bool
+     */
+    public function getIsApproval()
+    {
+        return $this->isApproval;
+    }
+
+    /**
+     * Set addUserId.
+     *
+     * @param int $addUserId
+     *
+     * @return UserRoleConfig
+     */
+    public function setAddUserId($addUserId)
+    {
+        $this->addUserId = $addUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get addUserId.
+     *
+     * @return int
+     */
+    public function getAddUserId()
+    {
+        return $this->addUserId;
+    }
+
+    /**
+     * Set ztId.
+     *
+     * @param int $ztId
+     *
+     * @return UserRoleConfig
+     */
+    public function setZtId($ztId)
+    {
+        $this->ztId = $ztId;
+
+        return $this;
+    }
+
+    /**
+     * Get ztId.
+     *
+     * @return int
+     */
+    public function getZtId()
+    {
+        return $this->ztId;
+    }
+
+    /**
+     * Set uId.
+     *
+     * @param int $uId
+     *
+     * @return UserRoleConfig
+     */
+    public function setUId($uId)
+    {
+        $this->uId = $uId;
+
+        return $this;
+    }
+
+    /**
+     * Get uId.
+     *
+     * @return int
+     */
+    public function getUId()
+    {
+        return $this->uId;
+    }
+
+    /**
+     * Set urId.
+     *
+     * @param int $urId
+     *
+     * @return UserRoleConfig
+     */
+    public function setUrId($urId)
+    {
+        $this->urId = $urId;
+
+        return $this;
+    }
+
+    /**
+     * Get urId.
+     *
+     * @return int
+     */
+    public function getUrId()
+    {
+        return $this->urId;
+    }
 }

@@ -83,4 +83,230 @@ class ModelAddition
      * @ORM\Column(name="ma_ml_id", type="integer", nullable=false, options={"comment"="ml表主键"})
      */
     private $maMlId = '0';
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set addTime.
+     *
+     * @param \DateTime $addTime
+     *
+     * @return ModelAddition
+     */
+    public function setAddTime($addTime)
+    {
+        $this->addTime = $addTime;
+
+        return $this;
+    }
+
+    /**
+     * Get addTime.
+     *
+     * @return \DateTime
+     */
+    public function getAddTime()
+    {
+        return $this->addTime;
+    }
+
+    /**
+     * Set updateTime.
+     *
+     * @param \DateTime $updateTime
+     *
+     * @return ModelAddition
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->updateTime = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get updateTime.
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
+    }
+
+    /**
+     * Set isApproval.
+     *
+     * @param bool $isApproval
+     *
+     * @return ModelAddition
+     */
+    public function setIsApproval($isApproval)
+    {
+        $this->isApproval = $isApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get isApproval.
+     *
+     * @return bool
+     */
+    public function getIsApproval()
+    {
+        return $this->isApproval;
+    }
+
+    /**
+     * Set addUserId.
+     *
+     * @param int $addUserId
+     *
+     * @return ModelAddition
+     */
+    public function setAddUserId($addUserId)
+    {
+        $this->addUserId = $addUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get addUserId.
+     *
+     * @return int
+     */
+    public function getAddUserId()
+    {
+        return $this->addUserId;
+    }
+
+    /**
+     * Set ztId.
+     *
+     * @param int $ztId
+     *
+     * @return ModelAddition
+     */
+    public function setZtId($ztId)
+    {
+        $this->ztId = $ztId;
+
+        return $this;
+    }
+
+    /**
+     * Get ztId.
+     *
+     * @return int
+     */
+    public function getZtId()
+    {
+        return $this->ztId;
+    }
+
+    /**
+     * Set maKeyword.
+     *
+     * @param string $maKeyword
+     *
+     * @return ModelAddition
+     */
+    public function setMaKeyword($maKeyword)
+    {
+        $this->maKeyword = $maKeyword;
+
+        return $this;
+    }
+
+    /**
+     * Get maKeyword.
+     *
+     * @return string
+     */
+    public function getMaKeyword()
+    {
+        return $this->maKeyword;
+    }
+
+    /**
+     * Set maDescription.
+     *
+     * @param string $maDescription
+     *
+     * @return ModelAddition
+     */
+    public function setMaDescription($maDescription)
+    {
+        $this->maDescription = $maDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get maDescription.
+     *
+     * @return string
+     */
+    public function getMaDescription()
+    {
+        return $this->maDescription;
+    }
+
+    /**
+     * Set maContent.
+     *
+     * @param string $maContent
+     *
+     * @return ModelAddition
+     */
+    public function setMaContent($maContent)
+    {
+        $this->maContent = $maContent;
+
+        return $this;
+    }
+
+    /**
+     * Get maContent.
+     *
+     * @return string
+     */
+    public function getMaContent()
+    {
+        return $this->maContent;
+    }
+
+    /**
+     * Set maMlId.
+     *
+     * @param int $maMlId
+     *
+     * @return ModelAddition
+     */
+    public function setMaMlId($maMlId)
+    {
+        $this->maMlId = $maMlId;
+
+        return $this;
+    }
+
+    /**
+     * Get maMlId.
+     *
+     * @return int
+     */
+    public function getMaMlId()
+    {
+        return $this->maMlId;
+    }
 }

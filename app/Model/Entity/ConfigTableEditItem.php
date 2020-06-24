@@ -153,4 +153,470 @@ class ConfigTableEditItem
      * @ORM\Column(name="ctel_id", type="integer", nullable=false)
      */
     private $ctelId = '0';
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set addTime.
+     *
+     * @param \DateTime $addTime
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setAddTime($addTime)
+    {
+        $this->addTime = $addTime;
+
+        return $this;
+    }
+
+    /**
+     * Get addTime.
+     *
+     * @return \DateTime
+     */
+    public function getAddTime()
+    {
+        return $this->addTime;
+    }
+
+    /**
+     * Set updateTime.
+     *
+     * @param \DateTime $updateTime
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->updateTime = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get updateTime.
+     *
+     * @return \DateTime
+     */
+    public function getUpdateTime()
+    {
+        return $this->updateTime;
+    }
+
+    /**
+     * Set isApproval.
+     *
+     * @param bool $isApproval
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsApproval($isApproval)
+    {
+        $this->isApproval = $isApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get isApproval.
+     *
+     * @return bool
+     */
+    public function getIsApproval()
+    {
+        return $this->isApproval;
+    }
+
+    /**
+     * Set addUserId.
+     *
+     * @param int $addUserId
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setAddUserId($addUserId)
+    {
+        $this->addUserId = $addUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get addUserId.
+     *
+     * @return int
+     */
+    public function getAddUserId()
+    {
+        return $this->addUserId;
+    }
+
+    /**
+     * Set ztId.
+     *
+     * @param int $ztId
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setZtId($ztId)
+    {
+        $this->ztId = $ztId;
+
+        return $this;
+    }
+
+    /**
+     * Get ztId.
+     *
+     * @return int
+     */
+    public function getZtId()
+    {
+        return $this->ztId;
+    }
+
+    /**
+     * Set isInputHidden.
+     *
+     * @param bool $isInputHidden
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsInputHidden($isInputHidden)
+    {
+        $this->isInputHidden = $isInputHidden;
+
+        return $this;
+    }
+
+    /**
+     * Get isInputHidden.
+     *
+     * @return bool
+     */
+    public function getIsInputHidden()
+    {
+        return $this->isInputHidden;
+    }
+
+    /**
+     * Set defaultStr.
+     *
+     * @param string $defaultStr
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setDefaultStr($defaultStr)
+    {
+        $this->defaultStr = $defaultStr;
+
+        return $this;
+    }
+
+    /**
+     * Get defaultStr.
+     *
+     * @return string
+     */
+    public function getDefaultStr()
+    {
+        return $this->defaultStr;
+    }
+
+    /**
+     * Set isUpdateRequired.
+     *
+     * @param bool $isUpdateRequired
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsUpdateRequired($isUpdateRequired)
+    {
+        $this->isUpdateRequired = $isUpdateRequired;
+
+        return $this;
+    }
+
+    /**
+     * Get isUpdateRequired.
+     *
+     * @return bool
+     */
+    public function getIsUpdateRequired()
+    {
+        return $this->isUpdateRequired;
+    }
+
+    /**
+     * Set isUpdate.
+     *
+     * @param bool $isUpdate
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsUpdate($isUpdate)
+    {
+        $this->isUpdate = $isUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get isUpdate.
+     *
+     * @return bool
+     */
+    public function getIsUpdate()
+    {
+        return $this->isUpdate;
+    }
+
+    /**
+     * Set isInsertRequired.
+     *
+     * @param bool $isInsertRequired
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsInsertRequired($isInsertRequired)
+    {
+        $this->isInsertRequired = $isInsertRequired;
+
+        return $this;
+    }
+
+    /**
+     * Get isInsertRequired.
+     *
+     * @return bool
+     */
+    public function getIsInsertRequired()
+    {
+        return $this->isInsertRequired;
+    }
+
+    /**
+     * Set tip.
+     *
+     * @param string $tip
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setTip($tip)
+    {
+        $this->tip = $tip;
+
+        return $this;
+    }
+
+    /**
+     * Get tip.
+     *
+     * @return string
+     */
+    public function getTip()
+    {
+        return $this->tip;
+    }
+
+    /**
+     * Set isInsert.
+     *
+     * @param bool $isInsert
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsInsert($isInsert)
+    {
+        $this->isInsert = $isInsert;
+
+        return $this;
+    }
+
+    /**
+     * Get isInsert.
+     *
+     * @return bool
+     */
+    public function getIsInsert()
+    {
+        return $this->isInsert;
+    }
+
+    /**
+     * Set searchType.
+     *
+     * @param string $searchType
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setSearchType($searchType)
+    {
+        $this->searchType = $searchType;
+
+        return $this;
+    }
+
+    /**
+     * Get searchType.
+     *
+     * @return string
+     */
+    public function getSearchType()
+    {
+        return $this->searchType;
+    }
+
+    /**
+     * Set isSearch.
+     *
+     * @param bool $isSearch
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsSearch($isSearch)
+    {
+        $this->isSearch = $isSearch;
+
+        return $this;
+    }
+
+    /**
+     * Get isSearch.
+     *
+     * @return bool
+     */
+    public function getIsSearch()
+    {
+        return $this->isSearch;
+    }
+
+    /**
+     * Set isShowList.
+     *
+     * @param bool $isShowList
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsShowList($isShowList)
+    {
+        $this->isShowList = $isShowList;
+
+        return $this;
+    }
+
+    /**
+     * Get isShowList.
+     *
+     * @return bool
+     */
+    public function getIsShowList()
+    {
+        return $this->isShowList;
+    }
+
+    /**
+     * Set dataType.
+     *
+     * @param string $dataType
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setDataType($dataType)
+    {
+        $this->dataType = $dataType;
+
+        return $this;
+    }
+
+    /**
+     * Get dataType.
+     *
+     * @return string
+     */
+    public function getDataType()
+    {
+        return $this->dataType;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set dbFieldName.
+     *
+     * @param string $dbFieldName
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setDbFieldName($dbFieldName)
+    {
+        $this->dbFieldName = $dbFieldName;
+
+        return $this;
+    }
+
+    /**
+     * Get dbFieldName.
+     *
+     * @return string
+     */
+    public function getDbFieldName()
+    {
+        return $this->dbFieldName;
+    }
+
+    /**
+     * Set ctelId.
+     *
+     * @param int $ctelId
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setCtelId($ctelId)
+    {
+        $this->ctelId = $ctelId;
+
+        return $this;
+    }
+
+    /**
+     * Get ctelId.
+     *
+     * @return int
+     */
+    public function getCtelId()
+    {
+        return $this->ctelId;
+    }
 }

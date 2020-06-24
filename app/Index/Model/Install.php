@@ -130,6 +130,7 @@ class Install
                 'zt_id' => session('ztId')
             );
 
+            $clsUser = new \app\Model\User();
             $user = new User();
             $roleId = $user->addRole($info);
 
@@ -147,7 +148,7 @@ class Install
             );
             //返回
             $type = 'add';
-            $user->addEditUser($userInfo, $type);
+            $clsUser->addEditUser($userInfo, $type);
 
             //权限权限配置
             $user->permissionRefresh();

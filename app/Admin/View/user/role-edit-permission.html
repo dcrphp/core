@@ -21,7 +21,7 @@
                 <tbody>
                 {% for permission in permissions %}
                 <tr>
-                    <td><label><input {% if  permission.id in role_permission_ids %}checked{% endif %} type="checkbox" name="id[]"
+                    <td><label><input {% if  permission.id in role_permission_ids %}checked{% endif %} type="checkbox" name="permission_id[]"
                                       value="{{permission.id}}">{{permission.name}}</label></td>
                 </tr>
                 {% endfor %}

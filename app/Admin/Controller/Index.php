@@ -15,6 +15,7 @@ use dcr\Response;
 use dcr\Safe;
 use dcr\Session;
 use dcr\View;
+use Former\Facades\Former;
 
 class Index
 {
@@ -28,6 +29,8 @@ class Index
      */
     public function index()
     {
+        echo Former::text('name')->required();
+        exit;
         /*cache('test_key', 111);
         var_dump( cache('test_key') ) ;
         exit;*/
