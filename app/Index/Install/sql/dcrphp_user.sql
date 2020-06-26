@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dcrphp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dcrphp`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dcrphp
@@ -44,7 +46,7 @@ CREATE TABLE `user` (
   `is_approval` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uidx_uz` (`username`,`zt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +55,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','','dcJ49.bznhA7c',1,'2020-05-07 10:46:33','2020-05-28 09:09:07','unknown',37,1590656947,1,1,'157181261321','','管理员',0,0,1,1),(2,'张三','','dcJ49.bznhA7c',1,'2020-05-07 10:46:33','2020-05-07 10:46:33','',0,0,1,1,'15718112310','8420124','测试用户1',1,1,0,1),(3,'李四','','dcNVeqViHwjus',1,'2020-05-07 10:46:33','2020-05-07 10:46:33','unknown',6,1588055365,1,2,'15718126135','8420124','',1,1,0,1),(5,'root','','dc.R6.rBtiTwo',1,'2020-05-07 10:46:33','2020-05-07 10:46:33','',0,0,1,1,'15718126135','','',1,1,0,1);
+INSERT INTO `user` VALUES (1,'admin','','dcJ49.bznhA7c',1,'2020-05-07 10:46:33','2020-06-26 14:16:04','unknown',43,1593180964,1,1,'15718126132','','管理员',0,1,1,1),(2,'张三','','dcJ49.bznhA7c',1,'2020-05-07 10:46:33','2020-05-07 10:46:33','',0,0,1,1,'15718112310','8420124','测试用户1',1,1,0,1),(3,'李四','','dcJ49.bznhA7c',1,'2020-06-24 06:41:22','2020-06-24 06:41:22','unknown',10,1592980862,1,1,'15718126135','8420124','',1,1,0,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:31
+-- Dump completed on 2020-06-26 22:19:46

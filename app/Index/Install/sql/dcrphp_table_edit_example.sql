@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dcrphp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dcrphp`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dcrphp
@@ -35,7 +37,7 @@ CREATE TABLE `table_edit_example` (
   `radio` varchar(45) NOT NULL DEFAULT '',
   `checkbox` varchar(45) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='table edit案例';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='table edit案例';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +46,7 @@ CREATE TABLE `table_edit_example` (
 
 LOCK TABLES `table_edit_example` WRITE;
 /*!40000 ALTER TABLE `table_edit_example` DISABLE KEYS */;
+INSERT INTO `table_edit_example` VALUES (1,'2020-05-29 03:18:58','2020-06-25 13:51:07',1,1,1,'单行文本','多行文本','下拉2','单选2','多选1,多选2'),(2,'2020-05-29 03:19:19','2020-06-25 13:51:22',1,1,1,'单行文本2','多行文本2','下拉1','单选2','多选1');
 /*!40000 ALTER TABLE `table_edit_example` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:30
+-- Dump completed on 2020-06-26 22:19:45

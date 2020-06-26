@@ -29,8 +29,6 @@ class Index
      */
     public function index()
     {
-        echo Former::text('name')->required();
-        exit;
         /*cache('test_key', 111);
         var_dump( cache('test_key') ) ;
         exit;*/

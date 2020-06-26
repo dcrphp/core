@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dcrphp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dcrphp`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dcrphp
@@ -42,7 +44,7 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES (1,'12,13,15,14,9,3,2,16,17','系统管理员','2020-05-07 10:46:33','2020-05-07 10:46:33',0,'系统最高权限',1,0),(2,'9,3,2','文章编辑','2020-05-07 10:46:33','2020-05-07 10:46:33',1,'',1,0);
+INSERT INTO `user_role` VALUES (1,'12,13,15,14,9,3,2,16,17','系统管理员','2020-05-07 10:46:33','2020-05-07 10:46:33',0,'系统最高权限',1,0),(2,'9,3,2','文章编辑','2020-05-07 10:46:33','2020-06-23 11:13:32',1,'',1,0);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:31
+-- Dump completed on 2020-06-26 22:19:45

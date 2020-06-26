@@ -6,6 +6,7 @@ namespace app\Admin\Model;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Config;
 use dcr\facade\Db;
+use DcrPHP\Form\Form;
 
 class Common
 {
@@ -42,11 +43,12 @@ class Common
     public static function getFieldTypeList()
     {
         return array(
-            array('name' => '单行文本', 'key' => 'string'),
-            array('name' => '多行文本', 'key' => 'text'),
+            array('name' => '单行文本', 'key' => 'text'),
+            array('name' => '多行文本', 'key' => 'textarea'),
             array('name' => '单选框', 'key' => 'radio'),
             array('name' => '多选框', 'key' => 'checkbox'),
             array('name' => '下拉框', 'key' => 'select'),
+            array('name' => '隐藏', 'key' => 'hidden'),
             /*array('name' => '文件', 'key' => 'file'),
             array('name' => '时间', 'key' => 'date'),*/
         );
@@ -90,50 +92,26 @@ class Common
             $type = '';
             $inputNameId = $option['input_name_pre'] ? $option['input_name_pre'] . $itemInfo['db_field_name'] : $itemInfo['db_field_name'];
             switch ($itemInfo['data_type']) {
-                case 'date':
-                    $type = $itemInfo['is_input_hidden'] ? 'hidden' : 'text';
-                    $html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
-                    break;
-                case 'string':
-                    $type = $itemInfo['is_input_hidden'] ? 'hidden' : 'text';
-                    $html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='{$type}' value='{$inputValue}'>";
-                    break;
                 case 'text':
-                    $html = "<textarea name='{$inputNameId}' id='{$inputNameId}' class='textarea radius' >{$inputValue}</textarea>";
+                    $html = Form::text()->class('input-text block')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
+                    //$html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='text' value='{$inputValue}'>";
+                    break;
+                case 'hidden':
+                    $html = Form::hidden()->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
+                    break;
+                case 'textarea':
+                    $html = Form::textarea()->class('textarea radius')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
                     break;
                 case 'radio':
+                    $clsLabel = Form::label()->class('mr-10');
+                    $html = Form::radio()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
+                    break;
                 case 'checkbox':
-                    $inputValueList = explode(',', $default);
-                    foreach ($inputValueList as $inpValueDetail) {
-                        $additionStr = '';
-                        $inputValueArr = explode(',', $inputValue);//这里是为了有多选的情况
-                        if ($inpValueDetail == $inputValue ||
-                            in_array($inpValueDetail, $inputValueArr) ||
-                            1 == $inputValue) {
-                            if (in_array($itemInfo['data_type'], array('radio', 'checkbox'))) {
-                                $additionStr = ' checked ';
-                            } else {
-                                $additionStr = ' selected ';
-                            }
-                        }
-                        $html .= "<label class='mr-10'><input type='{$itemInfo['data_type']}' {$additionStr} value='{$inpValueDetail}' name='{$inputNameId}[]'>{$inpValueDetail}</label>";
-                    }
+                    $clsLabel = Form::label()->class('mr-10');
+                    $html = Form::checkbox()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
                     break;
                 case 'select':
-                    $inputValueList = explode(',', $default);
-                    $html = "<select name='{$inputNameId}' id='{$inputNameId}'>";
-                    $html .= "<option value=''>请选择</option>";
-                    foreach ($inputValueList as $inpValueDetail) {
-                        $additionStr = '';
-                        if ($inpValueDetail == $inputValue) {
-                            $additionStr = ' selected ';
-                        }
-                        $html .= "<option {$additionStr} value='{$inpValueDetail}'>{$inpValueDetail}</option>";
-                    }
-                    $html .= '</select>';
-                    break;
-                case 'file':
-                    $html = "<input type='file'  name='{$inputNameId}' id='{$inputNameId}' >";
+                    $html = Form::select()->value($inputValue)->item($default)->id($inputNameId)->name($inputNameId)->html();
                     break;
                 default:
                     $html = '';

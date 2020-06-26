@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dcrphp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dcrphp`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dcrphp
@@ -33,7 +35,7 @@ CREATE TABLE `model_field` (
   `mf_value` varchar(200) NOT NULL DEFAULT '',
   `mf_ml_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='模型附加字段：mf开头是为了模型实别字段';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='模型附加字段：mf开头是为了模型实别字段';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `model_field` (
 
 LOCK TABLES `model_field` WRITE;
 /*!40000 ALTER TABLE `model_field` DISABLE KEYS */;
-INSERT INTO `model_field` VALUES (22,'2020-05-07 10:46:33','2020-05-07 10:46:33',1,1,1,'material','22',11),(23,'2020-05-07 10:46:33','2020-05-07 10:46:33',1,1,1,'color','12',11),(24,'2020-05-07 10:46:33','2020-05-07 10:46:33',1,1,1,'from','浙江',11),(25,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'material','1',14),(26,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'color','2',14),(27,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'from','江西',14);
+INSERT INTO `model_field` VALUES (22,'2020-05-07 10:46:33','2020-06-26 14:18:20',1,1,1,'material','材质',11),(23,'2020-05-07 10:46:33','2020-06-26 14:18:20',1,1,1,'color','颜色',11),(24,'2020-05-07 10:46:33','2020-06-26 14:18:07',1,1,1,'from','江西',11),(25,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'material','1',14),(26,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'color','2',14),(27,'2020-05-12 04:12:47','2020-05-12 04:12:47',1,1,1,'from','江西',14),(28,'2020-06-23 11:24:36','2020-06-23 11:24:36',1,1,1,'material','',12),(29,'2020-06-23 11:24:36','2020-06-23 11:24:36',1,1,1,'color','',12),(30,'2020-06-23 11:24:36','2020-06-23 11:24:36',1,1,1,'from','',12);
 /*!40000 ALTER TABLE `model_field` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:31
+-- Dump completed on 2020-06-26 22:19:45

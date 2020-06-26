@@ -224,6 +224,7 @@ class Tools
             //dd($listCol);
             //调用编辑里额外的php程序
             $phpAdditionPath = $clsTools->getTableEditEditAddition($key);
+
             if (file_exists($phpAdditionPath)) {
                 require_once $phpAdditionPath;
             }
@@ -287,6 +288,7 @@ class Tools
         $assignData['field_list'] = $fieldList;
         $assignData['id'] = $id;
         $assignData['index_id'] = $config['index_id'];
+        //dd($assignData);
 
         return Factory::renderPage('tools/table-edit-edit', $assignData);
     }

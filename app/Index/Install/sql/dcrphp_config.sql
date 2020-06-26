@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `dcrphp` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `dcrphp`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dcrphp
@@ -42,7 +44,7 @@ CREATE TABLE `config` (
 
 LOCK TABLES `config` WRITE;
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
-INSERT INTO `config` VALUES (1,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'site_name','DcrPHP建站系统',1),(2,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'213123','12',1),(3,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'template_name','default',2);
+INSERT INTO `config` VALUES (1,'2020-05-07 17:05:19','2020-06-20 06:38:32',1,1,1,'site_name','DcrPHP建站系统',1),(2,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'213123','12',1),(3,'2020-05-07 17:05:19','2020-06-23 11:19:22',1,1,1,'template_name','default',2);
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-28 23:51:32
+-- Dump completed on 2020-06-26 22:19:46
