@@ -19,6 +19,7 @@ class ClassLoader
         if (empty($className)) {
             return;
         }
+        $classPath = '';
         //开始加载类
         if ('dcr\\' == substr($className, 0, 4)) {
             $classPath = LIB . DS . str_replace('dcr\\', '', $className) . '.php';
