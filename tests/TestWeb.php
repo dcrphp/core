@@ -43,6 +43,7 @@ YZCODE;
                 'configlistitemview' => '/1',
                 'configview' => '/1',
                 'tableeditinfoview' => '/1',
+                'tableediteditview' => '/edit/table_edit/2',
             );
             //幸好当初定好了命名规则，这里统一定查下有没有非正常的页面
             //获取admin下的所有view看下
@@ -70,6 +71,10 @@ YZCODE;
                             $html = file_get_contents($viewUrl);
                             /*echo $html;
                             break;*/
+                            if (strlen($html) < 1) {
+                                echo $viewUrl . ':is empty';
+                                echo "\r\n";
+                            }
 
                             $this->assertRegExp('/stylesheet/', $html);
                         }
