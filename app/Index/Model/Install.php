@@ -6,6 +6,7 @@ namespace app\Index\Model;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User;
+use dcr\App;
 use dcr\facade\Db;
 use dcr\ENV;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -38,15 +39,18 @@ class Install
         $username = env('MYSQL_USERNAME');
         $password = env('MYSQL_PASSWORD');
         $database = env('MYSQL_DATABASE');
-
         $sqlFileList = scandir($sqlDirPath);
-        foreach ($sqlFileList as $sqlFile) {
-            if (pathinfo($sqlFile, PATHINFO_EXTENSION) === 'sql') {
-                $sqlFilename = $sqlDirPath . DS . $sqlFile;
-                //echo $sqlFilename;
-                //echo '-';
-                new Import($sqlFilename, $username, $password, $database, $host . ':' . $port);
+
+        try {
+            foreach ($sqlFileList as $sqlFile) {
+                if (pathinfo($sqlFile, PATHINFO_EXTENSION) === 'sql') {
+                    $sqlFilename = $sqlDirPath . DS . $sqlFile;
+                    //echo '-';
+                    new Import($sqlFilename, $username, $password, $database, $host . ':' . $port);
+                }
             }
+        } catch (\Exception $ex) {
+            throw $ex;
         }
 
         return true;
@@ -68,7 +72,8 @@ class Install
         $coverData = 1,
         $importDemo = 1,
         $charset = 'utf8'
-    ) {
+    )
+    {
 
         $lockPath = ROOT_APP . DS . 'Index' . DS . 'Install' . DS . 'lock';
         if (file_exists($lockPath)) {
@@ -81,6 +86,8 @@ class Install
         try {
             $data = Env::getData($envFileExample);
 
+            $data['config']['DB_TYPE'] = 'pdo_mysql';
+            $data['config']['MYSQL_DRIVER'] = 'mysql';
             $data['config']['MYSQL_HOST'] = $host;
             $data['config']['MYSQL_PORT'] = $port;
             $data['config']['MYSQL_DATABASE'] = $database;
@@ -89,12 +96,7 @@ class Install
             $data['config']['MYSQL_CHARSET'] = $charset;
             Env::write($envFile, $data);
 
-            //重新加载配置
-            Env::init();
-            $container = container();
-            $config = $container->make(\DcrPHP\Config\Config::class);
-            $config->loadConfig();
-            $container->instance(\DcrPHP\Config\Config::class, $config);
+            App::initConfig();
 
             //dd(file_get_contents( $envFile ));
 
@@ -108,6 +110,9 @@ class Install
             } else {
                 mysqli_query($conn, "CREATE DATABASE `{$database}` /*zt_id=1*/");
             }
+
+            //重新加载配置
+            App::initEntityManager();
 
             $install = new Install();
             $install->executeSqlFiles($this->sqlFilePath);

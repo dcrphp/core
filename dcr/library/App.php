@@ -30,6 +30,53 @@ class App
         spl_autoload_register(array('\dcr\ClassLoader', 'loadClasses'), true, true);
     }
 
+
+    /**
+     * 初始化entity manager
+     */
+    public static function initEntityManager()
+    {
+        ENV::init();
+        self::initConfig();
+        $container = container();
+
+        //orm加载
+        $ormConfig = Setup::createAnnotationMetadataConfiguration(
+            array(config('app.entity_dir')),
+            true,
+            null,
+            null,
+            false
+        );
+        //$ormConfig->setSecondLevelCacheEnabled(false);
+        $dbDriver = config('database.type');
+        $dbConn = config('database.' . $dbDriver);
+        $dbConn['driver'] = $dbDriver;
+
+
+        try {
+            $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
+            //$entityManager->getConnection()
+            $container->instance('entity_manager', $entityManager);
+            $container->instance('em', $entityManager);
+        } catch (ORMException $e) {
+            throw $e;
+        }
+
+    }
+
+    public static function initConfig()
+    {
+        $container = container();
+        //加载配置
+        $clsConfig = new Config(CONFIG_DIR);
+        //$clsConfig->addDirectory(CONFIG_DIR);
+        $clsConfig->setDriver('php');//解析php格式的
+        $clsConfig->init();
+        $container->instance(\DcrPHP\Config\Config::class, $clsConfig);
+        return $clsConfig;
+    }
+
     public static function init()
     {
         self::$phpSapiName = php_sapi_name();
@@ -38,12 +85,7 @@ class App
         Env::init();
         $container = container();
 
-        //加载配置
-        $clsConfig = new Config(CONFIG_DIR);
-        //$clsConfig->addDirectory(CONFIG_DIR);
-        $clsConfig->setDriver('php');//解析php格式的
-        $clsConfig->init();
-        $container->instance(\DcrPHP\Config\Config::class, $clsConfig);
+        $clsConfig = self::initConfig();
 
         //加载缓存
         if (env('CACHE_ENABLE')) {
@@ -66,27 +108,7 @@ class App
             @ini_set('display_errors', 'Off');
         }
 
-        //orm加载
-        $ormConfig = Setup::createAnnotationMetadataConfiguration(
-            array(config('app.entity_dir')),
-            true,
-            null,
-            null,
-            false
-        );
-        //$ormConfig->setSecondLevelCacheEnabled(false);
-        $dbDriver = config('database.type');
-        $dbConn = config('database.' . $dbDriver);
-        $dbConn['driver'] = $dbDriver;
-
-        try {
-            $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
-            //$entityManager->getConnection()
-            $container->instance('entity_manager', $entityManager);
-            $container->instance('em', $entityManager);
-        } catch (ORMException $e) {
-            throw $e;
-        }
+        self::initEntityManager();
 
         //设置时区
         date_default_timezone_set(config('app.default_timezone'));

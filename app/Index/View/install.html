@@ -90,6 +90,7 @@
 <script type="text/javascript" src="{{admin_resource_url}}/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="{{admin_resource_url}}/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="{{admin_resource_url}}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="{{admin_resource_url}}/lib/dcrphp.js"></script>
 
 <script type="text/javascript">
     $(function () {
@@ -131,6 +132,7 @@
                         layer.close(loading);
                     },
                     error: function (data) {
+                        showError(data);
                         layer.close(loading);
                     }
                 });
