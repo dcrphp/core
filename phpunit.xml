@@ -1,17 +1,17 @@
 <phpunit>
     <testsuites>
-        <testsuite name="My Test Suite">
+        <testsuite name="Test Suite">
             <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">dcr</directory>
-            <directory suffix=".php">app</directory>
 			<exclude>
                 <file>dcr/bootstrap/app.php</file>
                 <directory>app/Admin/Config</directory>
                 <directory>app/Admin/Plugins</directory>
+                <directory>app</directory>
             </exclude>
         </whitelist>
     </filter>

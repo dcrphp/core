@@ -107,7 +107,6 @@ class User extends NUser implements Model
         $clsUser->setZtId($ztId);
 
         if ($userInfo['password']) {
-            echo 'a';
             $clsUser->setPassword(Safe::_encrypt($userInfo['password']));
         }
         if ('add' == $type) {
