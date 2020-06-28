@@ -178,6 +178,10 @@ class Index
 
     public function installView()
     {
+        $clsInstall = new Install();
+        if (!$clsInstall->canInstall()) {
+            throw new \Exception('已经安装过了，如果重新安装，请删除[' . realpath($clsInstall->getLockFile()) . ']再重新运行本安装程序');
+        }
         $view = container('view');
         $view->setViewDirectoryPath(ROOT_APP . DS . 'Index' . DS . 'View');
         $view->assign('admin_resource_url', env('ADMIN_RESOURCE_URL'));
