@@ -1,6 +1,6 @@
 <phpunit>
     <testsuites>
-        <testsuite name="Test Suite">
+        <testsuite name="est Suite">
             <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>
@@ -15,4 +15,7 @@
             </exclude>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="tests/code_coverage/clover.xml"/>
+    </logging>
 </phpunit>
