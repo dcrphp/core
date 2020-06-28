@@ -83,8 +83,7 @@ class Install
         $coverData = 1,
         $importDemo = 1,
         $charset = 'utf8'
-    )
-    {
+    ) {
 
         if (!$this->canInstall()) {
             throw new \Exception('已经安装过了，如果重新安装，请删除[' . realpath($this->getLockFile()) . ']再重新运行本安装程序');

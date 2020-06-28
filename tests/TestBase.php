@@ -92,7 +92,7 @@ class TestBase extends TestCase
         //是否有以下几个标题
         $modelTitleList = array_column($modelList, 'ml_title', 'ml_title');
 
-        $this->assertTrue(in_array('联系我们', $modelTitleList));
+        $this->assertTrue(in_array('联系我们1', $modelTitleList));
         $this->assertTrue(in_array('关于我们', $modelTitleList));
         $this->assertTrue(in_array('站内广告优化策略：ACOS应该这样解读才合适', $modelTitleList));
     }

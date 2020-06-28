@@ -62,7 +62,6 @@ class App
         } catch (ORMException $e) {
             throw $e;
         }
-
     }
 
     public static function initConfig()
