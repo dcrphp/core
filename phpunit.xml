@@ -7,12 +7,12 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">dcr</directory>
-            <directory>app</directory>
+            <directory suffix=".php">app</directory>
 			<exclude>
                 <file>dcr/bootstrap/app.php</file>
                 <directory>app/Admin/Config</directory>
                 <directory>app/Admin/Plugins</directory>
-                <directory>app/Admin</directory>
+                <directory>app/Admin/Model</directory>
             </exclude>
         </whitelist>
     </filter>
