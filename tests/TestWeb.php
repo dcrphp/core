@@ -28,6 +28,7 @@ class TestWeb extends TestCase
                 );
 YZCODE;
 
+        
         $userCodeNew = str_replace('//本代码不要删除，为了给TestWeb测试模块去除验证用//', $ignoreYz, $userCode);
         file_put_contents($userPath, $userCodeNew);
         //首页
