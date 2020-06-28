@@ -87,7 +87,7 @@ class User extends NUser implements Model
         }
 
         $ztId = session('ztId');
-        $addUserId = intval( session('userId') );
+        $addUserId = intval(session('userId'));
         //开始存数据
         if ('edit' == $type) {
             $clsUser = container('em')->find('\app\Model\Entity\User', $userInfo['id']);

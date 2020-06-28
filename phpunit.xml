@@ -12,7 +12,6 @@
                 <file>dcr/bootstrap/app.php</file>
                 <directory>app/Admin/Config</directory>
                 <directory>app/Admin/Plugins</directory>
-                <directory>app/Admin/Model</directory>
             </exclude>
         </whitelist>
     </filter>
