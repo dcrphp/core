@@ -11,6 +11,7 @@ namespace app\Admin\Controller;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
+use dcr\facade\Log;
 use dcr\Response;
 use dcr\Safe;
 use dcr\Session;
@@ -29,6 +30,7 @@ class Index
      */
     public function index()
     {
+        //Log::systemLog('ok');
         /*cache('test_key', 111);
         var_dump( cache('test_key') ) ;
         exit;*/

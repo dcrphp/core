@@ -26,7 +26,7 @@
         "filp/whoops": "*",
         "dcrphp/cache": "*",
         "dcrphp/config": "1.0.2-alpha1",
-        "dcrphp/log": "1.0.2-alpha3",
+        "dcrphp/log": "1.0.2-alpha4",
         "dcrphp/form": "1.0.1-alpha2",
         "dcrphp/annotations": "*",
         "graylog2/gelf-php": "*",

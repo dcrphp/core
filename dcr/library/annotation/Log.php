@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace dcr\annotation;
 
-use DcrPHP\Log\Log as DLog;
-use DcrPHP\Log\SystemLogger;
+use dcr\facade\Log as FLog;
 
 class Log
 {
@@ -50,24 +49,17 @@ class Log
                     break;
             }
         }
-        $content = $this->annotations->getClassName() . "->" . $this->annotations->getMethodName();
 
         //记录日志
-
-
-        $clsSystemLogger = new SystemLogger(CONFIG_DIR . DS . 'log.php'); //配置文件
-        $clsSystemLogger->addHandler($type);
-        $clsSystemLogger->setLogInfo(
-            array(
-                'ack' => 1, //1或0 这是成功还是失败
-                'level' => $level, //warning info debug notice critical emergency
-                'add_time' => date('Y-m-d H:i:s'),
-                'message' => json_encode($contentArr),
-                'source' => 'dcrphp',
-                'class'=> $this->annotations->getClassName(),
-                'method'=> $this->annotations->getMethodName(),
-            )
+        $title = $this->annotations->getClassName() . "->" . $this->annotations->getMethodName();
+        $logInfo = array(
+            'message' => json_encode($contentArr),
+            'class'=> $this->annotations->getClassName(),
+            'method'=> $this->annotations->getMethodName(),
         );
-        $clsSystemLogger->$level();
+        try {
+            FLog::systemLog($logInfo, $level, $title, $type);
+        } catch (\Exception $e) {
+        }
     }
 }

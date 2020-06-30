@@ -3,6 +3,7 @@
  * 日志分为用户日志和系统日志(系统日志和错误日志)，
  */
 return array(
+    'log_enable' => env('LOG_ENABLE', 0),
     'channel' => env('LOG_CHANNEL', ''),   //频道名 一般定义为系统名    'driver'=>
     'system_driver' => env('LOG_DRIVER', ''), //@log注解或手动记录应用的日志
     'error_driver' => env('LOG_DRIVER_ERROR', ''), //系统捕获的error日志
@@ -11,8 +12,8 @@ return array(
     //directory为日志生成在path目录下， general为day则按天 hour按时 month按月 minute按分，prefix为日志文件后缀默认为log
     'directory' => array(
         'path' => env('DIRECTORY_LOG_PATH', ''),
-        env('DIRECTORY_LOG_PREFIX', ''),
-        env('DIRECTORY_LOG_GENERAL', '')
+        'prefix' => env('DIRECTORY_LOG_PREFIX', ''),
+        'general' => env('DIRECTORY_LOG_GENERAL', '')
     ),
     //如果要用户日志，则一定要配置这个
     'mongodb' => array(

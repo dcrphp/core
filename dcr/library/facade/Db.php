@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 namespace dcr\facade;
 
+/**
+ * 数据库操作
+ * Class Db
+ * @package dcr\facade
+ */
 class Db
 {
 

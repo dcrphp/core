@@ -20,7 +20,6 @@ class Error
             $handler = '\Whoops\Handler\JsonResponseHandler';
         }
         $whoops = new \Whoops\Run;
-        $whoops->pushHandler(new $handler);
 
         //配置的error handler
         try {
@@ -35,6 +34,7 @@ class Error
             }
         } catch (\Exception $e) {
         }
+        $whoops->pushHandler(new $handler);
 
         $whoops->register();
     }
