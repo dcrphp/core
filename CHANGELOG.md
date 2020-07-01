@@ -1,6 +1,8 @@
 接下来开发:  
 　　1、多数据库支持  
-　　2、完全切ORM,现在只有User和UserRole使用  
+　　2、完全完善ORM,现在只有User和UserRole使用  
+　　3、SSO单点登陆  
+　　4、API中心  
 
 1.0.4-alpha3(2020.06.30)  
 　　1、增加log的开关:LOG_ENABLE，默认是0  
