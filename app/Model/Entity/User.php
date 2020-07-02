@@ -147,6 +147,8 @@ class User
      */
     private $isApproval = true;
 
+
+
     /**
      * Get id.
      *

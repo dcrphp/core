@@ -57,13 +57,6 @@ class ConfigTableEditItem
     private $ztId = '1';
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="is_input_hidden", type="boolean", nullable=false)
-     */
-    private $isInputHidden = '0';
-
-    /**
      * @var string
      *
      * @ORM\Column(name="default_str", type="string", length=200, nullable=false)
@@ -153,6 +146,8 @@ class ConfigTableEditItem
      * @ORM\Column(name="ctel_id", type="integer", nullable=false)
      */
     private $ctelId = '0';
+
+
 
     /**
      * Get id.
@@ -282,30 +277,6 @@ class ConfigTableEditItem
     public function getZtId()
     {
         return $this->ztId;
-    }
-
-    /**
-     * Set isInputHidden.
-     *
-     * @param bool $isInputHidden
-     *
-     * @return ConfigTableEditItem
-     */
-    public function setIsInputHidden($isInputHidden)
-    {
-        $this->isInputHidden = $isInputHidden;
-
-        return $this;
-    }
-
-    /**
-     * Get isInputHidden.
-     *
-     * @return bool
-     */
-    public function getIsInputHidden()
-    {
-        return $this->isInputHidden;
     }
 
     /**

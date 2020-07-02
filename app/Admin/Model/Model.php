@@ -51,7 +51,6 @@ class Model
                 'where' => "mf_ml_id={$modelId}",
                 'col' => 'mf_value,mf_keyword', //这里这么做是为了兼容编辑页里的field列表和加载配置
             ));
-            //echo DB::getLastSql();
             $info['field'] = $fieldList;
         }
         //dd($info);
@@ -521,7 +520,13 @@ class Model
         return Admin::commonReturn($result);
     }
 
-    public function delete($id)
+    /**
+     * 1.0.4后开始作废 请用app/model/module->delete
+     * @param $id
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function deleteAbandon($id)
     {
         //验证
         $info = DB::select(array('table' => 'model_list', 'col' => 'id', 'where' => "id={$id}", 'limit' => 1));

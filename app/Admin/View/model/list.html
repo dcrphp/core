@@ -75,6 +75,7 @@
                     layer.msg('已删除!', {icon: 1, time: 1000});
                 },
                 error: function (data) {
+                    showError(data);
                     //layer.alert(data.msg, {icon: 2});
                 },
             });

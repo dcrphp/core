@@ -6,6 +6,7 @@ use app\Admin\Model\Common;
 use app\Admin\Model\Config;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Model as MModel;
+use app\Model\Module;
 use dcr\Page;
 
 class Model
@@ -214,11 +215,16 @@ class Model
         return Factory::renderJson($result);
     }
 
+    /**
+     * 删除
+     * @return mixed
+     * @throws \Exception
+     */
     public function deleteAjax()
     {
-        $model = new MModel();
+        $clsModule = new Module();
         $id = post('id');
-        $result = $model->delete($id);
+        $result = $clsModule->delete($id);
         return Factory::renderJson($result);
     }
 }

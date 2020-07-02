@@ -19,6 +19,8 @@ class User extends NUser implements Model
     /**
      * 验证数据
      * @PrePersist @PreUpdate
+     * @param $entity
+     * @throws \Exception
      */
     public function validate($entity)
     {

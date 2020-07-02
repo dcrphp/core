@@ -4,6 +4,13 @@
 　　3、SSO单点登陆  
 　　4、API中心  
 
+1.0.4-alpha4(未知)  
+　　1、修正model删除field和addition没删除的bug  
+　　2、增强phpunit检测功能  
+　　3、模型名称改为模组   
+　　4、清理demo里的异常数据   
+　　5、修改表的约束条件   
+
 1.0.4-alpha3(2020.06.30)  
 　　1、增加log的开关:LOG_ENABLE，默认是0  
 　　2、log的默认改为是directory    

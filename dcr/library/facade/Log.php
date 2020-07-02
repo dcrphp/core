@@ -26,6 +26,8 @@ class Log
         $logDetail = array();
         if (!is_array($logInfo)) {
             $logDetail['message'] = $logInfo;
+        } else {
+            $logDetail['message'] = $logInfo['message'];
         }
         //自动补充字段
         $logDetail['ack'] = is_array($logInfo) && $logInfo['ack'] ? $logInfo['ack'] : 1;

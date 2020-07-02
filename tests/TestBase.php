@@ -95,12 +95,22 @@ class TestBase extends TestCase
         $this->assertTrue(in_array('联系我们', $modelTitleList));
         $this->assertTrue(in_array('关于我们', $modelTitleList));
         $this->assertTrue(in_array('站内广告优化策略：ACOS应该这样解读才合适', $modelTitleList));
+
+        //检测model三表是不是有空数据
+        $sql = "select model_addition.id from model_addition left join model_list on ma_ml_id=model_list.id where model_list.id is null";
+        $list = Db::query($sql);
+        //dd($list);
+        $this->assertFalse(count($list) > 0);
+        $sql = "select model_field.id from model_field left join model_list on mf_ml_id=model_list.id where model_list.id is null";
+        $list = Db::query($sql);
+        //dd($list);
+        $this->assertFalse(count($list) > 0);
     }
 
     /**
-     * 最基本的测试
+     * 安装文件检测
      */
-    public function testBase()
+    public function testInstallFiles()
     {
         //测试文件名对不对
         $clsInstall = new Install();
@@ -113,8 +123,21 @@ class TestBase extends TestCase
                 if (!in_array($fileName, array('.', '..'))) {
                     $fileArr = explode('_', $fileName);
                     $this->assertEquals('dcrphp', $fileArr[0]);
+                    $this->assertFalse(strpos(file_get_contents($sqlPath . DS . $fileName), 'REATE DATABASE'));
                 }
             }
         }
+
+        //判断lock文件存在不存在
+        $this->assertTrue(file_exists($clsInstall->getLockFile()));
+    }
+
+    /**
+     * 检测系统的默认配置项
+     */
+    public function testDefaultConfig()
+    {
+        $config = config('');
+        $this->assertEquals(0, $config['app']['debug']);
     }
 }
