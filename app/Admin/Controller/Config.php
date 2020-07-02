@@ -132,7 +132,7 @@ class Config
     {
 
         $assignData = array();
-        $assignData['page_title'] = '模型配置';
+        $assignData['page_title'] = '模组配置';
         $assignData['page_model'] = $this->modelName;
         $assignData['define_list'] = Common::getModelDefine();
 

@@ -51,7 +51,7 @@ $menu = array(
             ),
             array(
                 'url' => '/admin/config/config-list-view/model',
-                'title' => '模型配置',
+                'title' => '模组配置',
             ),
             array(
                 'url' => '/admin/config/config-list-view',

@@ -10,6 +10,7 @@ namespace app\Admin\Model;
 
 use Aura\SqlQuery\QueryFactory;
 use dcr\facade\Db;
+use dcr\facade\Log;
 use dcr\Session;
 use Respect\Validation\Validator as v;
 
@@ -34,17 +35,19 @@ class Model
             $join = array('table' => 'model_addition', 'type' => 'left', 'condition' => 'ma_ml_id=model_list.id');
         }
 
+        //加上model_list.id as id的原因是为了避免多个id给污染后，groupModelInfo返回的other.id不对的问题
+        $col = ($option['col'] ? $option['col'] : '*') . ',model_list.id as id';
         $info = DB::select(array(
             'table' => 'model_list',
-            'col' => $option['col'],
+            'col' => $col,
             'where' => "model_list.id={$modelId}",
             'join' => $join,
             'limit' => 1
         ));
-        //echo DB::getLastSql();
         $info = current($info);
         //$info['ma_content'] = htmlentities($info['ma_content']);
         $info = $this->groupModelInfo($info);
+
         if ($option['requestField']) {
             $fieldList = DB::select(array(
                 'table' => 'model_field',
@@ -382,12 +385,19 @@ class Model
         if ($error) {
             return Admin::commonReturn(0, $error);
         }
+        if ('edit' == $data['action']) {
+            //判断存在不存在
+            $clsEntityModelList = container('em')->find('\app\Model\Entity\ModelList', $id);
+            if (!$clsEntityModelList) {
+                throw new \Exception('您要修改的模组id[' . $id . ']不存在');
+            }
+        }
         //逻辑
 
         //传图片
         $request = container('request');
         $fileUploadResult = array();
-        $uploadDir = 'uploads' . DS . date('Y-m-d');
+        $uploadDir = 'uploads' . DS . DS . date('Y-m-d');
         try {
             $fileUploadResult = $request->upload(
                 'list_pic_path',
@@ -405,7 +415,7 @@ class Model
         /*dd($fileUploadResult);
         exit;*/
         if ($fileUploadResult['ack']) {
-            $info['list']['ml_pic_path'] = $uploadDir . DS . $fileUploadResult['msg']['name'];
+            $info['list']['ml_pic_path'] = $uploadDir . DS . DS . $fileUploadResult['msg']['name'];
         }
         //如果没有更新图片则unset
         if (!strlen($info['list']['ml_pic_path'])) {
@@ -438,8 +448,9 @@ class Model
         $result = 1;
         DB::beginTransaction();
         if ('edit' == $data['action']) {
-            //dd($dbInfoList);
+            Log::systemLog(var_export($dbInfoList, true));
             $modelListSec = DB::update('model_list', $dbInfoList, "id={$id}");
+            Log::systemLog(DB::getLastSql());
             $modelAdditionSec = DB::update('model_addition', $dbInfoAddition, "ma_ml_id={$id}");
             $modelFieldError = 0;
 
@@ -466,6 +477,7 @@ class Model
                     $fieldDbInfo['add_user_id'] = $userId;
                     $modelFieldSec = DB::insert('model_field', $fieldDbInfo);
                 }
+
                 if (0 == $modelFieldSec) {
                     $modelFieldError++;
                 }

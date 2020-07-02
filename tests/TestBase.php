@@ -100,10 +100,16 @@ class TestBase extends TestCase
         $sql = "select model_addition.id from model_addition left join model_list on ma_ml_id=model_list.id where model_list.id is null";
         $list = Db::query($sql);
         //dd($list);
+        if (count($list) > 0) {
+            dd($list);
+        }
         $this->assertFalse(count($list) > 0);
         $sql = "select model_field.id from model_field left join model_list on mf_ml_id=model_list.id where model_list.id is null";
         $list = Db::query($sql);
         //dd($list);
+        if (count($list) > 0) {
+            dd($list);
+        }
         $this->assertFalse(count($list) > 0);
     }
 

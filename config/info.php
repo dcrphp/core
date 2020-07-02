@@ -7,7 +7,7 @@
  */
 return [
     //名称
-    'name' => 'DcrPHP Framework',
+    'name' => 'DcrPHP Core',
 
     //版本
     'version' => '1.0.4-alpha4',

@@ -109,6 +109,7 @@ class Model
                 $id,
                 array('requestField' => 1, 'requestAddition' => 1, 'requestFieldDec' => 1)
             );
+
             //echo DB::getLastSql();
             $fileValueList = $modelInfo['field'];
             $fileValueList = array_column($fileValueList, 'mf_value', 'mf_keyword');
