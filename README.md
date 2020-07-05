@@ -10,7 +10,7 @@ dcrphp致力于应用层用户使用简单，后端用户开发简单的方向�
 　　4、配置管理中心：集中配置管理  
 　　5、任意表管理:可以通过简单配置，对任意表做增删改查  
   
-dcrphp要求php版本>=7.0.0，如果想二开，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
+php版本>=7.0.0，如果想二开，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
 
 安装源码(下面4选1)：  
 
