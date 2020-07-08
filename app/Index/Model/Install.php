@@ -185,7 +185,7 @@ SQL;
 
             //登陆次数为0
             DB::update('user', array('zt_id' => 1, 'login_count' => 0), "id>0");
-            
+
             //记录已经安装
             $lockPath = $this->getLockFile();
             file_put_contents($lockPath, date('Y-m-d H:i:s'));
