@@ -169,9 +169,6 @@ class Install
             $permissionIds = implode(',', array_column($permissionList, 'id'));
             DB::update('user_role', array('zt_id' => 1, 'permissions' => $permissionIds,), "name='系统管理员'");
 
-            //登陆次数为0
-            DB::update('user', array('zt_id' => 1, 'login_count' => 0), "id>0");
-
             $sqlDetail = <<<SQL
                 INSERT INTO `config` VALUES (1,'2020-05-07 17:05:19','2020-06-20 06:38:32',1,1,1,'site_name','DcrPHP建站系统',1),(2,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'213123','12',1),(3,'2020-05-07 17:05:19','2020-06-23 11:19:22',1,1,1,'template_name','default',2);
                 INSERT INTO `config_list` VALUES (1,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'基本配置',1,'config','base'),(2,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'模板配置',1,'config','template'),(3,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'新闻中心',0,'model','news'),(4,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'产品中心',0,'model','product'),(5,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'资料中心',0,'model','info');               
@@ -185,6 +182,10 @@ SQL;
             if ($importDemo) {
                 $install->importDemoData();
             }
+
+            //登陆次数为0
+            DB::update('user', array('zt_id' => 1, 'login_count' => 0), "id>0");
+            
             //记录已经安装
             $lockPath = $this->getLockFile();
             file_put_contents($lockPath, date('Y-m-d H:i:s'));
