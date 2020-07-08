@@ -34,8 +34,6 @@ class Index
         /*cache('test_key', 111);
         var_dump( cache('test_key') ) ;
         exit;*/
-        /*dd($_SESSION);
-        exit;*/
         /*$userInfo = container('em')->find('\app\Model\Entity\Plugins', 10);
         dd($userInfo);
         dd($userInfo->getName());

@@ -5,6 +5,7 @@ namespace app\Console;
 use app\Admin\Model\Admin;
 use app\Admin\Model\User;
 use dcr\facade\Db;
+use dcr\facade\Log;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -3,8 +3,17 @@
 　　2、完全完善ORM,现在只有User和UserRole使用  
 　　3、SSO单点登陆  
 　　4、API中心  
+　　5、验证码后台配置要不要开启，还有难度  
+　　6、登陆次数发布时改为0  
+　　7、storage固定到public目录  
+　　8、response完善  
 
-1.0.4-alpha4(未知)  
+1.0.4-rc1(20200708)  
+　　1、修正登陆次数改为0  
+　　2、Log::systemLog()写日志时storage路径修正  
+　　3、编码路径默认生成在public    
+
+1.0.4-alpha4(20200704)  
 　　1、修正model删除field和addition没删除的bug  
 　　2、增强phpunit检测功能  
 　　3、模型名称改为模组   

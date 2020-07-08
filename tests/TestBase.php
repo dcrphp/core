@@ -46,6 +46,10 @@ class TestBase extends TestCase
         //有没有空密码的
         $userList = $user->getList(array( 'col'=>'id', 'where'=> 'char_length(password)<1' ));
         $this->assertEquals(0, count($userList));
+
+        //有没有大于0的登陆次数
+        $userList = $user->getList(array( 'col'=>'id', 'where'=> 'login_count>0' ));
+        $this->assertEquals(0, count($userList));
     }
 
     public function testRole()

@@ -6,6 +6,7 @@
  * Time: 0:49
  */
 namespace Dcr;
+
 return array(
     'install'=> 'index/index/install-view',
     'admin'=> 'admin/index/index',

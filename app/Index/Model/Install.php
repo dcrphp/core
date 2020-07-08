@@ -4,13 +4,10 @@
 namespace app\Index\Model;
 
 use app\Admin\Model\Admin;
-use app\Admin\Model\Factory;
 use app\Admin\Model\User;
 use dcr\App;
-use dcr\facade\Db;
 use dcr\ENV;
-use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Style\SymfonyStyle;
+use dcr\facade\Db;
 use Thamaraiselvam\MysqlImport\Import;
 
 class Install
@@ -171,6 +168,9 @@ class Install
             $permissionList = $user->getPermissionList();
             $permissionIds = implode(',', array_column($permissionList, 'id'));
             DB::update('user_role', array('zt_id' => 1, 'permissions' => $permissionIds,), "name='系统管理员'");
+
+            //登陆次数为0
+            DB::update('user', array('zt_id' => 1, 'login_count' => 0), "id>0");
 
             $sqlDetail = <<<SQL
                 INSERT INTO `config` VALUES (1,'2020-05-07 17:05:19','2020-06-20 06:38:32',1,1,1,'site_name','DcrPHP建站系统',1),(2,'2020-05-07 17:05:19','2020-05-07 17:05:18',1,1,1,'213123','12',1),(3,'2020-05-07 17:05:19','2020-06-23 11:19:22',1,1,1,'template_name','default',2);

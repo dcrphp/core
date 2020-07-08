@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
-ini_set('display_errors', 'on');
 header('Access-Control-Allow-Origin:*');
 require_once __DIR__ . '/dcr/bootstrap/init.php';
 $em = container('em');

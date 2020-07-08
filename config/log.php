@@ -8,10 +8,10 @@ return array(
     'system_driver' => env('LOG_DRIVER', ''), //@log注解或手动记录应用的日志
     'error_driver' => env('LOG_DRIVER_ERROR', ''), //系统捕获的error日志
 
-    'file' => array('path' => env('FILE_LOG_PATH', '')),
+    'file' => array('path' => ROOT_PUBLIC . DS . env('FILE_LOG_PATH', '')),
     //directory为日志生成在path目录下， general为day则按天 hour按时 month按月 minute按分，prefix为日志文件后缀默认为log
     'directory' => array(
-        'path' => env('DIRECTORY_LOG_PATH', ''),
+        'path' => ROOT_PUBLIC . DS . env('DIRECTORY_LOG_PATH', ''),
         'prefix' => env('DIRECTORY_LOG_PREFIX', ''),
         'general' => env('DIRECTORY_LOG_GENERAL', '')
     ),
