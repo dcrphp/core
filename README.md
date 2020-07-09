@@ -14,9 +14,9 @@ php版本>=7.0.0，如果想二开，请先看wiki里的开发者必读:https://
 
 安装源码(下面4选1)：  
 
-    1、composer create-project dcrphp/core dcrphp 1.0.4  
+    1、composer create-project dcrphp/core dcrphp 1.0.3  
     2、进入根目录执行:
-        composer require dcrphp/core  1.0.4  
+        composer require dcrphp/core  1.0.3  
         把vender/dcrphp/core/下的内容剪切到根目录  
     3、源码安装:
         https://github.com/dcrphp/core/tags 下载需要的版本，解压后:  
