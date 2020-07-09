@@ -3,8 +3,8 @@
 namespace app\Admin\Plugins\DbBackup\Controller;
 
 use app\Admin\Model\Admin;
-use app\Index\Model\Install;
 use app\Admin\Model\Plugins;
+use app\Index\Model\Install;
 use dcr\facade\Db;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -26,6 +26,9 @@ class DbBackup extends Plugins
         $view->assign('table_list', $tableList);
 
         //已有备份
+        if (!file_exists($this->backupDir)) {
+            @mkdir($this->backupDir);
+        }
         $backupList = scandir($this->backupDir);
         rsort($backupList);
         $backupListDetail = array();
