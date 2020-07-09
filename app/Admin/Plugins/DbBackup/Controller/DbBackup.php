@@ -14,7 +14,8 @@ class DbBackup extends Plugins
     private $backupDir = ROOT_APP . DS . 'Admin' . DS . 'Plugins' . DS . 'DbBackup' . DS . 'BackupData';
 
     /**
-     * @param $view本类用来给首页入口调用用的
+     * @param $view
+     * @throws \Exception
      */
     public function index($view)
     {
