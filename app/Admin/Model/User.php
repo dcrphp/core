@@ -475,7 +475,13 @@ class User
         return Admin::commonReturn($result);
     }
 
-    public function delete($userId)
+    /**
+     * 1.0.4-rc2开始废弃 可以用app\Model\User->remove
+     * @param $userId
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function deleteAbandon($userId)
     {
         //验证
         $info = DB::select(array('table' => 'user', 'col' => 'id', 'where' => "id={$userId}", 'limit' => 1));

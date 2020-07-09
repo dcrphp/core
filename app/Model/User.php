@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace app\Model;
 
 use app\Admin\Model\Admin;
+use app\Model\Concerns\Model;
 use app\Model\Entity\User as NUser;
 use dcr\facade\Db;
 use dcr\Safe;
 use Respect\Validation\Validator as v;
-use app\Model\Concerns\Model;
 
 /**
  * Class User
@@ -61,6 +61,39 @@ class User extends NUser implements Model
         return array('min' => 6, 'max' => 20);
     }
 
+    public function remove($userId)
+    {
+        //验证
+        $em = container('em');
+        DB::beginTransaction();
+        $user = $em->find('\app\Model\Entity\User', $userId);
+        $em->remove($user);
+        $em->flush();
+
+        $this->removeRoleConfig($userId);
+        DB::commit();
+
+        return Admin::commonReturn(array('ack' => 1));
+    }
+
+    /**
+     * 移除员工的role配置
+     * @param $userId
+     * @return array|int[]
+     */
+    public function removeRoleConfig($userId)
+    {
+        $em = container('em');
+        $roleConfigList = $em->getRepository('\app\Model\Entity\UserRoleConfig')->findBy(array('uId' => $userId));
+        //dd($roleConfig);
+        foreach ($roleConfigList as $roleConfig) {
+            $em->remove($roleConfig);
+            $em->flush();
+        }
+
+        return Admin::commonReturn(array('ack' => 1));
+    }
+
     /**
      * 添加编辑会员
      * @param array $userInfo 格式如下
@@ -90,6 +123,7 @@ class User extends NUser implements Model
 
         $ztId = session('ztId');
         $addUserId = intval(session('userId'));
+        
         //开始存数据
         if ('edit' == $type) {
             $clsUser = container('em')->find('\app\Model\Entity\User', $userInfo['id']);
@@ -129,8 +163,8 @@ class User extends NUser implements Model
         $roles = $userInfo['roles'];
 
         if ('edit' == $type) {
-            //开始添加用户
-            DB::delete('user_role_config', "u_id={$userId} and zt_id={$ztId}");
+            //移除role配置
+            $this->removeRoleConfig($userId);
         }
 
         //开始更新用户角色

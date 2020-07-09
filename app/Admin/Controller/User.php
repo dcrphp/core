@@ -8,7 +8,6 @@
 
 namespace app\Admin\Controller;
 
-use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
 use dcr\Page;
@@ -224,8 +223,12 @@ class User
 
     public function deleteAjax()
     {
-        $user = new MUser();
-        $result = $user->delete(post('id'));
+        $userId = post('id');
+        if (!$userId) {
+            throw new \Exception('没有选中id');
+        }
+        $clsUser = new \app\Model\User();
+        $result = $clsUser->remove($userId);
         return Factory::renderJson($result);
     }
 

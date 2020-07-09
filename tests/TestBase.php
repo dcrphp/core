@@ -47,9 +47,13 @@ class TestBase extends TestCase
         $userList = $user->getList(array( 'col'=>'id', 'where'=> 'char_length(password)<1' ));
         $this->assertEquals(0, count($userList));
 
-        //有没有大于0的登陆次数
-        $userList = $user->getList(array( 'col'=>'id', 'where'=> 'login_count>0' ));
-        $this->assertEquals(0, count($userList));
+        //有没有空的user role config
+        $sql = "SELECT user_role_config.id FROM user_role_config left join `user` on u_id=`user`.id where `user`.id is null";
+        $list = Db::query($sql);
+        /*if (count($list) > 0) {
+            dd($list);
+        }*/
+        $this->assertEquals(0, count($list));
     }
 
     public function testRole()
@@ -103,18 +107,12 @@ class TestBase extends TestCase
         //检测model三表是不是有空数据
         $sql = "select model_addition.id from model_addition left join model_list on ma_ml_id=model_list.id where model_list.id is null";
         $list = Db::query($sql);
-        //dd($list);
-        if (count($list) > 0) {
-            dd($list);
-        }
+        $this->assertEquals(0, count($list));
+
         $this->assertFalse(count($list) > 0);
         $sql = "select model_field.id from model_field left join model_list on mf_ml_id=model_list.id where model_list.id is null";
         $list = Db::query($sql);
-        //dd($list);
-        if (count($list) > 0) {
-            dd($list);
-        }
-        $this->assertFalse(count($list) > 0);
+        $this->assertEquals(0, count($list));
     }
 
     /**
