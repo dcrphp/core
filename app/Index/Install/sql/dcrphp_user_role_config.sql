@@ -33,7 +33,7 @@ CREATE TABLE `user_role_config` (
   `ur_id` int(11) NOT NULL DEFAULT '0' COMMENT '角色id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uidx_ru` (`u_id`,`ur_id`,`zt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='用户的角色配置';
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='用户的角色配置';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-02 15:56:42
+-- Dump completed on 2020-07-09 17:52:38

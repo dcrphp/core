@@ -11,7 +11,6 @@
         <input type="hidden" name="key" value="{{key}}">
         <input type="hidden" name="id" value="{{id}}">
         {% for field in field_list %}
-            {% if 1 != field.is_input_hidden %}
             <div class="row cl">
                 <label class="form-label col-xs-2">{{field.title}}：</label>
                 <div class="formControls col-xs-4">
@@ -21,9 +20,6 @@
                     {{field.tip}}
                 </div>
             </div>
-            {% else %}
-                {{field.html|raw}}
-            {% endif %}
         {% endfor %}
         {{edit_page_addition_html|raw}}
         {{add_page_addition_html|raw}}

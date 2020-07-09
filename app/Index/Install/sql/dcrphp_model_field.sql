@@ -34,7 +34,7 @@ CREATE TABLE `model_field` (
   `mf_ml_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `udx_mlid_keyword` (`mf_ml_id`,`mf_keyword`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='模型附加字段：mf开头是为了模型实别字段';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='模型附加字段：mf开头是为了模型实别字段';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-02 15:56:42
+-- Dump completed on 2020-07-09 17:52:39

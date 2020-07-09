@@ -148,7 +148,6 @@ class Tools
                 $fieldName,
                 $defaultConfig['search']
             ) ? $defaultConfig['search_type'] : '';
-            $dbInfoSub['is_input_hidden'] = 0;
             $dbInfoSub['is_update_required'] = 0;
             $dbInfoSub['is_update'] = 0;
             $dbInfoSub['is_insert_required'] = 0;
