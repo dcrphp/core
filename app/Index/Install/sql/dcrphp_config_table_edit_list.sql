@@ -29,16 +29,16 @@ CREATE TABLE `config_table_edit_list` (
   `is_approval` tinyint(1) NOT NULL DEFAULT '1',
   `add_user_id` smallint(6) NOT NULL DEFAULT '0',
   `zt_id` smallint(6) NOT NULL DEFAULT '1',
-  `keyword` varchar(45) NOT NULL,
-  `page_title` varchar(45) NOT NULL,
-  `page_model` varchar(45) NOT NULL,
-  `table_name` varchar(45) NOT NULL,
+  `keyword` varchar(45) NOT NULL DEFAULT '',
+  `page_title` varchar(45) NOT NULL DEFAULT '',
+  `page_model` varchar(45) NOT NULL DEFAULT '',
+  `table_name` varchar(45) NOT NULL DEFAULT '',
   `is_del` tinyint(1) NOT NULL DEFAULT '1',
   `is_add` tinyint(1) NOT NULL DEFAULT '1',
   `is_edit` tinyint(1) NOT NULL DEFAULT '1',
-  `list_order` varchar(45) NOT NULL,
-  `list_where` varchar(45) NOT NULL,
-  `edit_window_width` varchar(45) NOT NULL,
+  `list_order` varchar(45) NOT NULL DEFAULT '',
+  `list_where` varchar(45) NOT NULL DEFAULT '',
+  `edit_window_width` varchar(45) NOT NULL DEFAULT '',
   `edit_window_height` varchar(45) NOT NULL DEFAULT '',
   `addition_option_html` varchar(2000) NOT NULL DEFAULT '' COMMENT '操作里自定义操作html',
   `allow_config_from_request` varchar(2000) NOT NULL DEFAULT '' COMMENT '请求里可以有的字段',
@@ -71,4 +71,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-09 17:52:40
+-- Dump completed on 2020-07-13  0:07:04

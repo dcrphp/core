@@ -61,28 +61,28 @@ class ConfigTableEditList
      *
      * @ORM\Column(name="keyword", type="string", length=45, nullable=false)
      */
-    private $keyword;
+    private $keyword = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="page_title", type="string", length=45, nullable=false)
      */
-    private $pageTitle;
+    private $pageTitle = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="page_model", type="string", length=45, nullable=false)
      */
-    private $pageModel;
+    private $pageModel = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="table_name", type="string", length=45, nullable=false)
      */
-    private $tableName;
+    private $tableName = '';
 
     /**
      * @var bool
@@ -110,21 +110,21 @@ class ConfigTableEditList
      *
      * @ORM\Column(name="list_order", type="string", length=45, nullable=false)
      */
-    private $listOrder;
+    private $listOrder = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="list_where", type="string", length=45, nullable=false)
      */
-    private $listWhere;
+    private $listWhere = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="edit_window_width", type="string", length=45, nullable=false)
      */
-    private $editWindowWidth;
+    private $editWindowWidth = '';
 
     /**
      * @var string

@@ -44,7 +44,7 @@ class TestBase extends TestCase
         $this->assertTrue(in_array('李四', $usernameList));
 
         //有没有空密码的
-        $userList = $user->getList(array( 'col'=>'id', 'where'=> 'char_length(password)<1' ));
+        $userList = $user->getList(array('col' => 'id', 'where' => 'char_length(password)<1'));
         $this->assertEquals(0, count($userList));
 
         //有没有空的user role config
@@ -87,7 +87,7 @@ class TestBase extends TestCase
         $this->assertEquals(1, count($modelInfoCategoryList));
 
         //把有图片的去掉
-        $modelList = $model->getList(array( 'where'=> 'char_length(ml_pic_path)>1'));
+        $modelList = $model->getList(array('where' => 'char_length(ml_pic_path)>1'));
         $this->assertEquals(0, count($modelList));
 
         //list数量
@@ -147,5 +147,41 @@ class TestBase extends TestCase
     {
         $config = config('');
         $this->assertEquals(0, $config['app']['debug']);
+    }
+
+    /**
+     * 检查数据库
+     * @throws \Exception
+     */
+    public function testDatabase()
+    {
+        $this->assertTrue(true);
+        $tableNameList = array();
+        $list = Db::query("show tables");
+        if ($list) {
+            foreach ($list as $info) {
+                $tableNameList[] = current($info);
+            }
+        }
+        foreach ($list as $info) {
+            $tableName = current($info);
+            $sql = "show full columns FROM {$tableName} /*zt_id*/;";
+            $fieldList = Db::query($sql);
+            foreach ($fieldList as $fieldInfo) {
+                if ('no' != strtolower($fieldInfo['Null'])) {
+                    continue;
+                }
+                if (in_array(strtolower($fieldInfo['Field']), array('id'))) {
+                    continue;
+                }
+                if (in_array(strtolower($fieldInfo['Type']), array('text'))) {
+                    continue;
+                }
+                if (!isset($fieldInfo['Default'])) {
+                    echo "-{$fieldInfo['Type']}-{$tableName}-{$fieldInfo['Field']}-set error;";
+                    $this->assertTrue(false);
+                }
+            }
+        }
     }
 }

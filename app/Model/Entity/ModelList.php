@@ -61,7 +61,7 @@ class ModelList
      *
      * @ORM\Column(name="ml_title", type="string", length=150, nullable=false)
      */
-    private $mlTitle;
+    private $mlTitle = '';
 
     /**
      * @var string

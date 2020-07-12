@@ -3,8 +3,6 @@
 
 namespace app\Admin\Model;
 
-use app\Admin\Model\Admin;
-use app\Admin\Model\Config;
 use dcr\facade\Db;
 use DcrPHP\Form\Form;
 

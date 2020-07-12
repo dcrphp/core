@@ -34,7 +34,7 @@ CREATE TABLE `user` (
   `login_count` smallint(5) NOT NULL DEFAULT '0',
   `login_time` int(11) NOT NULL DEFAULT '0',
   `is_valid` tinyint(1) NOT NULL DEFAULT '1',
-  `sex` tinyint(1) NOT NULL,
+  `sex` smallint(1) NOT NULL DEFAULT '0',
   `mobile` varchar(45) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
   `tel` varchar(45) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
   `note` varchar(100) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-09 17:52:40
+-- Dump completed on 2020-07-13  0:07:04

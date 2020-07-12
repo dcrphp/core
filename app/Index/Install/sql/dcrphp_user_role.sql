@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `user_role`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `permissions` varchar(1000) NOT NULL,
-  `name` varchar(45) NOT NULL,
+  `permissions` varchar(1000) NOT NULL DEFAULT '',
+  `name` varchar(45) NOT NULL DEFAULT '',
   `add_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `add_user_id` smallint(6) NOT NULL DEFAULT '0',
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-09 17:52:39
+-- Dump completed on 2020-07-13  0:07:03

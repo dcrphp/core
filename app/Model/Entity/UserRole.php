@@ -26,14 +26,14 @@ class UserRole
      *
      * @ORM\Column(name="permissions", type="string", length=1000, nullable=false)
      */
-    private $permissions;
+    private $permissions = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var \DateTime

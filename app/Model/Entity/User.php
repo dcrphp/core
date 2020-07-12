@@ -92,11 +92,11 @@ class User
     private $isValid = true;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="sex", type="boolean", nullable=false)
+     * @ORM\Column(name="sex", type="smallint", nullable=false)
      */
-    private $sex;
+    private $sex = '0';
 
     /**
      * @var string
@@ -402,7 +402,7 @@ class User
     /**
      * Set sex.
      *
-     * @param bool $sex
+     * @param int $sex
      *
      * @return User
      */
@@ -416,7 +416,7 @@ class User
     /**
      * Get sex.
      *
-     * @return bool
+     * @return int
      */
     public function getSex()
     {

@@ -19,6 +19,9 @@ class Error
         if ($request->isAjax()) {
             $handler = '\Whoops\Handler\JsonResponseHandler';
         }
+        if ('cli' == APP::$phpSapiName) {
+            $handler = '\Whoops\Handler\PlainTextHandler';
+        }
         $whoops = new \Whoops\Run;
 
         //配置的error handler

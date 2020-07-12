@@ -29,7 +29,7 @@ CREATE TABLE `model_list` (
   `is_approval` tinyint(1) NOT NULL DEFAULT '1',
   `add_user_id` smallint(6) NOT NULL DEFAULT '0',
   `zt_id` smallint(6) NOT NULL DEFAULT '1',
-  `ml_title` varchar(150) NOT NULL,
+  `ml_title` varchar(150) NOT NULL DEFAULT '',
   `ml_pic_path` varchar(150) NOT NULL DEFAULT '',
   `ml_category_id` smallint(5) NOT NULL DEFAULT '0',
   `ml_model_name` varchar(45) NOT NULL DEFAULT '',
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-09 17:52:41
+-- Dump completed on 2020-07-13  0:07:06
