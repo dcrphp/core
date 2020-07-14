@@ -15,7 +15,7 @@ use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
 use app\Admin\Model\Model;
-use app\Admin\Model\Config;
+use app\Model\Config as MConfig;
 
 /**
  * Class Index
@@ -33,10 +33,10 @@ class Index
             throw new \Exception('请设置导航');
         }
 
-        $config = new Config();
-        $configTemplateName = $config->getConfigByDbFieldName('template_name');
+        $clsConfig = new MConfig();
+        $configTemplateName = $clsConfig->getSystemConfig('template_name');
         $view->setViewDirectoryPath(ROOT_PUBLIC . DS . 'resource' . DS . 'template' . DS . $configTemplateName . DS . 'view');
-        $siteName = $config->getConfigByDbFieldName('site_name');
+        $siteName = $clsConfig->getSystemConfig('site_name');
 
         $model = new Model();
         //分类

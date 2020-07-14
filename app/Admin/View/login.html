@@ -18,7 +18,7 @@
 <script type="text/javascript" src="{{admin_resource_url}}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>后台登录 - H-ui.admin v3.1</title>
+<title>登录 - {{version}} - H-ui.admin v3.1</title>
 <meta name="keywords" content="后台管理">
 <meta name="description" content="后台管理">
 </head>
@@ -46,11 +46,13 @@
           <input id="password" name="password" type="password" nullmsg="请输入密码" errormsg="密码在{{password_len_min}}-{{password_len_max}}位" datatype="*{{password_len_min}}-{{password_len_max}}" placeholder="密码" class="input-text size-L">
         </div>
       </div>
+      {% if '是' == captcha_use %}
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
           <input class="input-text size-L" type="text" placeholder="验证码" nullmsg="请输入验证码"  style="width:150px;" name="captcha">
           <img id="captcha" src="/admin/captcha/output"> <a onclick="$('#captcha').attr('src','/admin/captcha/output/tm=' + Math.random())" href="javascript:void(0);">换一张</a> </div>
       </div>
+      {% endif %}
 
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">

@@ -102,9 +102,9 @@ class App
         //程序测试与否
         if (config('app.debug')) {
             error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-            @ini_set('display_errors', 'On');
+            @ini_set('display_errors', 'on');
         } else {
-            @ini_set('display_errors', 'Off');
+            @ini_set('display_errors', 'off');
         }
 
         self::initEntityManager();

@@ -10,8 +10,7 @@
 namespace app\Admin\Model;
 
 use dcr\Session;
-use app\Admin\Model\User;
-use \Exception;
+use Exception;
 use phpDocumentor\Reflection\DocBlockFactory;
 
 class Factory
@@ -118,8 +117,33 @@ class Factory
             }
             return $view->render($template);
         } else {
-            return $view->render('login');
+            return self::renderLogin($view);
         }
+    }
+
+    /**
+     * 输出登陆页面
+     * @param $view
+     * @param array $assignData
+     * @return mixed
+     */
+    public static function renderLogin($view, $assignData = array())
+    {
+        //要不要用验证码
+        $clsConfig = new \app\Model\Config();
+        $version = config('info.version');
+        $appName = config('info.name');
+        $captchaUse = $clsConfig->getSystemConfig('use_captcha');
+        $assignData['app_name'] = $appName;
+        $assignData['version'] = $version;
+        $assignData['captcha_use'] = $captchaUse;
+        $assignData['page_title'] = '登陆页';
+        $assignData['page_model'] = '登陆';
+        foreach ($assignData as $key => $data) {
+            $view->assign($key, $data);
+        }
+
+        return $view->render('login');
     }
 
     /**

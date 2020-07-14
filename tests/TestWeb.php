@@ -9,31 +9,22 @@ namespace test;
 require_once __DIR__ . '/../dcr/bootstrap/init.php';
 
 use PHPUnit\Framework\TestCase;
+use QL\QueryList;
 
 class TestWeb extends TestCase
 {
+
     public function testWeb()
     {
-        //取消登陆
-        $userPath = ROOT_APP . DS . 'Admin' . DS . 'Model' . DS . 'User.php';
-        $userCode = file_get_contents($userPath);
+        //登陆
+        $ql = QueryList::post('http://127.0.0.1/admin/index/login', [
+            'username' => 'admin',
+            'password' => '123456'
+        ]);
+        $html = $ql->getHtml();
+        $this->assertRegExp('/我的桌面/', $html);
 
-        $ignoreYz = <<<YZCODE
-                \$result = array();
-                \$result['ack'] = 1;
-                \$result['data'] = array(
-                    'ztId' => 1,
-                    'userId' => 1,
-                    'username' => 'admin',
-                    'password' => 'dcJ49.bznhA7c',
-                );
-YZCODE;
-
-        $userCodeNew = str_replace('//本代码不要删除，为了给TestWeb测试模块去除验证用//', $ignoreYz, $userCode);
-        file_put_contents($userPath, $userCodeNew);
-        //首页
-        $html = file_get_contents('http://127.0.0.1/admin/index/index');
-        //echo $html;
+        $html = $ql->get('http://127.0.0.1/admin/index/index')->getHtml();
         $this->assertRegExp('/我的桌面/', $html);
 
         try {
@@ -70,7 +61,7 @@ YZCODE;
                             echo "\r\n" . $methodDetail->name;
                             echo "\r\n" . $viewUrl . "\r\n";*/
                             //exit;
-                            $html = file_get_contents($viewUrl);
+                            $html = $ql->get($viewUrl)->getHtml();
                             /*echo $html;
                             break;*/
                             if (strlen($html) < 1) {
@@ -84,19 +75,6 @@ YZCODE;
                 }
             }
         } catch (\Exception $ex) {
-            file_put_contents($userPath, $userCode);
-        } finally {
-            file_put_contents($userPath, $userCode);
         }
-    }
-
-    /**
-     * 判断下文件有没有恢复
-     */
-    public function testCode()
-    {
-        $userPath = ROOT_APP . DS . 'Admin' . DS . 'Model' . DS . 'User.php';
-        $userCode = file_get_contents($userPath);
-        $this->assertRegExp('/本代码不要删除，为了给TestWeb测试模块去除验证用/', $userCode);
     }
 }

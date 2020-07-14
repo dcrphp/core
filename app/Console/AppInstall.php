@@ -27,6 +27,7 @@ class AppInstall extends Command
         $this->addArgument('password', InputArgument::REQUIRED, 'database password');
         $this->addArgument('database', InputArgument::REQUIRED, 'database name');
         $this->addArgument('charset', InputArgument::REQUIRED, 'character set');
+        $this->addArgument('captcha', InputArgument::OPTIONAL, 'character set');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -37,18 +38,28 @@ class AppInstall extends Command
         $password = $input->getArgument('password');
         $database = $input->getArgument('database');
         $charset = $input->getArgument('charset');
+        $useCaptcha = $input->getArgument('captcha');
+        $useCaptcha = $useCaptcha == 'yes' ? '是' : $useCaptcha;
+        $useCaptcha = $useCaptcha == 'no' ? '否' : $useCaptcha;
 
         $clsInstall = new Install();
-        $clsInstall->install(
-            $host,
-            $username,
-            $password,
-            $database,
-            $port,
-            1,
-            1,
-            $charset
-        );
+        if (isset($useCaptcha)) {
+            $clsInstall->setUseCaptcha($useCaptcha);
+        }
+        try {
+            $clsInstall->install(
+                $host,
+                $username,
+                $password,
+                $database,
+                $port,
+                1,
+                1,
+                $charset
+            );
+        } catch (\Exception $e) {
+        }
+
         echo 'Install finished';
 
         return 0;

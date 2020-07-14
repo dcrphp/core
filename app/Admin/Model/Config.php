@@ -15,10 +15,12 @@ class Config
 {
 
     /**
+     * 1.0.4起作废，请用app\Model\Config::getSystemConfig
      * 通过数据库字段名获取配置内容
      * @param $db_field_name 配置的键名
+     * @return mixed
      */
-    public function getConfigByDbFieldName($db_field_name)
+    public function getConfigByDbFieldNameAbandon($db_field_name)
     {
         $info = Db::select(
             array(
@@ -31,13 +33,16 @@ class Config
         $info = current($info);
         return $info['value'];
     }
+
     /**
+     * 1.0.4起作废 请用app/model/config::setSystemConfigByList();
      * 更新配置
      * @param $configList
      * @param $list_id config list id
      * @return array
+     * @throws \Exception
      */
-    public function config($configList, $list_id)
+    public function configAbandon($configList, $list_id)
     {
         $configItemList = $this->getConfigListItemByListId($list_id);
         $configItemList = array_column($configItemList, 'db_field_name');
@@ -159,112 +164,6 @@ class Config
         $whereArr = array();
         $whereArr[] = "id={$id}";
         return $this->getConfigListItemList($whereArr);
-    }
-
-    /**
-     * 从1.0.3作废
-     * 获取全部或某模块的配置列表
-     * @param string $modelName
-     * @return array
-     */
-    public function getConfigModelListAbandon($modelName = '')
-    {
-        //var_dump('a');
-        $ztId = session('ztId');
-        $where = array();
-        $where[] = "zt_id={$ztId}";
-        if ($modelName) {
-            array_push($where, "cm_model_name='{$modelName}'");
-        }
-        $list = DB::select(array(
-            'col' => 'cm_key,cm_dec,cm_model_name,cm_id',
-            'where' => $where,
-            'table' => 'config_model'
-        ));
-        $result = array();
-        if ($list) {
-            foreach ($list as $info) {
-                if (!$result[$info['cm_model_name']]) {
-                    $result[$info['cm_model_name']] = array();
-                }
-                array_push($result[$info['cm_model_name']], $info);
-            }
-        }
-        return $result;
-    }
-
-    /**
-     * 从1.0.3开始起，作废
-     * @param $modelInfo
-     * 本参数为model配置传送过来，可能无法接收独立的参数info过来
-     * @return array
-     */
-    public function configModelAbandon($modelInfo)
-    {
-        //判断
-        //先判断key有没有重复
-        $defineList = Common::getModelDefine();
-        $isError = 0;
-        $errorMsg = array();
-        foreach ($defineList as $defineName => $defineInfo) {
-            $keyList = $modelInfo["key_{$defineName}"];
-            if ($keyList) {
-                if (count($keyList) != count(array_unique(array_values($keyList)))) {
-                    $isError = 1;
-                    $errorMsg[] = $defineInfo['dec'] . '-关键字重复了';
-                }
-            }
-        }
-        if ($isError) {
-            return Admin::commonReturn(0, implode(',', $errorMsg));
-        }
-        //处理
-        $userId = session('userId');
-        $ztId = session('ztId');
-        //dd( $modelInfo['key_product'] );
-        foreach ($defineList as $defineName => $defineInfo) {
-            $keyList = $modelInfo["key_{$defineName}"];
-            $decList = $modelInfo["dec_{$defineName}"];
-            /*dd("key_{$defineName}");
-            dd("dec_{$defineName}");
-            dd( $keyList );
-            dd( $decList );*/
-            if (!$keyList) {
-                continue;
-            }
-            foreach ($keyList as $key => $keyName) {
-                $dbInfo = array(
-                    'add_user_id' => $userId,
-                    'zt_id' => $ztId,
-                    'cm_key' => $keyName,
-                    'cm_dec' => $decList[$key],
-                    'cm_model_name' => $defineName,
-                );
-                if (empty($dbInfo['cm_key'])) {
-                    continue;
-                }
-                $sql = "select cm_id from config_model where cm_key='{$dbInfo['cm_key']}' and cm_model_name='{$dbInfo['cm_model_name']}' and zt_id={$dbInfo['zt_id']}";
-                $info = DB::query($sql);
-                //处理
-                if ($info) {
-                    $info = current($info);
-                    DB::update('config_model', $dbInfo, "cm_id={$info['cm_id']}");
-                } else {
-                    DB::insert('config_model', $dbInfo);
-                }
-            }
-        }
-
-        //要删除的
-        $delIds = $modelInfo['del'];
-        if ($delIds) {
-            $delIdList = explode('_', $delIds);
-            $delIdList = array_filter($delIdList);
-            $delIdStr = implode(',', $delIdList);
-            DB::delete('config_model', "cm_id in($delIdStr)");
-        }
-        //返回
-        return Admin::commonReturn(1);
     }
 
     public function getSystemTemplate()

@@ -11,7 +11,6 @@ namespace app\Admin\Controller;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
-use dcr\facade\Log;
 use dcr\Response;
 use dcr\Safe;
 use dcr\Session;
@@ -100,23 +99,27 @@ class Index
      */
     public function login(View $view)
     {
-        $assignData = array();
-        $assignData['page_title'] = '登陆页';
-        $assignData['page_model'] = $this->modelName;
-
         $username = post('username');
         $password = post('password');
         $captcha = post('captcha');
         $admin = new Admin();
 
-        //判断验证码对不对
-        if (strtolower(Session::_get('captcha')) != strtolower($captcha)) {
+        //如果开启了验证码 则要判断对不对 判断验证码对不对
+        $clsConfig = new \app\Model\Config();
+        $captchaUse = $clsConfig->getSystemConfig('use_captcha');
+
+        if ('是' == $captchaUse && empty(Session::_get('captcha'))) {
+            $view->assign('error_msg', '验证码系统没有生成');
+            $admin->common($view);
+            return Factory::renderLogin($view);
+        }
+        if ('是' == $captchaUse && strtolower(Session::_get('captcha')) != strtolower($captcha)) {
             $view->assign('error_msg', '验证码不正确');
             $admin->common($view);
-            return $view->render('login', $assignData);
+            return Factory::renderLogin($view);
         }
-        //判断用户名
 
+        //判断用户名
         $user = new MUser();
         $password = Safe::_encrypt($password);
         $yzResult = $user->check($username, $password);
@@ -129,7 +132,7 @@ class Index
         } else {
             $view->assign('error_msg', $yzResult['msg']);
             $admin->common($view);
-            return $view->render('login', $assignData);
+            return Factory::renderLogin($view);
         }
     }
 }

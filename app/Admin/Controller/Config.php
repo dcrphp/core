@@ -2,9 +2,9 @@
 
 namespace app\Admin\Controller;
 
-use app\Admin\Model\Factory;
-use app\Admin\Model\Config as MConfig;
 use app\Admin\Model\Common;
+use app\Admin\Model\Config as MConfig;
+use app\Admin\Model\Factory;
 use dcr\Request;
 
 class Config
@@ -153,12 +153,12 @@ class Config
     public function configAjax()
     {
         $data = post();
-        $list_id = $data['list_id'];
+        //$list_id = $data['list_id'];
         //里面的type不是配置项 只是个类型 所以排除
         unset($data['list_id']);
 
-        $config = new MConfig();
-        $result = $config->config($data, $list_id);
+        $clsConfig = new \app\Model\Config();
+        $result = $clsConfig->setSystemConfigByList($data);
         return Factory::renderJson($result);
     }
 
