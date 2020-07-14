@@ -21,5 +21,4 @@ require_once ROOT_FRAME . DS . '..' . DS . 'vendor' . DS . 'autoload.php';
 require_once ROOT_FRAME . DS . 'common' . DS . 'function.php';
 require_once LIB . DS . 'ClassLoader.php';
 require_once LIB . DS . 'App.php';
-@ini_set('display_errors', 'on');
 return App::init();

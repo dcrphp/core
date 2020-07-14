@@ -32,7 +32,6 @@ class Install
         $this->useCaptcha = $useCaptcha;
     }
 
-
     /**
      * @return string
      */

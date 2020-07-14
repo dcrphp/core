@@ -25,6 +25,7 @@ class Db
     {
         return self::getConnection()->createQueryBuilder();
     }
+
     /**
      * @param $option 参数为:
      * table:表名
@@ -236,5 +237,15 @@ class Db
     {
         $conn = self::getConnection();
         return array('code' => $conn->errorCode(), 'msg' => implode(',', $conn->errorInfo()));
+    }
+
+    /**
+     * 获取表名
+     * @return mixed
+     */
+    public static function getTables()
+    {
+        $conn = self::getConnection();
+        return $conn->getSchemaManager()->listTables();
     }
 }

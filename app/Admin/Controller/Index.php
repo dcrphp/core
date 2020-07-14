@@ -109,7 +109,7 @@ class Index
         $captchaUse = $clsConfig->getSystemConfig('use_captcha');
 
         if ('是' == $captchaUse && empty(Session::_get('captcha'))) {
-            $view->assign('error_msg', '验证码系统没有生成');
+            $view->assign('error_msg', '系统没有生成验证码');
             $admin->common($view);
             return Factory::renderLogin($view);
         }

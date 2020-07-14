@@ -178,6 +178,16 @@ class Index
 
     public function installView()
     {
+        /*$schema = new \Doctrine\DBAL\Schema\Schema();
+        $myTable = $schema->createTable("my_table");
+        $myTable->addColumn("id", "integer", array("unsigned" => true));
+        $myTable->addColumn("username", "string", array("length" => 32));
+        $myTable->setPrimaryKey(array("id"));
+        $myTable->addUniqueIndex(array("username"));
+        $myTable->setComment('Some comment');
+        dd(Db::getConnection()->getDatabasePlatform());
+        dd($schema->toSql(Db::getConnection()->getDatabasePlatform()));
+        exit;*/
         $clsInstall = new Install();
         if (!$clsInstall->canInstall()) {
             throw new \Exception('已经安装过了，如果重新安装，请删除[' . realpath($clsInstall->getLockFile()) . ']再重新运行本安装程序');

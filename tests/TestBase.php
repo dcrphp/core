@@ -9,6 +9,7 @@ use app\Admin\Model\Model;
 use app\Admin\Model\User;
 use app\Index\Model\Install;
 use dcr\facade\Db;
+use Doctrine\DBAL\Types\Types;
 use PHPUnit\Framework\TestCase;
 
 class TestBase extends TestCase
@@ -157,28 +158,23 @@ class TestBase extends TestCase
     {
         $this->assertTrue(true);
         $tableNameList = array();
-        $list = Db::query("show tables");
-        if ($list) {
-            foreach ($list as $info) {
-                $tableNameList[] = current($info);
-            }
-        }
-        foreach ($list as $info) {
-            $tableName = current($info);
-            $sql = "show full columns FROM {$tableName} /*zt_id*/;";
-            $fieldList = Db::query($sql);
-            foreach ($fieldList as $fieldInfo) {
-                if ('no' != strtolower($fieldInfo['Null'])) {
+        $tables = Db::getTables();
+        foreach ($tables as $table) {
+            $columns = $table->getColumns();
+            foreach ($columns as $column) {
+                if (!$column->getNotNull()) {
                     continue;
                 }
-                if (in_array(strtolower($fieldInfo['Field']), array('id'))) {
+                if (in_array(strtolower($column->getName()), array('id'))) {
                     continue;
                 }
-                if (in_array(strtolower($fieldInfo['Type']), array('text'))) {
+                $type = trim(strtolower($column->getType()));
+                if (in_array($type, array('\text'))) {
                     continue;
                 }
-                if (!isset($fieldInfo['Default'])) {
-                    echo "-{$fieldInfo['Type']}-{$tableName}-{$fieldInfo['Field']}-set error;";
+                $default = $column->getDefault();
+                if (!isset($default)) {
+                    echo "-{$table->getName()}-{$column->getName()}-{$column->getType()}-set error;";
                     $this->assertTrue(false);
                 }
             }
