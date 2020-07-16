@@ -131,23 +131,18 @@ class User extends NUser implements Model
             $clsUser = new NUser();
         }
         $dataTimeNow = new \DateTime("now");
-        $clsUser->setAddTime($dataTimeNow);
         $clsUser->setUsername($userInfo['username']);
-        $clsUser->setUpdateTime($dataTimeNow);
         $clsUser->setSex($userInfo['sex']);
         $clsUser->setMobile($userInfo['mobile']);
         $clsUser->setTel($userInfo['tel']);
         $clsUser->setNote($userInfo['note']);
         $clsUser->setIsSuper($userInfo['is_super']);
-        $clsUser->setIsApproval(1);
-        $clsUser->setZtId($ztId);
+        $clsUser = Entity::setCommonData($clsUser);
 
         if ($userInfo['password']) {
             $clsUser->setPassword(Safe::_encrypt($userInfo['password']));
         }
-        if ('add' == $type) {
-            $clsUser->setAddUserId($addUserId);
-        } elseif ('edit' == $type) {
+        if ('edit' == $type) {
             $clsUser->setEditUserId(session('userId'));
         }
 
@@ -173,12 +168,9 @@ class User extends NUser implements Model
                 //dd($roleKey);
                 //先判断有没有
                 $clsUserRole = new \app\Model\Entity\UserRoleConfig();
-                $clsUserRole->setAddTime($dataTimeNow);
-                $clsUserRole->setUpdateTime($dataTimeNow);
-                $clsUserRole->setAddUserId($addUserId);
-                $clsUserRole->setZtId($ztId);
                 $clsUserRole->setUId($userId);
                 $clsUserRole->setUrId($roleKey);
+                $clsUserRole = Entity::setCommonData($clsUserRole);
                 container('em')->persist($clsUserRole);
                 container('em')->flush();
             }
