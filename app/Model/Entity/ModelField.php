@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ModelField
  *
- * @ORM\Table(name="model_field", uniqueConstraints={@ORM\UniqueConstraint(name="udx_mlid_keyword", columns={"mf_ml_id", "mf_keyword"})})
+ * @ORM\Table(name="model_field", uniqueConstraints={@ORM\UniqueConstraint(name="udx_model_field_mlid_keyword", columns={"mf_ml_id", "mf_keyword"})})
  * @ORM\Entity
  */
 class ModelField

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ModelAddition
  *
- * @ORM\Table(name="model_addition", uniqueConstraints={@ORM\UniqueConstraint(name="udx_ml_id", columns={"ma_ml_id"})})
+ * @ORM\Table(name="model_addition", uniqueConstraints={@ORM\UniqueConstraint(name="uq_ma_ml_id", columns={"ma_ml_id"})})
  * @ORM\Entity
  */
 class ModelAddition

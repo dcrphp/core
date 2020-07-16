@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ConfigTableEditItem
  *
- * @ORM\Table(name="config_table_edit_item", uniqueConstraints={@ORM\UniqueConstraint(name="uidx_db_ctel_id", columns={"db_field_name", "ctel_id"})})
+ * @ORM\Table(name="config_table_edit_item", uniqueConstraints={@ORM\UniqueConstraint(name="uq_ctei_db_ctel_id", columns={"db_field_name", "ctel_id"})})
  * @ORM\Entity
  */
 class ConfigTableEditItem

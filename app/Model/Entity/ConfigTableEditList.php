@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ConfigTableEditList
  *
- * @ORM\Table(name="config_table_edit_list", uniqueConstraints={@ORM\UniqueConstraint(name="uidx_key", columns={"keyword"})})
+ * @ORM\Table(name="config_table_edit_list", uniqueConstraints={@ORM\UniqueConstraint(name="uq_ctel_key", columns={"keyword"})})
  * @ORM\Entity
  */
 class ConfigTableEditList

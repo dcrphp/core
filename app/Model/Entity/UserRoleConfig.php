@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UserRoleConfig
  *
- * @ORM\Table(name="user_role_config", uniqueConstraints={@ORM\UniqueConstraint(name="uidx_ru", columns={"u_id", "ur_id", "zt_id"})})
+ * @ORM\Table(name="user_role_config", uniqueConstraints={@ORM\UniqueConstraint(name="uq_role_config_ru", columns={"u_id", "ur_id", "zt_id"})})
  * @ORM\Entity
  */
 class UserRoleConfig

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Plugins
  *
- * @ORM\Table(name="plugins", uniqueConstraints={@ORM\UniqueConstraint(name="uidx_name", columns={"name"})})
+ * @ORM\Table(name="plugins", uniqueConstraints={@ORM\UniqueConstraint(name="uq_plugins_name", columns={"name"})})
  * @ORM\Entity
  */
 class Plugins
