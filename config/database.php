@@ -19,8 +19,7 @@ return array(
         ),
     'pdo_sqlite' =>
         array(
-            'driver' => 'sqlite',
-            'database' => '',
+            'path' => env('SQLITE_PATH', ''),
             'prefix' => '',
         ),
 );

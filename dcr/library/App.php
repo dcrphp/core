@@ -53,7 +53,6 @@ class App
         $dbConn = config('database.' . $dbDriver);
         $dbConn['driver'] = $dbDriver;
 
-
         try {
             $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
             //$entityManager->getConnection()

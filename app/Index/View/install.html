@@ -24,7 +24,7 @@
     <title>Install</title>
     <style>
         .container {
-            width: 800px;
+            width: 1000px;
             margin: 10px auto;
         }
     </style>
@@ -34,26 +34,39 @@
     <form id="frm" action="/index/index/install-ajax" method="post">
         <table class="table table-border table-bordered table-hover">
             <tr>
-                <td>项目</td>
+                <td width="20%">项目</td>
                 <td>填写</td>
-                <td>说明</td>
+                <td width="25%">说明</td>
             </tr>
             <tr>
+                <td>数据库类型</td>
+                <td><select id="type" name="type" onchange="switch_db(this.value)">
+                    <option>mysql</option>
+                    <option>sqlite</option>
+                </select></td>
+                <td></td>
+            </tr>
+            <tr class="mysql">
                 <td>数据库地址</td>
                 <td><input class="input-text" type="text" name="host" value="127.0.0.1"></td>
                 <td>数据库地址</td>
             </tr>
-            <tr>
+            <tr class="sqlite">
+                <td>Sqlite地址</td>
+                <td><input class="input-text" type="text" name="sqlite_path" value="{{sqlite_path }}"></td>
+                <td>数据库地址</td>
+            </tr>
+            <tr class="mysql">
                 <td>数据库用户名</td>
                 <td><input class="input-text" type="text" name="username" value=""></td>
                 <td>数据库用户名</td>
             </tr>
-            <tr>
+            <tr class="mysql">
                 <td>数据库密码</td>
                 <td><input class="input-text" type="text" name="password" value=""></td>
                 <td>数据库密码</td>
             </tr>
-            <tr>
+            <tr class="mysql">
                 <td>数据库端口</td>
                 <td><input class="input-text" type="text" name="port" value="3306"></td>
                 <td>数据库端口</td>
@@ -67,7 +80,6 @@
                 <td>选项</td>
                 <td>
                     <label><input class="check-box" name="cover_data" type="checkbox" value="1">如果数据库存在则覆盖数据</label>
-                    <label><input class="check-box" name="import_demo" type="checkbox" value="1">导入demo数据</label>
                 </td>
                 <td></td>
             </tr>
@@ -93,7 +105,26 @@
 <script type="text/javascript" src="{{admin_resource_url}}/lib/dcrphp.js"></script>
 
 <script type="text/javascript">
+    function switch_db(type) {
+        $('.mysql').each(function(i){
+            $(this).hide();
+        });
+        $('.sqlite').each(function(i){
+            $(this).hide();
+        });
+        if ('mysql' == type) {
+            $('.mysql').each(function(i){
+                $(this).show();
+            });
+        } else {
+            $('.sqlite').each(function(i){
+                $(this).show();
+            });
+        }
+    }
+
     $(function () {
+        switch_db('mysql');
         $("#frm").validate({
             rules: {
                 host: {

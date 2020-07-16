@@ -21,6 +21,7 @@ class AppInstall extends Command
     protected function configure()
     {
         $this->setName('app:install'); //注意这个是命令行
+        $this->addArgument('type', InputArgument::REQUIRED, 'database type:sqlite;mysql');
         $this->addArgument('host', InputArgument::REQUIRED, 'database host');
         $this->addArgument('port', InputArgument::REQUIRED, 'database host port');
         $this->addArgument('username', InputArgument::REQUIRED, 'database username');
@@ -32,6 +33,7 @@ class AppInstall extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $type = $input->getArgument('type');
         $host = $input->getArgument('host');
         $port = $input->getArgument('port');
         $username = $input->getArgument('username');
@@ -46,6 +48,7 @@ class AppInstall extends Command
         if (isset($useCaptcha)) {
             $clsInstall->setUseCaptcha($useCaptcha);
         }
+        $clsInstall->setType($type);
         try {
             $clsInstall->install(
                 $host,

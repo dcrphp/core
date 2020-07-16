@@ -239,6 +239,12 @@ class Db
         return array('code' => $conn->errorCode(), 'msg' => implode(',', $conn->errorInfo()));
     }
 
+    public static function getDatabases()
+    {
+        $conn = self::getConnection();
+        return $conn->getSchemaManager()->listDatabases();
+    }
+
     /**
      * 获取表名
      * @return mixed

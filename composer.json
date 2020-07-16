@@ -22,7 +22,6 @@
         "codeguy/upload": "*",
         "symfony/console": "*",
         "matomo/ini": "*",
-        "thamaraiselvam/mysql-import": "*",
         "phpdocumentor/reflection-docblock": "*",
         "filp/whoops": "*",
         "dcrphp/cache": "*",

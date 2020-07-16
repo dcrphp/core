@@ -9,13 +9,12 @@
 namespace app\Index\Controller;
 
 use app\Admin\Model\Factory;
-use app\Admin\Model\Common;
+use app\Admin\Model\Model;
 use app\Index\Model\Install;
+use app\Model\Config as MConfig;
 use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
-use app\Admin\Model\Model;
-use app\Model\Config as MConfig;
 
 /**
  * Class Index
@@ -195,6 +194,7 @@ class Index
         $view = container('view');
         $view->setViewDirectoryPath(ROOT_APP . DS . 'Index' . DS . 'View');
         $view->assign('admin_resource_url', env('ADMIN_RESOURCE_URL'));
+        $view->assign('sqlite_path', realpath(ROOT_PUBLIC . DS . 'storage') . DS . 'sqlite.db');
         return $view->render('install');
     }
 
@@ -202,8 +202,9 @@ class Index
     {
         try {
             $clsInstall = new Install();
+            $clsInstall->setType(post('type'));
             $result = $clsInstall->install(
-                post('host'),
+                'mysql' == post('type') ? post('host') : post('sqlite_path'),
                 post('username'),
                 post('password'),
                 post('database'),
@@ -213,7 +214,7 @@ class Index
             );
             return Factory::renderJson($result, 1);
         } catch (\Exception $ex) {
-            throw new \Exception($ex->getMessage());
+            throw $ex;
         }
     }
 }
