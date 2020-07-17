@@ -66,7 +66,7 @@ class Model
             'where' => $where,
             'col' => 'model_list.id,ml_pic_path,ml_title,name',
             'join' => $join,
-            'order' => 'id desc',
+            'order' => 'model_list.id desc',
             'limit' => $pageNum,
             'offset' => ($page - 1) * $pageNum
         ));

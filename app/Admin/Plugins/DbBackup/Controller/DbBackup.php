@@ -19,6 +19,10 @@ class DbBackup extends Plugins
      */
     public function index($view)
     {
+        if ('pdo_sqlite' == env('DB_TYPE')) {
+            echo 'sqlite请直接复制:' . env('SQLITE_PATH') . '文件备份';
+            exit;
+        }
         $dbTableList = Db::query('show tables /*zt_id=1*/');
         $tableList = array();
         foreach ($dbTableList as $tmpInfo) {
