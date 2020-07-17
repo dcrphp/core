@@ -32,6 +32,10 @@ $menu = array(
         'title' => '系统工具',
         'sub' => array(
             array(
+                'url' => '/admin/tools/api-view',
+                'title' => 'API刷新',
+            ),
+            array(
                 'url' => '/admin/tools/plugins-installed-view',
                 'title' => '插件中心',
             ),

@@ -57,6 +57,11 @@ class Config
         return Factory::renderPage('config/config-list-item', $assignData);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \ReflectionException
+     */
     public function configListItemEditView(Request $request)
     {
         $params = $request->getParams();
@@ -86,8 +91,9 @@ class Config
 
     /**
      * @permission /系统配置
+     * @param Request $request
      * @return mixed
-     * @throws \Exception
+     * @throws \ReflectionException
      */
     public function configView(Request $request)
     {

@@ -30,7 +30,8 @@
         "dcrphp/form": "1.0.1-alpha2",
         "dcrphp/annotations": "*",
         "graylog2/gelf-php": "*",
-        "doctrine/orm": "*"
+        "doctrine/orm": "*",
+        "zircote/swagger-php": "*"
     },
     "autoload": {
         "psr-4":{

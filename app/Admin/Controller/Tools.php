@@ -6,6 +6,7 @@ use app\Admin\Model\Common;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use app\Admin\Model\Tools as MTools;
+use app\Model\Api;
 use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
@@ -126,6 +127,14 @@ class Tools
         }
         //$pluginIndexController = new ;
         return Factory::renderPage($indexView, $assignData, $viewDir);
+    }
+
+    public function apiView()
+    {
+        $clsApi  = new Api();
+        $clsApi->initDoc();
+        echo "api已经刷新，请点击<a target='_blank' href='/api/dist/'>查看</a>";
+        exit;
     }
 
     /**
