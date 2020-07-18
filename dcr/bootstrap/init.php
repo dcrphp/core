@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
  * Date: 2019/7/28
  * Time: 21:07
  */
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace dcr;
 

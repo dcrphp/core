@@ -1,4 +1,5 @@
 <?php
+
 namespace app\Model\Concerns;
 
 interface Model

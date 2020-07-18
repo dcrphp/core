@@ -43,7 +43,7 @@ install:
   - composer require --dev php-coveralls/php-coveralls
 
 script:
-  - php vendor/squizlabs/php_codesniffer/bin/phpcs -n -p --ignore=*/vendor/*,*/config/*,*/resource/* --standard=PSR2 --extensions=php --encoding=utf-8 -w -s .
+  - php vendor/squizlabs/php_codesniffer/bin/phpcs -n -p --ignore=*/vendor/*,*/config/*,*/resource/* --standard=PSR12 --extensions=php --encoding=utf-8 -w -s .
   - php dcrphp app:install mysql 127.0.0.1 3306 root root dcrphp-test utf8 no
   - php vendor/phpunit/phpunit/phpunit
 

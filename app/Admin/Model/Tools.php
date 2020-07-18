@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\Admin\Model;
 
 use dcr\facade\Db;

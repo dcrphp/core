@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\Index\Model;
 
 use app\Admin\Model\Admin;

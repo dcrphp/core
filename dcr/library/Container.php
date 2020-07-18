@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
@@ -33,14 +34,14 @@ class Container
      * @var string[]
      */
     private $defaultBindList = [
-        'config'=> \DcrPHP\Config\Config::class,
-        'request'=> \dcr\Request::class,
-        'rule'=> \dcr\route\Rule::class,
-        'rule_item'=> \dcr\route\RuleItem::class,
-        'route'=> \dcr\Route::class,
-        'view'=> \dcr\View::class,
-        'response'=> \dcr\Response::class,
-        'cache'=> \DcrPHP\Cache\Cache::class,
+        'config' => \DcrPHP\Config\Config::class,
+        'request' => \dcr\Request::class,
+        'rule' => \dcr\route\Rule::class,
+        'rule_item' => \dcr\route\RuleItem::class,
+        'route' => \dcr\Route::class,
+        'view' => \dcr\View::class,
+        'response' => \dcr\Response::class,
+        'cache' => \DcrPHP\Cache\Cache::class,
     ];
 
     /**
@@ -142,7 +143,7 @@ class Container
         $constructor = $reflector->getConstructor();
 
         if (is_null($constructor)) {
-            $instance = new $concrete;
+            $instance = new $concrete();
             $this->instance($concrete, $instance);
             return $instance;
         }

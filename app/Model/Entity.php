@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\Model;
 
 class Entity

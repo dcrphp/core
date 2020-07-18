@@ -127,7 +127,7 @@ class Model
             $modelFieldList[$modelKey]['db_field_name'] = $modelFieldInfo['db_field_name'];
             $modelFieldList[$modelKey]['default'] = $modelFieldInfo['default_str'];
         }
-        $modelFieldList = Common::generalHtmlForItem($modelFieldList, $fileValueList, array(), array('input_name_pre'=>'field_'));
+        $modelFieldList = Common::generalHtmlForItem($modelFieldList, $fileValueList, array(), array('input_name_pre' => 'field_'));
 
         //$configModelList = current($clsConfig->getConfigModelList($modelName));
         //dd($configModelList);

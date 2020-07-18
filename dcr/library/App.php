@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
@@ -8,6 +9,7 @@
 
 namespace dcr;
 
+use dcr\facade\Response;
 use dcr\route\RuleItem;
 use DcrPHP\Annotations\Annotations;
 use DcrPHP\Cache\Cache;
@@ -22,6 +24,8 @@ class App
      */
     public static $phpSapiName;
 
+    public static $runningModel; //运行模式 支持ajax web api cli
+
     /**
      * 自动加载类
      */
@@ -33,6 +37,7 @@ class App
 
     /**
      * 初始化entity manager
+     * @throws ORMException
      */
     public static function initEntityManager()
     {
@@ -75,10 +80,49 @@ class App
         return $clsConfig;
     }
 
+    /**
+     * 检测运行模式
+     */
+    public static function setRunningModel()
+    {
+        self::$runningModel = 'web';
+        if (\Whoops\Util\Misc::isAjaxRequest()) {
+            self::$runningModel = 'ajax';
+        }
+        if (\Whoops\Util\Misc::isCommandLine()) {
+            self::$runningModel = 'cli';
+        }
+        if ('/api/' == substr($_SERVER['REQUEST_URI'], 0, 5)) {
+            self::$runningModel = 'api';
+        }
+    }
+
+    /**
+     * 加载基本配置
+     */
+    public static function initFromConfig()
+    {
+        // set default zt_id
+        Session::_set('ztId', 1);
+
+        //程序测试与否
+        if (config('app.debug')) {
+            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+            @ini_set('display_errors', 'on');
+        } else {
+            @ini_set('display_errors', 'off');
+        }
+        //设置时区
+        date_default_timezone_set(config('app.default_timezone'));
+    }
+
     public static function init()
     {
         self::$phpSapiName = php_sapi_name();
         self::autoLoadClasses();
+
+        self::setRunningModel();
+
         Error::init();
         Env::init();
         $container = container();
@@ -95,25 +139,14 @@ class App
 
         $container->autoBind();
         Session::init();
-        // set default zt_id
-        Session::_set('ztId', 1);
 
-        //程序测试与否
-        if (config('app.debug')) {
-            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-            @ini_set('display_errors', 'on');
-        } else {
-            @ini_set('display_errors', 'off');
-        }
+        self::initFromConfig();
 
         self::initEntityManager();
 
-        //设置时区
-        date_default_timezone_set(config('app.default_timezone'));
-
         //如果是命令行就直接返回
         $result = '';
-        if ('cli' == APP::$phpSapiName) {
+        if ('cli' == self::$runningModel) {
             $result = '';
         } else {
             //开始处理request
@@ -154,7 +187,7 @@ class App
         $class = "\\app\\{$model}\\Controller\\{$controller}";
 
         try {
-            $classObj = new $class;
+            $classObj = new $class();
             if (is_callable([$classObj, $action])) {
                 //获取注解
 

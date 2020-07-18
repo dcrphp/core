@@ -85,7 +85,7 @@ class Tools
             throw new \Exception($pluginControllerName . ':Controller不存在');
         }
 
-        $pluginClass = new $pluginControllerName;
+        $pluginClass = new $pluginControllerName();
         if (!method_exists($pluginClass, $functionName)) {
             throw new \Exception($functionName . ':function不存在');
         }
@@ -120,7 +120,7 @@ class Tools
         //调用插件的index
         $pluginControllerName = $clsPlugins->getControllerClass($pluginName);
         if (class_exists($pluginControllerName)) {
-            $pluginClass = new $pluginControllerName;
+            $pluginClass = new $pluginControllerName();
             if (method_exists($pluginClass, 'index')) {
                 $pluginClass->index($view);
             }
@@ -133,7 +133,7 @@ class Tools
     {
         $clsApi  = new Api();
         $clsApi->initDoc();
-        echo "api已经刷新，请点击<a target='_blank' href='/api/dist/'>查看</a>";
+        echo "API文档已经于[" . date('Y-m-d H:i:s') . "]刷新，请点击<a target='_blank' href='/api/dist/'>查看</a>";
         exit;
     }
 

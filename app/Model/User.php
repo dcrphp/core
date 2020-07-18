@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace app\Model;
@@ -178,5 +179,24 @@ class User extends NUser implements Model
         DB::commit();
 
         return Admin::commonReturn(array('ack' => 1));
+    }
+
+    /**
+     * 获取用户信息
+     * @param $username
+     * @param array $option
+     * @return mixed
+     */
+    public function getInfo($username, $option = array())
+    {
+        $where = "username='{$username}'";
+        $option['table'] = 'user';
+        $option['where'] = $option['where'] ? $option['where'] . " and {$where}" : $where;
+        $result = Db::select($option);
+        if ($result) {
+            return $result[0];
+        } else {
+            return false;
+        }
     }
 }

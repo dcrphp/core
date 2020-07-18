@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
@@ -618,7 +619,7 @@ class User
             $dbInfo = array(
                 'name' => $permissionName,
                 'version' => $version,
-                'add_user_id'=> 0,
+                'add_user_id' => 0,
                 'zt_id' => session('ztId'),
             );
             $hasInfo = DB::select(array(

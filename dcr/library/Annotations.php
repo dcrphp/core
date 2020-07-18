@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace dcr;
 
@@ -100,7 +100,7 @@ class Annotations
                 continue;
             }
             $annotationClassName = "\\dcr\\annotation\\" . ucfirst($annotationName);
-            $cls = new $annotationClassName;
+            $cls = new $annotationClassName();
             $cls->setAnnotations($this); //把记录好的信息传过去
             $cls->setParameter($parameter);
             $cls->handler();

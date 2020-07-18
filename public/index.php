@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+
 /**
  * Created by junqing124@126.com.
  * User: dcr

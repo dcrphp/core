@@ -31,7 +31,8 @@
         "dcrphp/annotations": "*",
         "graylog2/gelf-php": "*",
         "doctrine/orm": "*",
-        "zircote/swagger-php": "*"
+        "zircote/swagger-php": "*",
+        "symfony/http-foundation": "*"
     },
     "autoload": {
         "psr-4":{

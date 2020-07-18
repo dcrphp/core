@@ -1,4 +1,5 @@
 <?php
+
 namespace app\Console;
 
 use dcr\Console;

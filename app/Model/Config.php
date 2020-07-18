@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace app\Model;
 
 use app\Admin\Model\Admin;

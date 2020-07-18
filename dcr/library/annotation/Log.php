@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace dcr\annotation;
@@ -54,8 +55,8 @@ class Log
         $title = $this->annotations->getClassName() . "->" . $this->annotations->getMethodName();
         $logInfo = array(
             'message' => json_encode($contentArr),
-            'class'=> $this->annotations->getClassName(),
-            'method'=> $this->annotations->getMethodName(),
+            'class' => $this->annotations->getClassName(),
+            'method' => $this->annotations->getMethodName(),
         );
         try {
             FLog::systemLog($logInfo, $level, $title, $type);

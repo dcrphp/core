@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
@@ -27,7 +28,7 @@ class Config
                 'table' => 'config',
                 'where' => "db_field_name='{$db_field_name}'",
                 'limit' => 1,
-                'col'=>'value',
+                'col' => 'value',
             )
         );
         $info = current($info);
@@ -66,7 +67,7 @@ class Config
                     'table' => 'config',
                     'where' => "db_field_name='{$db_field_name}' and cl_id={$list_id}",
                     'limit' => 1,
-                    'col'=>'id',
+                    'col' => 'id',
                 )
             );
             $info = current($info);

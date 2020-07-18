@@ -2,6 +2,7 @@
 
 /**
  * 登陆后台测试链接是否正常
+ * 可用:https://symfony.com/doc/current/components/browser_kit.html
  */
 
 namespace test;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by junqing124@126.com.
  * User: dcr
@@ -16,13 +17,13 @@ class Error
     {
         $request = container('request');
         $handler = '\Whoops\Handler\PrettyPageHandler';
-        if ($request->isAjax()) {
+        if (in_array(APP::$runningModel, array('api', 'ajax'))) {
             $handler = '\Whoops\Handler\JsonResponseHandler';
         }
-        if ('cli' == APP::$phpSapiName) {
+        if ('cli' == APP::$runningModel) {
             $handler = '\Whoops\Handler\PlainTextHandler';
         }
-        $whoops = new \Whoops\Run;
+        $whoops = new \Whoops\Run();
 
         //配置的error handler
         try {
@@ -32,12 +33,12 @@ class Error
             $configHandler = $clsConfig->get('app.error_handler');
             if ($configHandler) {
                 foreach ($configHandler as $handlerClass) {
-                    $whoops->pushHandler(new $handlerClass);
+                    $whoops->pushHandler(new $handlerClass());
                 }
             }
         } catch (\Exception $e) {
         }
-        $whoops->pushHandler(new $handler);
+        $whoops->pushHandler(new $handler());
 
         $whoops->register();
     }

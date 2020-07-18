@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 本类用来做一些通用的function
  * Created by junqing124@126.com.
@@ -81,7 +82,7 @@ class Factory
         $parentFunction = $functionList[1];
         if ($parentFunction) {
             //获取function的注释
-            $reClass = new \ReflectionClass(new $parentFunction['class']);
+            $reClass = new \ReflectionClass(new $parentFunction['class']());
             $functionDoc = $reClass->getMethod($parentFunction['function'])->getDocComment();
             if ($functionDoc) {
                 //获取permission内容
