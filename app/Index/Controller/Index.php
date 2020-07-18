@@ -204,6 +204,8 @@ class Index
         try {
             $clsInstall = new Install();
             $clsInstall->setType(post('type'));
+            $clsInstall->setAdminUsername(post('admin_user'));
+            $clsInstall->setAdminPassword(post('admin_password'));
             $result = $clsInstall->install(
                 'mysql' == post('type') ? post('host') : post('sqlite_path'),
                 post('username'),

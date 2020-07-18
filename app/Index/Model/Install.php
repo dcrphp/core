@@ -14,6 +14,8 @@ class Install
     private $type = 'mysql'; //数据库类型
     private $useCaptcha = '是';
     private $sqlFilePath = ROOT_APP . DS . 'Index' . DS . 'Install' . DS . 'sql';
+    private $adminUsername = 'admin'; //管理员用户名
+    private $adminPassword = '123456'; //管理员密码
 
     /**
      * @return string
@@ -31,6 +33,37 @@ class Install
         $this->type = $type;
     }
 
+    /**
+     * @return string
+     */
+    public function getAdminUsername(): string
+    {
+        return $this->adminUsername;
+    }
+
+    /**
+     * @param string $adminUsername
+     */
+    public function setAdminUsername(string $adminUsername)
+    {
+        $this->adminUsername = $adminUsername;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdminPassword(): string
+    {
+        return $this->adminPassword;
+    }
+
+    /**
+     * @param string $adminPassword
+     */
+    public function setAdminPassword(string $adminPassword)
+    {
+        $this->adminPassword = $adminPassword;
+    }
 
     /**
      * @return string 是或否
@@ -237,8 +270,8 @@ SQL;
 
             //初始化user
             $userInfo = array(
-                'username' => 'admin',
-                'password' => '123456',
+                'username' => $this->getAdminUsername(),
+                'password' => $this->getAdminPassword(),
                 'sex' => 1,
                 'mobile' => '15718126135',
                 'tel' => '',

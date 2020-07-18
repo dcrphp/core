@@ -12,11 +12,13 @@ namespace app\Admin\Controller;
 use app\Admin\Model\Admin;
 use app\Admin\Model\Factory;
 use app\Admin\Model\User as MUser;
-use dcr\Response;
+use dcr\facade\Response;
 use dcr\Safe;
 use dcr\Session;
 use dcr\View;
+use Exception;
 use Former\Facades\Former;
+use Throwable;
 
 class Index
 {
@@ -26,7 +28,7 @@ class Index
      * 首页
      * @11log 这里改成@log可以看效果
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function index()
     {
@@ -59,7 +61,7 @@ class Index
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function welcome()
     {
@@ -93,10 +95,7 @@ class Index
     /**
      * @param View $view
      * @return string
-     * @throws \Throwable
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws Throwable
      */
     public function login(View $view)
     {

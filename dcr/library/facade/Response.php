@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace dcr\facade;
 
-class Response
+use dcr\DcrBase;
+
+class Response extends DcrBase
 {
     private $clsResponse;
 
@@ -17,5 +19,11 @@ class Response
     {
         // TODO: Implement __call() method.
         return call_user_func_array([$this->clsResponse, $name], $arguments);
+    }
+
+    public function redirect($url)
+    {
+        $response = new \Symfony\Component\HttpFoundation\RedirectResponse($url);
+        $response->send();
     }
 }

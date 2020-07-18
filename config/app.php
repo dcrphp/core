@@ -15,7 +15,7 @@ return [
         'rule_item' => dcr\route\RuleItem::class,
         'route' => dcr\Route::class,
         'view' => dcr\View::class,
-        'response' => dcr\Response::class,
+        'response' => dcr\facade\Response::class,
         'cache' => \DcrPHP\Cache\Cache::class,
     ],
 

@@ -99,25 +99,21 @@ if (!function_exists('session')) {
 if (!function_exists('getIp')) {
     function getIp()
     {
-        if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-            $cip = $_SERVER["HTTP_CLIENT_IP"];
+        if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } elseif ($_SERVER['HTTP_CLIENT_IP']) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        } elseif ($_SERVER['REMOTE_ADDR']) {
+            return $_SERVER['REMOTE_ADDR'];
+        } elseif ($_SERVER['HTTP_X_FORWARDED']) {
+            return $_SERVER['HTTP_X_FORWARDED'];
+        } elseif ($_SERVER['HTTP_FORWARDED_FOR']) {
+            return $_SERVER['HTTP_FORWARDED_FOR'];
+        } elseif ($_SERVER['HTTP_FORWARDED']) {
+            return $_SERVER['HTTP_FORWARDED'];
         } else {
-            if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-                $cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-            } else {
-                if (!empty($_SERVER["REMOTE_ADDR"])) {
-                    $cip = $_SERVER["REMOTE_ADDR"];
-                } else {
-                    $cip = '';
-                }
-            }
+            return 'UNKNOWN';
         }
-        $cipList = array();
-        preg_match("/[\d\.]{7,15}/", $cip, $cipList);
-        $cip = isset($cips[0]) ? $cipList[0] : 'unknown';
-        unset($cipList);
-
-        return $cip;
     }
 
 }
