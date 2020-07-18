@@ -163,21 +163,33 @@ class App
         return new Response($result);
     }
 
-    public static function exec(RuleItem $ruleItem)
-    {
-        //去除action里面的-
-        $action = $ruleItem->action;
+    /**
+     * 把use-explain转成useExplain
+     * 把use-explain-vew转成useExplainView
+     * 把use留为use
+     * 上面的-可以用$explodeStr配置
+     * @param $param
+     * @param string $explodeStr
+     */
 
-        //把use-explain转成useExplain
-        //把use-explain-vew转成useExplainView
-        //把use留为use
-        $actionArr = explode('-', $action);
+    public static function formatParam($param, $explodeStr = '-')
+    {
+        $actionArr = explode($explodeStr, $param);
         $actionList = [];
         foreach ($actionArr as $key => $actionStr) {
             $actionList[$key] = ucfirst($actionStr);
         }
         $action = implode('', $actionList);
-        $action = lcfirst($action);
+        $param = lcfirst($action);
+
+        return $param;
+    }
+
+    public static function exec(RuleItem $ruleItem)
+    {
+        //去除action里面的-
+        $action = $ruleItem->action;
+        $action = self::formatParam($action);
 
         //得出类来
         $model = ucfirst($ruleItem->model);

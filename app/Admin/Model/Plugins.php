@@ -2,9 +2,7 @@
 
 namespace app\Admin\Model;
 
-use app\Admin\Model\Admin;
 use dcr\facade\Db;
-use dcr\Request;
 
 class Plugins
 {
@@ -70,11 +68,10 @@ class Plugins
 
     public function getInstalledList()
     {
-        $list = DB::select(array(
-            'table' => 'plugins',
-        ));
-
-        return $list;
+        return DB::select(array(
+                               'table' => 'plugins',
+                               'where' => 'is_valid=1',
+                           ));
     }
 
     public function getConfig($pluginName)
