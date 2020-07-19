@@ -9,10 +9,7 @@
 
 namespace app\Admin\Model;
 
-use Aura\SqlQuery\QueryFactory;
 use dcr\facade\Db;
-use dcr\facade\Log;
-use dcr\Session;
 use Respect\Validation\Validator as v;
 
 /**
@@ -449,9 +446,9 @@ class Model
         $result = 1;
         DB::beginTransaction();
         if ('edit' == $data['action']) {
-            Log::systemLog(var_export($dbInfoList, true));
+            //Log::systemLog(var_export($dbInfoList, true));
             $modelListSec = DB::update('model_list', $dbInfoList, "id={$id}");
-            Log::systemLog(DB::getLastSql());
+            //Log::systemLog(DB::getLastSql());
             $modelAdditionSec = DB::update('model_addition', $dbInfoAddition, "ma_ml_id={$id}");
             $modelFieldError = 0;
 
@@ -459,7 +456,7 @@ class Model
             foreach ($fieldList as $fieldKey => $fieldValue) {
                 $fieldDbInfo = array();
                 $fieldDbInfo['mf_keyword'] = $fieldKey;
-                $fieldDbInfo['mf_value'] = $fieldValue;
+                $fieldDbInfo['mf_value'] = is_array($fieldValue) ? implode(',', $fieldValue) : $fieldValue;
 
                 $fieldInfo = DB::select(array(
                     'table' => 'model_field',

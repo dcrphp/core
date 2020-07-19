@@ -106,8 +106,12 @@ class TestBase extends TestCase
         $list = Db::query($sql);
         $this->assertEquals(0, count($list));
 
-        $this->assertFalse(count($list) > 0);
         $sql = "select model_field.id from model_field left join model_list on mf_ml_id=model_list.id where model_list.id is null";
+        $list = Db::query($sql);
+        $this->assertEquals(0, count($list));
+
+        //有没有空分类
+        $sql = "select model_category.id from model_list left join model_category on ml_category_id=model_category.id where model_category.id is null";
         $list = Db::query($sql);
         $this->assertEquals(0, count($list));
     }
