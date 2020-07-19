@@ -181,5 +181,4 @@ class ConfigTableEditList
      * @ORM\Column(name="button_area_addition_html", type="string", length=2000, nullable=false, options={"default"="","comment"="列表按钮区额外html"})
      */
     private $buttonAreaAdditionHtml = '';
-
 }

@@ -76,5 +76,4 @@ class Config
      * @ORM\Column(name="cl_id", type="integer", nullable=false, options={"default"=0,"comment"="配置列表id"})
      */
     private $clId = '0';
-
 }

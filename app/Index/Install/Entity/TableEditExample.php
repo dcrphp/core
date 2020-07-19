@@ -90,5 +90,4 @@ class TableEditExample
      * @ORM\Column(name="checkbox", type="string", length=45, nullable=false, options={"default"=""})
      */
     private $checkbox = '';
-
 }

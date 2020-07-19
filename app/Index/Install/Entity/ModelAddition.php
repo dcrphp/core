@@ -83,5 +83,4 @@ class ModelAddition
      * @ORM\Column(name="ma_ml_id", type="integer", nullable=false, options={"comment"="ml表主键", "default"="0"})
      */
     private $maMlId = '0';
-
 }

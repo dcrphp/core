@@ -90,5 +90,4 @@ class ModelList
      * @ORM\Column(name="ml_view_nums", type="integer", nullable=false, options={"comment"="浏览次数", "default"="0"})
      */
     private $mlViewNums = '0';
-
 }

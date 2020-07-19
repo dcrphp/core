@@ -82,7 +82,7 @@ class TestBase extends TestCase
 
         $this->assertEquals(0, count($modelProCategoryList));
         $this->assertEquals(0, count($modelNewsCategoryList));
-        $this->assertEquals(0, count($modelInfoCategoryList));
+        $this->assertEquals(1, count($modelInfoCategoryList));
 
         //把有图片的去掉
         $modelList = $model->getList(array('where' => "ml_pic_path!=''"));

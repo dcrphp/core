@@ -104,5 +104,4 @@ class ConfigListItem
      * @ORM\Column(name="cl_id", type="integer", nullable=false, options={"default"="0"})
      */
     private $clId = '0';
-
 }
