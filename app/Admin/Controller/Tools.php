@@ -60,8 +60,9 @@ class Tools
         $name = post('name');
         $source = post('source');
 
-        $clsPlugins = new Plugins();
-        $result = $clsPlugins->install($name, $source);
+        $clsPlugins = new \app\Model\Plugins();
+        $clsPlugins->setName($name);
+        $result = $clsPlugins->install();
         return Factory::renderJson($result);
     }
 

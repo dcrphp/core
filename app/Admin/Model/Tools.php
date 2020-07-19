@@ -129,7 +129,7 @@ class Tools
         $dbInfoMain['edit_window_width'] = '70%';
         $dbInfoMain['edit_window_height'] = '70%';
         $dbInfoMain['zt_id'] = 1;
-        $dbInfoMain['add_user_id'] = session('userId');
+        $dbInfoMain['add_user_id'] = intval(session('userId'));
 
         $id = Db::insert('config_table_edit_list', $dbInfoMain);
         //$id = 7;

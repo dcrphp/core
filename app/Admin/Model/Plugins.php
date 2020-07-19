@@ -27,7 +27,15 @@ class Plugins
         return $listPlugins;
     }
 
-    public function install($pluginName, $source)
+    /**
+     * 1.0.5-2废弃
+     * 安装
+     * @param $pluginName
+     * @param $source
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function installAbandon($pluginName, $source)
     {
         //判断存在不存在
         $dir = $this->pluginDir . DS . $pluginName;

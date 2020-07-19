@@ -12,6 +12,7 @@ namespace app\Index\Controller;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Model;
 use app\Index\Model\Install;
+use app\Model\Config;
 use app\Model\Config as MConfig;
 use dcr\facade\Db;
 use dcr\Page;
@@ -33,7 +34,7 @@ class Index
             throw new \Exception('请设置导航');
         }
 
-        $clsConfig = new MConfig();
+        $clsConfig = new Config();
         $configTemplateName = $clsConfig->getSystemConfig('template_name');
         $view->setViewDirectoryPath(ROOT_PUBLIC . DS . 'resource' . DS . 'template' . DS . $configTemplateName . DS . 'view');
         $siteName = $clsConfig->getSystemConfig('site_name');
@@ -60,7 +61,7 @@ class Index
             $modelId,
             array('requestField' => 1, 'requestAddition' => 1, 'requestFieldDec' => 1)
         );
-        $clsConfig = new Config();
+        $clsConfig = new \app\Admin\Model\Config();
         $modelDefine = $clsConfig->getConfigList(0, 'model');
         $modelDefine = array_column($modelDefine, 'name', 'keyword');
         $modelCategoryName = $modelDefine[$modelInfo['list']['ml_model_name']];
