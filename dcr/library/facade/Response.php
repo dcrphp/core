@@ -10,7 +10,13 @@ class Response extends DcrBase
 {
     private $clsResponse;
 
-    public function __construct(string $content = '', int $status = 200, array $headers = [])
+    /**
+     * Response constructor.
+     * @param mixed $content 输出内容 不一定是字符串，比如验证码图片也是在这输出
+     * @param int $status
+     * @param array $headers
+     */
+    public function __construct($content = '', int $status = 200, array $headers = [])
     {
         $this->clsResponse = new \Symfony\Component\HttpFoundation\Response($content, $status, $headers);
     }

@@ -132,6 +132,12 @@ class Tools
 
     public function apiView()
     {
+        echo "更多文档请看API目录下的README或https://github.com/dcrphp/core/wiki/%E8%AF%B4%E6%98%8E:API";
+        exit;
+    }
+
+    public function apiDocGeneral()
+    {
         $clsApi  = new Api();
         $clsApi->initDoc();
         echo "API文档已经于[" . date('Y-m-d H:i:s') . "]刷新，请点击<a target='_blank' href='/api/dist/'>查看</a>";

@@ -33,7 +33,11 @@ $menu = array(
         'sub' => array(
             array(
                 'url' => '/admin/tools/api-view',
-                'title' => 'API刷新',
+                'title' => 'API',
+            ),
+            array(
+                'url' => '/admin/tools/api-doc-general',
+                'title' => ' - API文档',
             ),
             array(
                 'url' => '/admin/tools/plugins-installed-view',

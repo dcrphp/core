@@ -46,6 +46,7 @@ class App
         $container = container();
 
         //orm加载
+        //如果要加载事件，请:https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/events.html
         $ormConfig = Setup::createAnnotationMetadataConfiguration(
             array(config('app.entity_dir')),
             true,
@@ -197,10 +198,10 @@ class App
 
         //类名
         $class = "\\app\\{$model}\\Controller\\{$controller}";
+        $classObj = new $class();
 
-        try {
-            $classObj = new $class();
-            if (is_callable([$classObj, $action])) {
+        if (is_callable([$classObj, $action])) {
+            try {
                 //获取注解
 
                 //获取当前操作方法的参数列表 如果有类就实例化一个
@@ -208,14 +209,15 @@ class App
                 $reflect = new \ReflectionMethod($classObj, $action);
                 $dependencies = container()->resolveConstructor($reflect->getParameters());
                 //$data = $reflect->invokeArgs($classObj, $dependencies);
-                $data = self::execMethod($class, $classObj, $action, $dependencies);
-            } else {
-                throw new \Exception('Not find the function[' . $action . '] or model[' . $class . ']');
+                return self::execMethod($class, $classObj, $action, $dependencies);
+            } catch (\ReflectionException $e) {
+                throw $e;
+            } catch (\Exception $e) {
+                throw $e;
             }
-        } catch (Exception $e) {
-            throw $e;
+        } else {
+            throw new \Exception('Not find the function[' . $action . '] or model[' . $class . ']');
         }
-        return $data;
     }
 
     /**
@@ -225,7 +227,7 @@ class App
      * @param $instance 类实例
      * @param $method 方法名
      * @param array $args 参数列表
-     * @return
+     * @return mixed
      * @throws \Exception
      */
     public static function execMethod($class, $instance, $method, $args)

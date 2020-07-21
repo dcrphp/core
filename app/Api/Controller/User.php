@@ -6,22 +6,7 @@ namespace app\Api\Controller;
 
 use app\Model\Api;
 
-/**
- * @OA\Info(
- *     description="本文档基于dcrphp core API类生成，编码好app\Api下的类，然后后台点击[系统工具/api刷新]，更新本文档",
- *     version="1.0.0",
- *     title="dcrphp core api中心",
- *     termsOfService="http://www.dcrcms.com/",
- *     @OA\Contact(
- *         email="junqing124@126.com"
- *     ),
- *     @OA\License(
- *         name="MIT",
- *         url="https://opensource.org/licenses/MIT"
- *     )
- * )
- */
-class User
+class User extends Api
 {
 
     /**
@@ -30,6 +15,9 @@ class User
      *     tags={"用户中心"},
      *     summary="获取用户信息",
      *     description="传入名字后获取用户信息",
+     *     @OA\Parameter(
+     *          ref="#/components/parameters/token"
+     *     ),
      *     @OA\Parameter(
      *         name="username",
      *         in="query",
@@ -52,11 +40,11 @@ class User
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="successful operation"
+     *         ref="#/components/responses/response_seccess"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid status value"
+     *         response=500,
+     *         ref="#/components/responses/response_error"
      *     )
      * )
      */
@@ -68,7 +56,7 @@ class User
         if (get('field')) {
             $option['col'] = get('field');
         }
-        $info = $clsUser->getInf1o(get('username'), $option);
-        return $clsApi->output($info, is_array($info), 1000, '没有找到会员信息');
+        $info = $clsUser->getInfo(get('username'), $option);
+        return $clsApi->output($info, is_array($info), 1002, '没有找到会员信息');
     }
 }

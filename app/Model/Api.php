@@ -8,6 +8,10 @@ class Api
 {
     private $jsonPath = ROOT_PUBLIC . DS . 'storage' . DS . 'api.json';
 
+    public function __construct()
+    {
+    }
+
     /**
      * api输出
      * @param $data
@@ -18,8 +22,17 @@ class Api
      */
     public function output($data, $ack = 1, $errorId = 0, $msg = '')
     {
+        //验证token
+        $clsConfig = new Config();
+        $systemToken = $clsConfig->getSystemConfig('api_token');
+        if (empty($systemToken)) {
+            return json_encode(array('ack' => 0, 'error_id' => 1000, 'msg' => '请先在后台配置好api token'));
+        }
+        if ($systemToken != get('token')) {
+            return json_encode(array('ack' => 0, 'error_id' => 1001, 'msg' => 'token错误'));
+        }
         $result = array();
-        $result['ack'] = $ack;
+        $result['ack'] = $ack ? 1 : 0;
         if ($ack) {
             $result['data'] = $data;
         } else {

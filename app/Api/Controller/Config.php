@@ -16,6 +16,9 @@ class Config
      *     summary="获取配置信息",
      *     description="传入配置名后获取配置信息",
      *     @OA\Parameter(
+     *          ref="#/components/parameters/token"
+     *     ),
+     *     @OA\Parameter(
      *         name="config_name",
      *         in="query",
      *         description="配置名",
@@ -27,11 +30,11 @@ class Config
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="successful operation"
+     *         ref="#/components/responses/response_seccess"
      *     ),
      *     @OA\Response(
-     *         response=400,
-     *         description="Invalid status value"
+     *         response=500,
+     *         ref="#/components/responses/response_error"
      *     )
      * )
      */
@@ -41,6 +44,6 @@ class Config
         $clsConfig = new \app\Model\Config();
         $configValue = $clsConfig->getSystemConfig(get('config_name'));
 
-        return $clsApi->output($configValue, strlen($configValue) > 0 ? 1 : 0, 1000, '获取失败');
+        return $clsApi->output($configValue, strlen($configValue) > 0 ? 1 : 0, 1002, '获取失败');
     }
 }
