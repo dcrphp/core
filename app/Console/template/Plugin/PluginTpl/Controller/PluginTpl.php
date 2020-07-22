@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Plugins\PluginTpl\Controller;
+namespace app\Admin\Plugins\PluginTpl\Controller;
 
 use app\Admin\Model\Plugins;
 

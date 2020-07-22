@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% include 'header.html' ignore missing %}
+</head>
+<body>
+
+<div class="page-container">
+    <div class="mt-20">
+        <table class="table table-border table-bordered table-hover table-bg table-sort">
+            <tr class="text-r">
+                <th width="100">Sql</th>
+                <th class="text-l" width="800">
+                    <textarea cols="" rows="" class="textarea" id="sql" name="sql"></textarea>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="btn btn-primary radius" type="submit" onclick="execute_sql()"
+                           value="&nbsp;&nbsp;执行&nbsp;&nbsp;">
+                </td>
+            </tr>
+            <tr>
+                <td class="text-r">结果</td>
+                <td style="word-break: break-all;width: 800px;">
+                    <div id="result">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% include 'footer.html' ignore missing %}
+<script type="text/javascript">
+    function execute_sql() {
+        let sql = $('#sql').val();
+        if (sql.length < 1) {
+            layer.alert("请输入SQL", {icon: 2});
+            return;
+        }
+        ajax("/admin/tools/plugins-ajax/execute", {plugin_name: "DbManager", sql: sql}, 'POST',
+            function (data) {
+                if (1 == data.ack) {
+                    window.location.href = window.location.href;
+                } else {
+                    layer.alert(data.msg, {icon: 2});
+                }
+            }
+        );
+    }
+</script>
+</body>
+</html>
