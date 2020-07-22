@@ -25,13 +25,15 @@ return [
     //是不是debug模式
     'debug' => 0, //1是开启 0是关闭
 
-    //开启模板缓存
-    'view_cache' => 0,
+    'error_engine'=>'dcrphp', //dcrphp:dcrphp处理错误，php:php或web服务器处理错误
 
     //额外的错误处理
     'error_handler' => array(
         \app\Model\MyError::class,
     ),
+
+    //开启模板缓存
+    'view_cache' => 0,
 
     //orm entity目录
     'entity_dir'=> ROOT_APP . DS . 'Model' . DS . 'Entity' . DS,
