@@ -13,12 +13,12 @@ class DbManager extends Plugins
         $sql = post('sql');
         $type = post('type');
         $functionName = 'query';
-        if ('not_select'==$type) {
+        if ('not_select' == $type) {
             $functionName = 'exec';
         }
         $result = Db::$functionName($sql);
 
-        if ($result && 'select'==$type) {
+        if ($result && 'select' == $type) {
             $list = $result;
             $result = '<table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
