@@ -430,7 +430,7 @@ SQL;
 
             //设置验证码要不要验证码
             $clsConfig = new Config();
-            $clsConfig->setSystemConfig('use_captcha', $this->getUseCaptcha());
+            $clsConfig->setSystemConfig('use_captcha', $this->getUseCaptcha(), 1);
 
             //记录已经安装
             $lockPath = $this->getLockFile();
