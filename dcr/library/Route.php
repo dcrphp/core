@@ -54,6 +54,9 @@ class Route extends DcrBase
         if (empty($path) || '/' == $path) {
             $path = 'Index/Index/index';
         }
+        //去除左右的/
+        $path = rtrim($path, '/');
+        $path = ltrim($path, '/');
 
         //用route替换下先
         $path = $this->configList[$path] ? $this->configList[$path] : $path;
