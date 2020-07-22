@@ -38,13 +38,14 @@ class Config extends NConfig implements Model
     /**
      * 批量设置系统配置
      * @param $configList
+     * @param $listId 配置组ID
      * @return array|int[]
      */
-    public function setSystemConfigByList($configList)
+    public function setSystemConfigByList($configList, $listId)
     {
         Db::beginTransaction();
         foreach ($configList as $configName => $configValue) {
-            $this->setSystemConfig($configName, $configValue);
+            $this->setSystemConfig($configName, $configValue, $listId);
         }
         Db::commit();
         return Admin::commonReturn(1);
@@ -54,13 +55,13 @@ class Config extends NConfig implements Model
      * 单个设置系统配置
      * @param $configName
      * @param $configValue
+     * @param $listId 配置组ID
      * @return array|int[]
      */
-    public function setSystemConfig($configName, $configValue)
+    public function setSystemConfig($configName, $configValue, $listId)
     {
         $valueStr = is_array($configValue) ? implode(',', $configValue) : $configValue;
         //如果有就更新。没有就添加
-        $action = 'add';
         $info = container('em')->getRepository('\app\Model\Entity\Config')->findBy(
             array('dbFieldName' => $configName)
         );
@@ -70,10 +71,13 @@ class Config extends NConfig implements Model
             $action = 'edit';
         } else {
             $clsConfig = new NConfig();
+            $action = 'add';
         }
         $clsConfig->setValue($valueStr);
+        $clsConfig->setClId($listId);
 
         if ('add' == $action) {
+            $clsConfig->setDbFieldName($configName);
             $clsConfig = Entity::setCommonData($clsConfig);
             container('em')->persist($clsConfig);
         } else {

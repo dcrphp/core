@@ -159,12 +159,12 @@ class Config
     public function configAjax()
     {
         $data = post();
-        //$list_id = $data['list_id'];
+        $listId = $data['list_id'];
         //里面的type不是配置项 只是个类型 所以排除
         unset($data['list_id']);
 
         $clsConfig = new \app\Model\Config();
-        $result = $clsConfig->setSystemConfigByList($data);
+        $result = $clsConfig->setSystemConfigByList($data, $listId);
         return Factory::renderJson($result);
     }
 
