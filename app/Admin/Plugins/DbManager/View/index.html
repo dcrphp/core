@@ -14,6 +14,15 @@
                     <textarea cols="" rows="" class="textarea" id="sql" name="sql"></textarea>
                 </th>
             </tr>
+            <tr class="text-r">
+                <td>类型</td>
+                <td class="text-l">
+                    <select id="type">
+                        <option value="select">Select</option>
+                        <option value="not_select">非Select</option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td>
@@ -36,16 +45,17 @@
 <script type="text/javascript">
     function execute_sql() {
         let sql = $('#sql').val();
+        let type = $('#type').val();
         if (sql.length < 1) {
             layer.alert("请输入SQL", {icon: 2});
             return;
         }
-        ajax("/admin/tools/plugins-ajax/execute", {plugin_name: "DbManager", sql: sql}, 'POST',
-            function (data) {
-                if (1 == data.ack) {
-                    window.location.href = window.location.href;
+        ajax("/admin/tools/plugins-ajax/execute", {plugin_name: "DbManager", sql: sql, type: type}, 'POST',
+            function (result) {
+                if (1 == result.ack) {
+                    $('#result').html(result.data);
                 } else {
-                    layer.alert(data.msg, {icon: 2});
+                    layer.alert(result.msg, {icon: 2});
                 }
             }
         );
