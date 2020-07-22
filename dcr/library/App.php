@@ -119,6 +119,8 @@ class App
 
     public static function init()
     {
+        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+
         self::$phpSapiName = php_sapi_name();
         self::autoLoadClasses();
 
