@@ -4,11 +4,12 @@
 [![Latest Unstable Version](https://poser.pugx.org/dcrphp/core/v/unstable.png)](https://packagist.org/packages/dcrphp/core)  
 
 dcrphp致力于应用层用户使用简单，后端用户开发简单的方向。本系统采用前后端分离开发，后端自研框架，前端h-ui框架，内置:  
-　　1、自带后台管理  
-　　2、会员RABC管理:集中授权管理  
-　　3、模型管理:方便扩展任意模型来管理基本的关系表    
-　　4、配置管理中心：集中配置管理  
-　　5、任意表管理:可以通过简单配置，对任意表做增删改查  
+　　1、RABC会员管理  
+　　2、可扩展的模组管理  
+　　3、可自定义的配置中心  
+　　4、Table Edit任意表管理  
+　　5、API中心集成文档及在线测试  
+　　6、集成graylog日志集中管理   
   
 php版本>=7.0.0，如果想二开，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
 

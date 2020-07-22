@@ -13,7 +13,6 @@ use app\Admin\Model\Factory;
 use app\Admin\Model\Model;
 use app\Index\Model\Install;
 use app\Model\Config;
-use app\Model\Config as MConfig;
 use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
@@ -196,7 +195,7 @@ class Index
         $view = container('view');
         $view->setViewDirectoryPath(ROOT_APP . DS . 'Index' . DS . 'View');
         $view->assign('admin_resource_url', env('ADMIN_RESOURCE_URL'));
-        $view->assign('sqlite_path', realpath(ROOT_PUBLIC . DS . 'storage') . DS . 'sqlite.db');
+        $view->assign('sqlite_path', realpath(ROOT_PUBLIC) . DS . 'storage' . DS . 'sqlite.db');
         return $view->render('install');
     }
 

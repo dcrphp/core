@@ -330,6 +330,12 @@ SQL;
 
             Env::write($envFile, $data);
 
+            //如果storage不存在，则建立
+            $storagePath = realpath(ROOT_PUBLIC) . DS . 'storage';
+            if (!file_exists($storagePath)) {
+                mkdir($storagePath);
+            }
+
             App::initConfig();
 
             //dd(file_get_contents( $envFile ));
