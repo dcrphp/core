@@ -7,6 +7,12 @@ use dcr\facade\Db;
 
 class DbManager extends Plugins
 {
+    public function index($view)
+    {
+        if (!env('DBMANAGER_ENABLE')) {
+            exit('因为安全原因，系统默认关闭，请联系管理员在evn中把DBMANAGER_ENABLE设置为1');
+        }
+    }
 
     public function execute($view)
     {
