@@ -2,6 +2,7 @@
 
 namespace app\Admin\Plugins\DbManager\Controller;
 
+use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use dcr\facade\Db;
 
