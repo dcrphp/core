@@ -122,7 +122,7 @@ class User
     /**
      * @var int
      *
-     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"comment"="添加人id"})
+     * @ORM\Column(name="add_user_id", type="smallint", nullable=false)
      */
     private $addUserId = '0';
 

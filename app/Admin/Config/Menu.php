@@ -37,7 +37,11 @@ $menu = array(
             ),
             array(
                 'url' => '/admin/tools/api-doc-general',
-                'title' => ' - API文档',
+                'title' => ' - 文档',
+            ),
+            array(
+                'url' => '/admin/tools/table-edit-list-view/api_permission',
+                'title' => ' - DATA权限',
             ),
             array(
                 'url' => '/admin/tools/plugins-installed-view',

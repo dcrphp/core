@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace app\Model;
 
-class Api
+use dcr\DcrBase;
+
+class Api extends DcrBase
 {
     private $jsonPath = ROOT_PUBLIC . DS . 'storage' . DS . 'api.json';
 

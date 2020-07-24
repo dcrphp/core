@@ -5,12 +5,12 @@ namespace app\Model\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Config
+ * ApiPermission
  *
- * @ORM\Table(name="config")
+ * @ORM\Table(name="api_permission", uniqueConstraints={@ORM\UniqueConstraint(name="uq_api_permission_table_name", columns={"table_name"})})
  * @ORM\Entity
  */
-class Config
+class ApiPermission
 {
     /**
      * @var int
@@ -45,9 +45,9 @@ class Config
     /**
      * @var int
      *
-     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="add_user_id", type="smallint", nullable=false)
      */
-    private $addUserId = '1';
+    private $addUserId = '0';
 
     /**
      * @var int
@@ -59,23 +59,16 @@ class Config
     /**
      * @var string
      *
-     * @ORM\Column(name="db_field_name", type="string", length=45, nullable=false, options={"comment"="字段名"})
+     * @ORM\Column(name="table_name", type="string", length=20, nullable=false, options={"default"="'","comment"="表名"})
      */
-    private $dbFieldName = '';
+    private $tableName = '\'';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=45, nullable=false, options={"comment"="字段值"})
+     * @ORM\Column(name="field_name", type="string", length=300, nullable=false, options={"default"="'","comment"="多字段用,分隔，全部请填*"})
      */
-    private $value = '';
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="cl_id", type="integer", nullable=false, options={"comment"="配置列表id"})
-     */
-    private $clId = '0';
+    private $fieldName = '\'';
 
 
 
@@ -94,7 +87,7 @@ class Config
      *
      * @param \DateTime $addTime
      *
-     * @return Config
+     * @return ApiPermission
      */
     public function setAddTime($addTime)
     {
@@ -118,7 +111,7 @@ class Config
      *
      * @param \DateTime $updateTime
      *
-     * @return Config
+     * @return ApiPermission
      */
     public function setUpdateTime($updateTime)
     {
@@ -142,7 +135,7 @@ class Config
      *
      * @param bool $isApproval
      *
-     * @return Config
+     * @return ApiPermission
      */
     public function setIsApproval($isApproval)
     {
@@ -166,7 +159,7 @@ class Config
      *
      * @param int $addUserId
      *
-     * @return Config
+     * @return ApiPermission
      */
     public function setAddUserId($addUserId)
     {
@@ -190,7 +183,7 @@ class Config
      *
      * @param int $ztId
      *
-     * @return Config
+     * @return ApiPermission
      */
     public function setZtId($ztId)
     {
@@ -210,74 +203,50 @@ class Config
     }
 
     /**
-     * Set dbFieldName.
+     * Set tableName.
      *
-     * @param string $dbFieldName
+     * @param string $tableName
      *
-     * @return Config
+     * @return ApiPermission
      */
-    public function setDbFieldName($dbFieldName)
+    public function setTableName($tableName)
     {
-        $this->dbFieldName = $dbFieldName;
+        $this->tableName = $tableName;
 
         return $this;
     }
 
     /**
-     * Get dbFieldName.
+     * Get tableName.
      *
      * @return string
      */
-    public function getDbFieldName()
+    public function getTableName()
     {
-        return $this->dbFieldName;
+        return $this->tableName;
     }
 
     /**
-     * Set value.
+     * Set fieldName.
      *
-     * @param string $value
+     * @param string $fieldName
      *
-     * @return Config
+     * @return ApiPermission
      */
-    public function setValue($value)
+    public function setFieldName($fieldName)
     {
-        $this->value = $value;
+        $this->fieldName = $fieldName;
 
         return $this;
     }
 
     /**
-     * Get value.
+     * Get fieldName.
      *
      * @return string
      */
-    public function getValue()
+    public function getFieldName()
     {
-        return $this->value;
-    }
-
-    /**
-     * Set clId.
-     *
-     * @param int $clId
-     *
-     * @return Config
-     */
-    public function setClId($clId)
-    {
-        $this->clId = $clId;
-
-        return $this;
-    }
-
-    /**
-     * Get clId.
-     *
-     * @return int
-     */
-    public function getClId()
-    {
-        return $this->clId;
+        return $this->fieldName;
     }
 }
