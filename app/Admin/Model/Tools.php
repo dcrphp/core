@@ -70,45 +70,10 @@ class Tools
     /**
      * 通过关键字获取单表配置
      * @param $key
-     * @return array
-     * @throws \Exception
+     * @return void
      */
-    public function getTableEditConfig($key)
+    public function getTableEditConfigAbandon($key)
     {
-        if (empty($key)) {
-            throw new \Exception('请输入配置表的关键字');
-        }
-        $info = Db::select(
-            array(
-                'table' => 'config_table_edit_list',
-                'where' => "keyword='{$key}'",
-                'limit' => 1,
-            )
-        );
-        if (empty($info)) {
-            throw new \Exception('没有找到本配置');
-        }
-        $info = current($info);
-        $config = array();
-        $keys = array_keys($info);
-        foreach ($keys as $key) {
-            $keyNew = str_replace('', '', $key);
-            $config[$keyNew] = $info[$key];
-        }
-        //得出字段配置
-
-        $fieldList = Db::select(
-            array(
-                'table' => 'config_table_edit_item',
-                'where' => "ctel_id={$info['id']}",
-            )
-        );
-        $fieldKeys = array_column($fieldList, 'db_field_name');
-        $fieldList = array_combine($fieldKeys, $fieldList);
-
-        $config['col'] = $fieldList;
-
-        return $config;
     }
 
     /**
@@ -118,6 +83,7 @@ class Tools
      * @param $tableName
      * @param $pageTitle
      * @return array|int[]
+     * @throws \Exception
      */
     public function tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle)
     {

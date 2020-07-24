@@ -50,12 +50,8 @@ $menu = array(
         'title' => '系统配置',
         'sub' => array(
             array(
-                'url' => '/admin/tools/table-edit-list-view/table_edit',
-                'title' => 'TableEdit(案例)',
-            ),
-            array(
                 'url' => '/admin/tools/table-edit-list-view/config_table_edit_list',
-                'title' => '单表管理',
+                'title' => '单表配置',
             ),
             array(
                 'url' => '/admin/config/config-list-view/model',
@@ -65,6 +61,12 @@ $menu = array(
                 'url' => '/admin/config/config-list-view',
                 'title' => '配置项配置',
             ),
+        ),
+    ),
+    'table_edit' => array(
+        'icon' => '&#xe627;',
+        'title' => '单表中心',
+        'sub' => array(
         ),
     ),
 );
@@ -77,6 +79,16 @@ foreach ($listPlugin as $infoPlugin) {
     $menu['tools']['sub'][] = array(
         'url' => '/admin/tools/plugins-index-view/' . $infoPlugin['name'],
         'title' => ' - ' . $infoPlugin['title'],
+    );
+}
+
+//得到单表列表
+$clsTools = new \app\Model\Tools();
+$tableEditList = $clsTools->getTableEditList(array('order'=>'id desc', 'col'=>'page_title,keyword'));
+foreach ($tableEditList as $tableEditInfo) {
+    $menu['table_edit']['sub'][] = array(
+        'url' => '/admin/tools/table-edit-list-view/' . $tableEditInfo['keyword'],
+        'title' => $tableEditInfo['page_title'],
     );
 }
 

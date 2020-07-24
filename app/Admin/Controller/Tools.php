@@ -6,7 +6,9 @@ use app\Admin\Model\Common;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use app\Admin\Model\Tools as MTools;
+use app\Model\Tools as NMTools;
 use app\Model\Api;
+use dcr\App;
 use dcr\facade\Db;
 use dcr\Page;
 use dcr\Request;
@@ -78,6 +80,8 @@ class Tools
         $params = $request->getParams();
         $functionName = current($params) ? current($params) : post('function_name');
         $functionName = $functionName ? $functionName : get('function_name');
+        $functionName = APP::formatParam($functionName);
+
         $pluginName = post('plugin_name') ? post('plugin_name') : get('plugin_name');
 
         $clsPlugins = new Plugins();
@@ -177,7 +181,8 @@ class Tools
         $key = $data['key'];
         //用通用接口去处理
         $clsTools = new MTools();
-        $config = $clsTools->getTableEditConfig($key);
+        $clsNMTools = new NMTools();
+        $config = $clsNMTools->getTableEditConfig($key);
 
         if ('delete' == $data['type']) {
             //调用编辑里额外的php检测数据
@@ -266,7 +271,8 @@ class Tools
         $key = $params[1];
         $id = $params[2];
         $clsTools = new MTools();
-        $config = $clsTools->getTableEditConfig($key);
+        $clsNMTools = new NMTools();
+        $config = $clsNMTools->getTableEditConfig($key);
 
         $listCol = array();
         $checkKey = 'add' == $type ? 'is_insert' : 'is_update';
@@ -317,7 +323,8 @@ class Tools
         $clsTools = new MTools();
         //$configPath = $clsTools->getTableEditConfigPath($key);
         //$config = include_once $configPath;
-        $config = $clsTools->getTableEditConfig($key);
+        $clsNMTools = new NMTools();
+        $config = $clsNMTools->getTableEditConfig($key);
         //dd($config);
         $assignData = array();
         $assignData['page_title'] = $config['page_title'];
@@ -329,6 +336,8 @@ class Tools
         }
 
         $searchData = get();
+        //分页去除
+        unset($searchData['page']);
 
         $whereArr = array();
         if ($config['list_where']) {
@@ -399,7 +408,7 @@ class Tools
         $pageTotalNum = $pageInfo[0]['num'];
         $page = get('page');
         $page = $page ? (int)$page : 1;
-        $pageNum = 50;
+        $pageNum = 30;
 
         $pageTotal = ceil($pageTotalNum / $pageNum);
         $clsPage = new Page($page, $pageTotal);
