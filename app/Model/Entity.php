@@ -14,9 +14,9 @@ class Entity
     {
         $info = container('em')->getRepository($entityName)->findBy($where);
         if ($info) {
-            return array('ack'=>1, 'type'=>'edit','entity'=>$info[0]);
+            return array('ack' => 1, 'type' => 'edit','entity' => $info[0]);
         } else {
-            return array('ack'=>1, 'type'=>'add','entity'=>new $entityName());
+            return array('ack' => 1, 'type' => 'add','entity' => new $entityName());
         }
     }
     

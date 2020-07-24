@@ -101,7 +101,7 @@ class Data extends Api
      */
     public function hasDataPermission($tableName, $fieldName)
     {
-        $entityInfo = Entity::getByWhere('\app\Model\Entity\ApiPermission', array('tableName'=>$tableName));
+        $entityInfo = Entity::getByWhere('\app\Model\Entity\ApiPermission', array('tableName' => $tableName));
         if ('edit' == $entityInfo['type']) {
             //判断字段
             $configField = $entityInfo['entity']->getFieldName();
