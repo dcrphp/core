@@ -73,18 +73,6 @@ class User
         return Factory::renderPage('user/add-role', $assignData);
     }
 
-    /**
-     * 1.0.2开始废弃
-     * @return mixed
-     * @throws \Exception
-     */
-    public function addPermissionViewAbandon()
-    {
-        $assignData['page_title'] = '添加权限';
-        $assignData['page_model'] = $this->modelName;
-        return Factory::renderPage('user/add-permission', $assignData);
-    }
-
     public function addRoleAjax()
     {
         $info = array(

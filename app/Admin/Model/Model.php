@@ -529,28 +529,4 @@ class Model
         //返回
         return Admin::commonReturn($result);
     }
-
-    /**
-     * 1.0.4后开始作废 请用app/model/module->delete
-     * @param $id
-     * @return array|int[]
-     * @throws \Exception
-     */
-    public function deleteAbandon($id)
-    {
-        //验证
-        $info = DB::select(array('table' => 'model_list', 'col' => 'id', 'where' => "id={$id}", 'limit' => 1));
-        $info = current($info);
-
-        if (!$info) {
-            return array('ack' => 0, 'msg' => '没有找到这个信息');
-        }
-        //逻辑
-        $result = DB::delete('model_list', "id={$id}");
-
-        //dd($dbPre->getSql());
-        //返回
-
-        return Admin::commonReturn($result);
-    }
 }

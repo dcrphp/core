@@ -129,33 +129,6 @@ class Config
         return Factory::renderPage('config/config', $assignData);
     }
 
-    /**
-     * 从1.0.3开始作废
-     * @return mixed
-     * @throws \Exception
-     */
-    public function modelViewAbandon()
-    {
-
-        $assignData = array();
-        $assignData['page_title'] = '模组配置';
-        $assignData['page_model'] = $this->modelName;
-        $assignData['define_list'] = Common::getModelDefine();
-
-        $config = new MConfig();
-        $modelList = $config->getConfigModelList();
-        //补空
-        foreach ($assignData['define_list'] as $defineKey => $defineInfo) {
-            if (!$modelList[$defineKey]) {
-                $modelList[$defineKey] = array(array(1));
-            }
-        }
-        $assignData['model_list'] = $modelList;
-        //dd($assignData);
-
-        return Factory::renderPage('config/model', $assignData);
-    }
-
     public function configAjax()
     {
         $data = post();
@@ -177,17 +150,6 @@ class Config
 
         $config = new MConfig();
         $result = $config->configListItem($data, $type);
-        return Factory::renderJson($result);
-    }
-
-    /**
-     * 从1.0.3开始作废
-     * @return mixed
-     */
-    public function configModelAjaxAbandon()
-    {
-        $config = new MConfig();
-        $result = $config->configModel(post());
         return Factory::renderJson($result);
     }
 

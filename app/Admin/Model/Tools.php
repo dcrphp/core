@@ -68,6 +68,7 @@ class Tools
     }
 
     /**
+     * since 1.0.5-3起作废 请用app->model->Tools相关的function
      * 通过关键字获取单表配置
      * @param $key
      * @return void
