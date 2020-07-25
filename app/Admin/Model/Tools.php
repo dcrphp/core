@@ -120,7 +120,7 @@ class Tools
             $dbInfoSub['is_insert_required'] = 0;
             $dbInfoSub['is_insert'] = 0;
             //$fieldName['tip'] = $fieldInfo['Comment'];
-            $dbInfoSub['data_type'] = substr($fieldName, 0, 3) == 'is_' ? 'checkbox' : 'string';
+            $dbInfoSub['data_type'] = substr($fieldName, 0, 3) == 'is_' ? 'checkbox' : 'text';
             $dbInfoSub['title'] = $clsColumn->getComment();
             $dbInfoSub['db_field_name'] = $fieldName;
             $dbInfoSub['ctel_id'] = $id;
