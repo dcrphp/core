@@ -103,7 +103,7 @@ class Tools
         $id = Db::insert('config_table_edit_list', $dbInfoMain);
         //$id = 7;
         //开始子字段表
-        $columns = container('sm')->listTableColumns($tableName);
+        $columns = container('em')->listTableColumns($tableName);
         $defaultConfig = $this->getDefaultFieldConfig();
         foreach ($columns as $clsColumn) {
             $dbInfoSub = array();
