@@ -155,7 +155,7 @@
             function (result) {
                 if (1 == result.ack) {
                     let time = new Date();
-                    $('#result').html( time.toLocaleString() + "<br>" + result.data);
+                    $('#result').html( '时间' + time.toLocaleString() + ",结果:<br>" + result.data);
                 } else {
                     layer.alert(result.msg, {icon: 2});
                 }
