@@ -39,6 +39,9 @@ class DbManager extends Plugins
         $sqlTpl = str_replace('table_name_tpl', $tableName, $sqlTpl);
         $sqlTpl = str_replace('table_comment_tpl', post('table_comment'), $sqlTpl);
         $sqlTpl = str_replace('engine_tpl', post('engine'), $sqlTpl);
+        if ('pdo_sqlite' == env('DB_TYPE')) {
+            $sqlTpl = str_replace('AUTO_INCREMENT', 'AUTOINCREMENT', $sqlTpl);
+        }
         $createSql = str_replace('field_tpl', $fieldStr, $sqlTpl);
         Db::beginTransaction();
         Db::exec($createSql);
