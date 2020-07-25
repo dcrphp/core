@@ -29,8 +29,8 @@ class DbManager extends Plugins
 
         foreach ($field as $id => $filedName) {
             $lengthStr = $length[$id] ? '(' . $length[$id] . ')' : '';
-            $comment = $comment ? " comment '{$comment[$id]}'" : '';
-            $fieldTmp = "`{$filedName}` {$type[$id]}{$lengthStr} NOT NULL default '{$default[$id]}' {$comment}";
+            $commentStr = $comment ? " comment '{$comment[$id]}'" : '';
+            $fieldTmp = "`{$filedName}` {$type[$id]}{$lengthStr} NOT NULL default '{$default[$id]}' {$commentStr}";
             $fieldArr[] = $fieldTmp;
         }
         $fieldStr = implode(',', $fieldArr) . ',';
