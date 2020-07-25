@@ -90,7 +90,9 @@
                                 <td><input type="text" name="field[]" class="input-text"></td>
                                 <td>
                                     <select name="type[]">
-                                        <option value="integer">integer</option>
+                                        {% for type_name in type_list %}
+                                        <option value="{{type_name}}">{{type_name}}</option>
+                                        {% endfor %}
                                         <option value="varchar">varchar</option>
                                         <option value="text">text</option>
                                     </select>

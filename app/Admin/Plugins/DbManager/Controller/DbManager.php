@@ -3,7 +3,6 @@
 namespace app\Admin\Plugins\DbManager\Controller;
 
 use app\Admin\Model\Admin;
-use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use dcr\facade\Db;
 
@@ -14,6 +13,10 @@ class DbManager extends Plugins
         if (!env('DBMANAGER_ENABLE')) {
             exit('因为安全原因，系统默认关闭，请联系管理员在evn中把DBMANAGER_ENABLE设置为1');
         }
+        //得出支持的字段类似
+        $typeList = \Doctrine\DBAL\Types\Type::getTypesMap();
+        $typeNameList = array_keys($typeList);
+        $view->assign('type_list', $typeNameList);
     }
 
     public function createTable()
@@ -26,35 +29,38 @@ class DbManager extends Plugins
         $type = post('type');
         $default = post('default');
         $comment = post('comment');
+        $tableComment = post('table_comment');
+
+        $schema = new \Doctrine\DBAL\Schema\Schema();
+        $clsTable = $schema->createTable($tableName);
+        $clsTable->setComment($tableComment);
+        $clsTable->addColumn("id", "integer", array("notnull" => true, 'autoincrement' => true));
+        $clsTable->addColumn("add_time", "datetime", array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP'));
+        $clsTable->addColumn("is_approval", "boolean", array("notnull" => true, 'default' => '1', 'length' => 1));
+        $clsTable->addColumn("add_user_id", "smallint", array("notnull" => true, 'default' => '0', 'length' => 6));
+        $clsTable->addColumn("zt_id", "smallint", array("notnull" => true, 'default' => '0', 'length' => 6));
+        $clsTable->setPrimaryKey(array("id"));
+        $clsTable->addOption('engine', post('engine'));
+        $clsTable->addOption('collate', 'utf8_general_ci');
+        $clsTable->addOption('charset', 'utf8');
 
         foreach ($field as $id => $filedName) {
-            $lengthStr = $length[$id] ? '(' . $length[$id] . ')' : '';
-            $commentStr = $comment ? " comment '{$comment[$id]}'" : '';
-            $fieldTmp = "`{$filedName}` {$type[$id]}{$lengthStr} NOT NULL default '{$default[$id]}' {$commentStr}";
-            $fieldArr[] = $fieldTmp;
+            $option = array();
+            $option['notnull'] = true;
+            $option['default'] = $default[$id];
+            $length[$id] ? $option['length'] = $length[$id] : '';
+            $comment[$id] ? $option['comment'] = $comment[$id] : '';
+            $clsTable->addColumn($filedName, $type[$id], $option);
         }
-        $fieldStr = implode(',', $fieldArr) . ',';
-
-        $sqlTpl = "CREATE TABLE `table_name_tpl` (`id` int(11) NOT NULL AUTO_INCREMENT,`add_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,`update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,`is_approval` tinyint(1) NOT NULL default 1,`add_user_id` smallint(6) NOT NULL default 0,`zt_id` smallint(6) NOT NULL default 1, field_tpl PRIMARY KEY (`id`) ) ENGINE=engine_tpl DEFAULT CHARSET=utf8 COLLATE = utf8_general_ci COMMENT = 'table_comment_tpl';";
-        $sqlTpl = str_replace('table_name_tpl', $tableName, $sqlTpl);
-        $sqlTpl = str_replace('table_comment_tpl', post('table_comment'), $sqlTpl);
-        $sqlTpl = str_replace('engine_tpl', post('engine'), $sqlTpl);
-        if ('pdo_sqlite' == env('DB_TYPE')) {
-            $sqlTpl = str_replace('NOT NULL AUTO_INCREMENT', 'AUTOINCREMENT NOT NULL', $sqlTpl);
-        }
-        $createSql = str_replace('field_tpl', $fieldStr, $sqlTpl);
-        Db::beginTransaction();
-        Db::exec($createSql);
 
         //创建索引
         foreach (post('index') as $id => $indexType) {
-            $indexType = 'index' == $indexType ? 'index' : 'unique index';
-            $indexPrefix = 'index' == $indexType ? 'idx' : 'uq';
-            $indexName = "{$indexPrefix}_{$tableName}_{$field[$id]}";
-            $indexSql = "create {$indexType} {$indexName} on {$tableName}({$field[$id]});";
-            Db::exec($indexSql);
+            $functionName = 'index' == $indexType ? 'addIndex' : 'addUniqueIndex';
+            $clsTable->$functionName(array($field[$id]));
         }
-        Db::commit();
+        $sqlList = $schema->toSql(Db::getConnection()->getDatabasePlatform());
+        $sql = current($sqlList);
+        Db::exec($sql);
 
         return Admin::commonReturn(1);
     }
