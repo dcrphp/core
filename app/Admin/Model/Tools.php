@@ -98,6 +98,8 @@ class Tools
         $dbInfoMain['zt_id'] = 1;
         $dbInfoMain['add_user_id'] = intval(session('userId'));
 
+        Db::beginTransaction();
+
         $id = Db::insert('config_table_edit_list', $dbInfoMain);
         //$id = 7;
         //开始子字段表
@@ -128,6 +130,7 @@ class Tools
             Db::insert('config_table_edit_item', $dbInfoSub);
         }
 
+        Db::commit();
         return Admin::commonReturn(1);
     }
 }
