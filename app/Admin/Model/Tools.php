@@ -103,12 +103,11 @@ class Tools
         $id = Db::insert('config_table_edit_list', $dbInfoMain);
         //$id = 7;
         //开始子字段表
-        $sql = "show full columns FROM {$tableName} /*zt_id*/;";
-        $fieldList = Db::query($sql);
+        $columns = container('sm')->listTableColumns($tableName);
         $defaultConfig = $this->getDefaultFieldConfig();
-        foreach ($fieldList as $fieldInfo) {
+        foreach ($columns as $clsColumn) {
             $dbInfoSub = array();
-            $fieldName = $fieldInfo['Field'];
+            $fieldName = $clsColumn->getName();
 
             $dbInfoSub['is_show_list'] = in_array($fieldName, $defaultConfig['list']) ? 1 : 0;
             $dbInfoSub['is_search'] = in_array($fieldName, $defaultConfig['search']) ? 1 : 0;
@@ -122,7 +121,7 @@ class Tools
             $dbInfoSub['is_insert'] = 0;
             //$fieldName['tip'] = $fieldInfo['Comment'];
             $dbInfoSub['data_type'] = substr($fieldName, 0, 3) == 'is_' ? 'checkbox' : 'string';
-            $dbInfoSub['title'] = $fieldInfo['Comment'] ? $fieldInfo['Comment'] : $fieldName;
+            $dbInfoSub['title'] = $clsColumn->getComment();
             $dbInfoSub['db_field_name'] = $fieldName;
             $dbInfoSub['ctel_id'] = $id;
             $dbInfoSub['zt_id'] = 1;
