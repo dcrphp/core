@@ -101,9 +101,11 @@ class DbManager extends Plugins
             $result .= '</tr></thead>';
             $result .= '<tbody>';
             foreach ($list as $value) {
+                $result .= '<tr>';
                 foreach ($cols as $col) {
                     $result .= "<td>{$value[$col]}</td>";
                 }
+                $result .= '</tr>';
             }
             $result .= '</tbody></table>';
         }
