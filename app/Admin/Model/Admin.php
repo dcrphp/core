@@ -85,6 +85,7 @@ class Admin
     }
 
     /**
+     * 格式化成标准返回值
      * @param $result 值的范围是1或0
      * @param string $errorMsg
      * @return array

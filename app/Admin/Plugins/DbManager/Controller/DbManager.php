@@ -4,6 +4,7 @@ namespace app\Admin\Plugins\DbManager\Controller;
 
 use app\Admin\Model\Admin;
 use app\Admin\Model\Plugins;
+use app\Model\Tools;
 use dcr\facade\Db;
 
 class DbManager extends Plugins
@@ -30,6 +31,8 @@ class DbManager extends Plugins
         $default = post('default');
         $comment = post('comment');
         $tableComment = post('table_comment');
+
+        Db::beginTransaction();
 
         $schema = new \Doctrine\DBAL\Schema\Schema();
         $clsTable = $schema->createTable($tableName);
@@ -61,6 +64,13 @@ class DbManager extends Plugins
         $sqlList = $schema->toSql(Db::getConnection()->getDatabasePlatform());
         $sql = current($sqlList);
         Db::exec($sql);
+        Db::commit();
+
+        //生成单表 这里有事务。所以在上面结束
+        if (post('auto_general_table_edit')) {
+            $clsTools = new Tools();
+            $clsTools->tableEditGenerate('单表中心', $tableName, $tableName, $tableComment ? $tableComment : $tableName);
+        }
 
         return Admin::commonReturn(1);
     }

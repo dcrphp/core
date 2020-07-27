@@ -17,10 +17,11 @@ class Tools
     }
 
     /**
+     * 1.0.5-3废弃 请用app/model/Tooles
      * 生成TableEdit时，默认显示的字段
      * @return string[]
      */
-    public function getDefaultFieldConfig()
+    public function getDefaultFieldConfigAbandon()
     {
         return array(
             'list' => array('id', 'add_time', 'name', 'title'),
@@ -78,6 +79,7 @@ class Tools
     }
 
     /**
+     * 1.0.5-3废弃 请用app/model/Tools
      * 通过表名生成单表管理
      * @param $pageModel
      * @param $keyword
@@ -86,7 +88,7 @@ class Tools
      * @return array|int[]
      * @throws \Exception
      */
-    public function tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle)
+    public function tableEditGenerateAbandon($pageModel, $keyword, $tableName, $pageTitle)
     {
         $dbInfoMain = array();
         $dbInfoMain['page_title'] = $pageTitle;

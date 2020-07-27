@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace app\Model\TraitClass;
 
+use app\Admin\Model\Admin;
+use app\Model\Entity;
 use dcr\facade\Db;
 
 trait ToolsTableEdit
@@ -62,5 +64,86 @@ trait ToolsTableEdit
         $config['col'] = $fieldList;
 
         return $config;
+    }
+
+    /**
+     * 生成TableEdit时，默认显示的字段
+     * @return string[]
+     */
+    public function getDefaultFieldConfig()
+    {
+        return array(
+            'list' => array('id', 'add_time', 'name', 'title'),
+            'search' => array('name', 'title'),
+            'search_type' => 'like', //如果是搜索，则默认这个
+        );
+    }
+
+    /**
+     * 通过表名生成单表管理
+     * @param $pageModel
+     * @param $keyword
+     * @param $tableName
+     * @param $pageTitle
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle)
+    {
+        //检测数据
+        if (empty($pageModel)) {
+            throw new \Exception('模型配置不能为空');
+        }
+        if (empty($keyword)) {
+            throw new \Exception('关键字不能为空');
+        }
+        if (empty($tableName)) {
+            throw new \Exception('表名不能为空');
+        }
+        if (empty($pageTitle)) {
+            throw new \Exception('页面标题不能为空');
+        }
+        $clsConfigTEL = new \app\Model\Entity\ConfigTableEditList();
+        $clsConfigTEL->setPageTitle($pageTitle);
+        $clsConfigTEL->setKeyword($keyword);
+        $clsConfigTEL->setTableName($tableName);
+        $clsConfigTEL->setPageModel($pageModel);
+        $clsConfigTEL->setEditWindowWidth('70%');
+        $clsConfigTEL->setEditWindowHeight('70%');
+        $clsConfigTEL = Entity::setCommonData($clsConfigTEL);
+
+        Db::beginTransaction();
+
+        container('em')->persist($clsConfigTEL);
+        container('em')->flush();
+        $id = $clsConfigTEL->getId();
+
+        $columns = Db::getConnection()->getSchemaManager()->listTableColumns($tableName);
+        $defaultConfig = $this->getDefaultFieldConfig();
+        foreach ($columns as $clsColumn) {
+            $dbInfoSub = array();
+            $fieldName = $clsColumn->getName();
+            $clsConfigTEI = new Entity\ConfigTableEditItem();
+            $clsConfigTEI->setIsShowList(in_array($fieldName, $defaultConfig['list']) ? 1 : 0);
+            $clsConfigTEI->setIsSearch(in_array($fieldName, $defaultConfig['search']) ? 1 : 0);
+            $clsConfigTEI->setSearchType(
+                in_array($fieldName, $defaultConfig['search']) ? $defaultConfig['search_type'] : ''
+            );
+            $clsConfigTEI->setIsUpdateRequired(0);
+            $clsConfigTEI->setIsUpdate(0);
+            $clsConfigTEI->setIsInsertRequired(0);
+            $clsConfigTEI->setIsInsert(0);
+            $clsConfigTEI->setDataType(substr($fieldName, 0, 3) == 'is_' ? 'checkbox' : 'text');
+            $clsConfigTEI->setTitle($clsColumn->getComment() ? $clsColumn->getComment() : '');
+            $clsConfigTEI->setDbFieldName($fieldName);
+            $clsConfigTEI->setCtelId($id);
+            $clsConfigTEI = Entity::setCommonData($clsConfigTEI);
+
+            container('em')->persist($clsConfigTEI);
+            container('em')->flush();
+        }
+
+        Db::commit();
+        return Admin::commonReturn(1);
     }
 }

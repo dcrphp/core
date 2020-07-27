@@ -474,7 +474,7 @@ class Tools
         $pageTitle = post('page_title');
         $pageModel = post('page_model');
 
-        $clsTools = new MTools();
+        $clsTools = new \app\Model\Tools();
         $result = $clsTools->tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle);
 
         return Factory::renderJson($result);
