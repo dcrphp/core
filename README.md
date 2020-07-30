@@ -3,15 +3,15 @@
 [![Latest Stable Version](https://poser.pugx.org/dcrphp/core/v/stable.png)](https://packagist.org/packages/dcrphp/core) 
 [![Latest Unstable Version](https://poser.pugx.org/dcrphp/core/v/unstable.png)](https://packagist.org/packages/dcrphp/core)  
 
-dcrphp致力于应用层用户使用简单，后端用户开发简单的方向。本系统采用前后端分离开发，后端自研框架，前端h-ui框架，内置:  
-　　1、RABC会员管理  
-　　2、可扩展的模组管理  
-　　3、可自定义的配置中心  
+dcrphp定位于低代码集群前后端分离的应用系统。应用层用户使用简单，后端用户开发简单。本系统采用前后端分离开发，后端自研框架，前端h-ui框架，开箱即用:  
+　　1、RABC模型会员及权限管理  
+　　2、高度可扩展的模组管理  
+　　3、自由化高的自定义配置中心  
 　　4、Table Edit任意表管理  
 　　5、API中心集成文档及在线测试  
 　　6、集成graylog日志集中管理   
   
-php版本>=7.0.0，如果想二开，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
+php版本>=7.0，二次开发，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
 
 安装源码(下面4选1)：  
 
@@ -30,7 +30,7 @@ Web服务器配置根目录为public
 安装系统如下:    
 
     安装路径是:host/install    
-    安装完成后，后台地址是:host/admin 初始化用户名和密码是admin 123456  
+    安装完成后，后台地址是:host/admin，使用配置好的用户名和密码登陆  
   
 附： 
 nginx配置:  
