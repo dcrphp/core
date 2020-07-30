@@ -2,6 +2,7 @@
 　　1、SSO单点登陆  
 　　2、事件机制  
 　　3、重构request及response  
+　　4、dcrphp core独立成包提供输出  
 
 1.0.5-rc1(20200729)  
 　　1、修正sqlite目录获取不正确的bug  
