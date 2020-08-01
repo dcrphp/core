@@ -45,5 +45,7 @@ class ConsoleMake extends Command
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+
+        return 0;
     }
 }

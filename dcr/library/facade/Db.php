@@ -139,8 +139,6 @@ class Db
         $result = self::getConnection()->query($sql);
         self::recordError(self::getConnection());
         return self::getConnection()->query($sql)->fetchAll();
-
-        return $result->fetchAll();
     }
 
     /**
