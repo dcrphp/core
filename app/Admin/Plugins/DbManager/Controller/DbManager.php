@@ -11,8 +11,8 @@ class DbManager extends Plugins
 {
     public function index($view)
     {
-        if (!env('DBMANAGER_ENABLE')) {
-            exit('因为安全原因，系统默认关闭，请联系管理员在evn中把DBMANAGER_ENABLE设置为1');
+        if (!env('PLUGIN_DB_MANAGER_ENABLE')) {
+            exit('因为安全原因，系统默认关闭，请联系管理员在evn中把PLUGIN_DB_MANAGER_ENABLE设置为1');
         }
         //得出支持的字段类似
         $typeList = \Doctrine\DBAL\Types\Type::getTypesMap();
