@@ -184,8 +184,9 @@ class Container
 
     /**
      * 解决构造函数里的非类数值
-     * @param $parameter 参数列表
+     * @param $parameter
      * @return object
+     * @throws ReflectionException
      */
     public function resolvePrimitive(ReflectionParameter $parameter)
     {
@@ -198,7 +199,8 @@ class Container
 
     /**
      * 解决构造函数里的类实例化
-     * @param $parameter 参数列表
+     * @param $parameter
+     * @return mixed|object
      */
     public function resolveClass(ReflectionParameter $parameter)
     {
