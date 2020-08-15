@@ -29,6 +29,7 @@ class AppInstall extends Command
         $this->addArgument('database', InputArgument::REQUIRED, 'database name');
         $this->addArgument('charset', InputArgument::REQUIRED, 'character set');
         $this->addArgument('captcha', InputArgument::OPTIONAL, 'character set');
+        $this->setDescription("安装");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

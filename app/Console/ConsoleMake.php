@@ -19,6 +19,7 @@ class ConsoleMake extends Command
     {
         $this->setName('console:make'); //注意这个是命令行
         $this->addArgument('console_name', InputArgument::REQUIRED, 'console name');
+        $this->setDescription("创建命令");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

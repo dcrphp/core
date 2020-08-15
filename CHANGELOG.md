@@ -4,6 +4,10 @@
 　　3、重构request及response  
 　　4、dcrphp core独立成包提供输出  
 　　5、route规则支持全量和部份替换  
+　　6、文件管理及在线代码编辑  
+
+1.0.6-alpha1(未知) 
+　　1、增加php dcrphp list/help/-h等功能
 
 1.0.5(20200807)  
 　　1、修正创建命令行没有返回值的bug

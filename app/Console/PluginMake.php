@@ -20,6 +20,7 @@ class PluginMake extends Command
     protected function configure()
     {
         $this->setName('plugin:make'); //console name:php dcrphp plugin:make
+        $this->setDescription('自动创建插件，且产生在app\\Admin\\Plugins');
         $this->addArgument('plugin_name', InputArgument::REQUIRED, 'plugin name');
         $this->addArgument('title', InputArgument::REQUIRED, 'title,less than 10');
         $this->addArgument('description', InputArgument::REQUIRED, 'description');

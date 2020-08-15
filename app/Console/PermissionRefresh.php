@@ -22,6 +22,7 @@ class PermissionRefresh extends Command
     protected function configure()
     {
         $this->setName('permission:refresh'); //console name:php dcrphp permission:refresh
+        $this->setDescription('根据app\\Admin\\Controller下的class生成权限配置');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

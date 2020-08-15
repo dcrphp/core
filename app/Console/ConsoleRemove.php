@@ -18,6 +18,7 @@ class ConsoleRemove extends Command
     protected function configure()
     {
         $this->setName('console:remove'); //console name:php dcrphp console:remove
+        $this->setDescription("删除命令");
         $this->addArgument('consoleName', InputArgument::REQUIRED, 'console name');
     }
 
