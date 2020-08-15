@@ -32,7 +32,8 @@
         "graylog2/gelf-php": "*",
         "doctrine/orm": "*",
         "zircote/swagger-php": "*",
-        "symfony/http-foundation": "*"
+        "symfony/http-foundation": "*",
+        "symfony/finder": "*"
     },
     "autoload": {
         "psr-4":{
