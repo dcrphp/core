@@ -7,22 +7,27 @@
 
 <div class="page-container">
     <div class="layui-field-box">
+        当前目录:{{directory_path}}
         <table class="table table-border table-bordered table-bg table-hover table-sort mt-10">
             <thead>
             <tr>
+                <th width="40">类型</th>
                 <th width="40">名称</th>
                 <th width="60">大小</th>
+                <th width="60">更新时间</th>
                 <th width="50">操作</th>
             </tr>
             </thead>
             <tbody>
-            {% for backup in backup_list %}
+            {% for detail in list %}
             <tr class="va-m">
-                <td>{{backup.name}}</td>
-                <td>{{backup.file_name}}-{{backup.size}}K</td>
+                <td>{{detail.type}}</td>
+                <td>{{detail.base_name}}</td>
+                <td>{{detail.size}}</td>
+                <td>{{detail.lastmod}}</td>
                 <td>
-                    <a href="javascript:restore('{{backup.name}}');void(0);">点击恢复备份</a>
-                    <a href="javascript:remove('{{backup.name}}');void(0);">点击删除备份</a>
+                    <a href="javascript:remove('{{backup.name}}');void(0);">修改</a>
+                    <a href="javascript:restore('{{backup.name}}');void(0);">删除</a>
                 </td>
             </tr>
             {% endfor %}

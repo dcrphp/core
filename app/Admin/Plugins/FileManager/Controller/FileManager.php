@@ -3,7 +3,8 @@
 namespace app\Admin\Plugins\FileManager\Controller;
 
 use app\Admin\Model\Plugins;
-use Symfony\Component\Finder\Finder;
+use DcrPHP\File\Directory;
+use DcrPHP\File\Info;
 
 class FileManager extends Plugins
 {
@@ -15,17 +16,28 @@ class FileManager extends Plugins
         }
 
         //文件列表
-        $finder = new Finder();
-        $finder->in(ROOT_APP . DS . '..');
+        $dirPath = realpath(ROOT_APP . DS . '..');
+        try {
+            $clsDirectory = new Directory($dirPath);
+            $list = $clsDirectory->getList();
 
-        foreach ($finder as $file) {
-            $absoluteFilePath = $file->getRealPath();
-            $fileNameWithExtension = $file->getRelativePathname();
-            echo $absoluteFilePath;
-            echo $fileNameWithExtension;
-
-            // ...
+            $listFinal = array();
+            foreach ($list as $detail) {
+                $info = array();
+                $clsInfo = new Info($detail['path']);
+                $info['path'] = $clsInfo->getPath();
+                $info['type'] = $clsInfo->getType();
+                $info['base_name'] = $clsInfo->getBaseName();
+                $info['file_name'] = $clsInfo->getFileName();
+                $info['extension_name:'] = $clsInfo->getExtensionName();
+                $info['size'] = $clsInfo->getSize('kb') . 'kb';
+                $info['lastmod'] = date('Y-m-d H:i:s', $clsInfo->getLastMod());
+                $listFinal[] = $info;
+            }
+            $view->assign('directory_path', $dirPath);
+            $view->assign('list', $listFinal);
+        } catch (\Exception $e) {
+            throw  new \Exception($e->getMessage());
         }
-        exit;
     }
 }
