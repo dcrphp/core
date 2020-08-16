@@ -7,8 +7,12 @@
 
 <div class="page-container">
     <div class="layui-field-box">
-
-        <input class="btn radius btn-secondary" type="button" onclick="history.back();" value="返回"> 当前:{{path}}
+        <div><input class="btn radius btn-secondary" type="button" onclick="history.back();" value="返回"> 当前:{{path}}</div>
+        <div class="mt-10">
+            <input class="btn btn-primary radius" type="button" onclick="save();" value="创建文件">
+            <input class="btn btn-primary radius" type="button" onclick="save();" value="创建目录">
+            <span id="result"></span>
+        </div>
         <table class="table table-border table-bordered table-bg table-hover table-sort mt-10">
             <thead>
             <tr>
@@ -31,7 +35,7 @@
                 <td>
                     {% if 'file' == detail.type %}
                     <a href="/admin/tools/plugins-index-view/FileManager?path={{detail.path}}">修改</a>
-                    <a href="">删除</a>
+                    <a href="javascript:del('{{detail.path|replace({'\\': '&', '//': '&'})}}');void(0);">删除</a>
                     {% endif %}
                 </td>
             </tr>
@@ -42,6 +46,20 @@
 </div>
 
 {% include 'footer.html' ignore missing %}
+<script>
+    function del(path) {
+        layer.confirm('确认要删除吗？', function (index) {
+            $.post("/admin/tools/plugins-ajax/remove", {plugin_name: "FileManager", path: path},
+                function (data) {
+                    if (1 == data.ack) {
+                        window.location.href = window.location.href;
+                    } else {
+                        layer.alert(data.msg, {icon: 2});
+                    }
+                }, 'json');
+        });
+    }
+</script>
 
 </body>
 </html>

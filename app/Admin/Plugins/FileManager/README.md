@@ -2,3 +2,4 @@
 2、无法对plugin目录操作  
 3、无法对vendor操作  
 4、如果要更人性化的代码编辑器，请在完善View/file-edit.html改codemirror的参数或实别
+5、路径里，用&代替\

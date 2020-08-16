@@ -36,6 +36,16 @@ class FileManager extends Plugins
         }
     }
 
+    public function remove()
+    {
+        $path = post('path');
+        $path = str_replace('&', DS, $path);
+        $clsFile = new File();
+        $clsFile->remove($path);
+
+        return array('ack' => 1, 'msg' => '删除完成');
+    }
+
     /**
      * @return array
      * @throws \Exception
