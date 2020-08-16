@@ -7,7 +7,8 @@
 
 <div class="page-container">
     <div class="layui-field-box">
-        当前目录:{{directory_path}}
+
+        <input class="btn radius btn-secondary" type="button" onclick="history.back();" value="返回"> 当前:{{path}}
         <table class="table table-border table-bordered table-bg table-hover table-sort mt-10">
             <thead>
             <tr>
@@ -22,12 +23,16 @@
             {% for detail in list %}
             <tr class="va-m">
                 <td>{{detail.type}}</td>
-                <td>{{detail.base_name}}</td>
+                <td>
+                    <a href="/admin/tools/plugins-index-view/FileManager?path={{detail.path}}">{{detail.base_name}}</a>
+                </td>
                 <td>{{detail.size}}</td>
                 <td>{{detail.lastmod}}</td>
                 <td>
-                    <a href="javascript:remove('{{backup.name}}');void(0);">修改</a>
-                    <a href="javascript:restore('{{backup.name}}');void(0);">删除</a>
+                    {% if 'file' == detail.type %}
+                    <a href="/admin/tools/plugins-index-view/FileManager?path={{detail.path}}">修改</a>
+                    <a href="">删除</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

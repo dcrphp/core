@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% include 'header.html' ignore missing %}
+    <link rel="stylesheet" href="{{admin_resource_url}}/plugins/codemirror-5.56.0/lib/codemirror.css">
+    <script src="{{admin_resource_url}}/plugins/codemirror-5.56.0/lib/codemirror.js"></script>
+    <script src="{{admin_resource_url}}/plugins/codemirror-5.56.0/mode/clike/clike.js"></script>
+</head>
+<body>
+
+<div class="page-container">
+    <div><input class="btn radius btn-secondary" type="button" onclick="history.back();" value="返回"> 当前:{{path}}</div>
+    <div class="mt-10"><input class="btn btn-primary radius" type="button" onclick="save();" value="保存"> <span id="result"></span></div>
+    <div class="mt-10"><textarea id="editor">{{content}}</textarea></div>
+</div>
+
+{% include 'footer.html' ignore missing %}
+<script>
+    let editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        indentUnit:4,
+        indentWithTabs: true,
+        smartIndent: true,
+        tabSize: 4
+    });
+    editor.setSize('100%',"100%");
+
+    function save() {
+        ajax("/admin/tools/plugins-ajax/save", {plugin_name: "FileManager", content: editor.getValue(), save_path: '{{save_path}}'}, 'POST',
+            function (result) {
+                if (1 == result.ack) {
+                    let time = new Date();
+                    $('#result').html( result.msg);
+                } else {
+                    layer.alert(result.msg, {icon: 2});
+                }
+            }
+        );
+    }
+</script>
+</body>
+</html>
