@@ -9,8 +9,8 @@
     <div class="layui-field-box">
         <div><input class="btn radius btn-secondary" type="button" onclick="history.back();" value="返回"> 当前:{{path}}</div>
         <div class="mt-10">
-            <input class="btn btn-primary radius" type="button" onclick="save();" value="创建文件">
-            <input class="btn btn-primary radius" type="button" onclick="save();" value="创建目录">
+            <input class="btn btn-primary radius" type="button" onclick="create_file();" value="创建文件">
+            <input class="btn btn-primary radius" type="button" onclick="create_dir();" value="创建目录">
             <span id="result"></span>
         </div>
         <table class="table table-border table-bordered table-bg table-hover table-sort mt-10">
@@ -47,6 +47,26 @@
 
 {% include 'footer.html' ignore missing %}
 <script>
+    function create_dir()
+    {
+        let dir_path = '{{path|replace({'\\': '&', '//': '&'})}}';
+        layer.prompt({ title: '输入目录名，并确认', formType: 3 }, function (name, index) {
+            layer.close(index);
+            ajax("/admin/tools/plugins-ajax/create-dir", {plugin_name: "FileManager", name: name, dir_path: dir_path}, 'post',function (result) {
+                window.location.href = window.location.href;
+            })
+        });
+    }
+    function create_file()
+    {
+        let dir_path = '{{path|replace({'\\': '&', '//': '&'})}}';
+        layer.prompt({ title: '输入文件名，并确认', formType: 3 }, function (name, index) {
+            layer.close(index);
+            ajax("/admin/tools/plugins-ajax/create-file", {plugin_name: "FileManager", name: name, dir_path: dir_path}, 'post',function (result) {
+                window.location.href = window.location.href;
+            })
+        });
+    }
     function del(path) {
         layer.confirm('确认要删除吗？', function (index) {
             $.post("/admin/tools/plugins-ajax/remove", {plugin_name: "FileManager", path: path},

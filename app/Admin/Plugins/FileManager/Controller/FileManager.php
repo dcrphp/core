@@ -36,14 +36,49 @@ class FileManager extends Plugins
         }
     }
 
+    /**
+     * 格式化请求里的地址
+     * @param $path
+     */
+    public function formatPath($path)
+    {
+        $path = str_replace('&amp;', DS, $path);
+        $path = str_replace('&', DS, $path);
+        return $path;
+    }
+
     public function remove()
     {
         $path = post('path');
-        $path = str_replace('&', DS, $path);
+        $path = $this->formatPath($path);
         $clsFile = new File();
         $clsFile->remove($path);
 
         return array('ack' => 1, 'msg' => '删除完成');
+    }
+
+    public function createFile()
+    {
+        $dirPath = post('dir_path');
+        $name = post('name');
+        $filePath = $dirPath . DS . $name;
+        $filePath = $this->formatPath($filePath);
+        $clsFile = new File();
+        $clsFile->touch($filePath);
+
+        return array('ack' => 1);
+    }
+
+    public function createDir()
+    {
+        $dirPath = post('dir_path');
+        $name = post('name');
+        $newDirPath = $dirPath . DS . $name;
+        $newDirPath = $this->formatPath($newDirPath);
+        $clsFile = new File();
+        $clsFile->mkdir($newDirPath);
+
+        return array('ack' => 1);
     }
 
     /**
