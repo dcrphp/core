@@ -85,52 +85,6 @@ class Install
     }
 
     /**
-     * @return string
-     */
-    public function getSqlFilePath(): string
-    {
-        return $this->sqlFilePath;
-    }
-
-    /**
-     * 执行某个目录下的sql文件
-     * @param $sqlDirPath
-     * @return bool
-     * @throws
-     */
-    public function executeSqlFilesAbandon($sqlDirPath)
-    {
-        ENV::init();
-        $host = env('MYSQL_HOST');
-        $port = env('MYSQL_PORT');
-        $username = env('MYSQL_USERNAME');
-        $password = env('MYSQL_PASSWORD');
-        $database = env('MYSQL_DATABASE');
-        $sqlFileList = scandir($sqlDirPath);
-
-        try {
-            foreach ($sqlFileList as $sqlFile) {
-                if (pathinfo($sqlFile, PATHINFO_EXTENSION) === 'sql') {
-                    $sqlFilename = $sqlDirPath . DS . $sqlFile;
-                    //echo '-';
-                    new Import($sqlFilename, $username, $password, $database, $host . ':' . $port);
-                }
-            }
-        } catch (\Exception $ex) {
-            throw $ex;
-        }
-
-        return true;
-    }
-
-    public function importDemoDataAbandon()
-    {
-        $install = new Install();
-        $install->executeSqlFiles($this->sqlFilePath);
-        return Admin::commonReturn(1);
-    }
-
-    /**
      * 获取锁定文件
      * @return string
      */
@@ -416,6 +370,8 @@ SQL;
                 'is_super' => 1,
                 'note' => '管理员',
                 'zt_id' => 1,
+                'login_ip' => getIp(),
+                'login_time'=> time(),
                 'roles' => array(1),
             );
             //返回

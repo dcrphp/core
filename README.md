@@ -5,7 +5,7 @@
   
 php版本>=7.0，二次开发，请先看wiki里的开发者必读:https://github.com/dcrphp/core/wiki/开发者必读  
 
-安装源码(下面4选1)：  
+安装源码(下面5选1)：  
 
     1、composer create-project dcrphp/core dcrphp 1.0.5  
     2、进入根目录执行:

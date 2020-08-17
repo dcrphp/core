@@ -138,6 +138,8 @@ class User extends NUser implements Model
         $clsUser->setTel($userInfo['tel']);
         $clsUser->setNote($userInfo['note']);
         $clsUser->setIsSuper($userInfo['is_super']);
+        $clsUser->setLoginTime($userInfo['login_time']);
+        $clsUser->setLoginIp($userInfo['login_ip']);
         $clsUser = Entity::setCommonData($clsUser);
 
         if ($userInfo['password']) {
