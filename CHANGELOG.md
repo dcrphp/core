@@ -5,7 +5,7 @@
 　　4、dcrphp core独立成包提供输出  
 　　5、route规则支持全量和部份替换  
 
-1.0.6-alpha1(未知)   
+1.0.6-alpha1(20200817)   
 　　1、增加php dcrphp list/help/-h等功能  
 　　2、增加查看某个命令的帮助如:php dcrphp help console:make
 　　3、文件管理及在线代码编辑  
