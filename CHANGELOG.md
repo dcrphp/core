@@ -7,7 +7,7 @@
 
 1.0.6-alpha1(20200817)   
 　　1、增加php dcrphp list/help/-h等功能  
-　　2、增加查看某个命令的帮助如:php dcrphp help console:make
+　　2、增加查看某个命令的帮助如:php dcrphp help console:make  
 　　3、文件管理及在线代码编辑  
 
 1.0.5(20200807)  
