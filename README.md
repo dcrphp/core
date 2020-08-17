@@ -17,6 +17,11 @@ php版本>=7.0，二次开发，请先看wiki里的开发者必读:https://githu
         composer install --no-dev -vvv  
     4、www.dcrcms.com下载全量源码包  
        http://www.dcrcms.com/news.php?id=76  
+    5、git clone最新的安装程序  
+       git clone https://github.com/dcrphp/core.git
+       或
+       git clone https://gitee.com/dcrphp/core.git
+       上面选一个地址下载好后进入目录执行composer install --no-dev -vvv
         
 Web服务器配置根目录为public  
 安装系统如下:    
