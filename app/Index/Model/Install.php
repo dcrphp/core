@@ -371,7 +371,7 @@ SQL;
                 'note' => '管理员',
                 'zt_id' => 1,
                 'login_ip' => getIp(),
-                'login_time'=> time(),
+                'login_time' => time(),
                 'roles' => array(1),
             );
             //返回
