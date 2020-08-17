@@ -58,8 +58,14 @@ class Route extends DcrBase
         $path = rtrim($path, '/');
         $path = ltrim($path, '/');
 
-        //用route替换下先
-        $path = $this->configList[$path] ? $this->configList[$path] : $path;
+        //实际short和replace 说明请看config/route/web.php
+        $path = $this->configList['short'][$path] ? $this->configList['short'][$path] : $path;
+        if ($this->configList['replace']) {
+            foreach ($this->configList['replace'] as $replaceKey => $realPath) {
+                $path = str_replace($replaceKey, $realPath, $path);
+            }
+        }
+        #$path = $this->configList[$path] ? $this->configList[$path] : $path;
 
         $pathList = explode('/', $path);
 
