@@ -7,7 +7,8 @@
 
 1.0.6-alpha1(未知)   
 　　1、增加php dcrphp list/help/-h等功能  
-　　2、文件管理及在线代码编辑  
+　　2、增加查看某个命令的帮助如:php dcrphp help console:make
+　　3、文件管理及在线代码编辑  
 
 1.0.5(20200807)  
 　　1、修正创建命令行没有返回值的bug
