@@ -127,6 +127,13 @@ class TestBase extends TestCase
         $this->assertTrue(file_exists($clsInstall->getLockFile()));
     }
 
+    public function testDatabase()
+    {
+        //看看表数是不是17个
+        $tableList = DB::getTables();
+        $this->assertEquals(17, count($tableList));
+    }
+
     /**
      * 检测系统的默认配置项
      */
