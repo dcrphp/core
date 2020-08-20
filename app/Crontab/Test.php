@@ -6,7 +6,7 @@ namespace app\Crontab;
 
 use app\Crontab\Concerns\Crontab;
 
-class test extends Crontab
+class Test extends Crontab
 {
     public function handler()
     {
