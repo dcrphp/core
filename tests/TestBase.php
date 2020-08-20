@@ -71,6 +71,10 @@ class TestBase extends TestCase
         $this->assertEquals(1, $userRole['u_id']);
     }
 
+    /**
+     * 模组测试
+     * @throws \Exception
+     */
     public function testModel()
     {
         $model = new Model();
