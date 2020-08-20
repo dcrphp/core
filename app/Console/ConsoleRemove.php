@@ -18,7 +18,7 @@ class ConsoleRemove extends Command
     protected function configure()
     {
         $this->setName('console:remove'); //console name:php dcrphp console:remove
-        $this->setDescription("删除命令");
+        $this->setDescription("删除命令,如php dcrphp console:remove test:test");
         $this->addArgument('consoleName', InputArgument::REQUIRED, 'console name');
     }
 
@@ -38,5 +38,6 @@ class ConsoleRemove extends Command
             exit;
         }
         echo "remove console success";
+        return 0;
     }
 }

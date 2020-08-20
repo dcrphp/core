@@ -37,11 +37,27 @@ class DbManager extends Plugins
         $schema = new \Doctrine\DBAL\Schema\Schema();
         $clsTable = $schema->createTable($tableName);
         $clsTable->setComment($tableComment);
-        $clsTable->addColumn("id", "integer", array("notnull" => true, 'autoincrement' => true));
-        $clsTable->addColumn("add_time", "datetime", array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP'));
-        $clsTable->addColumn("is_approval", "boolean", array("notnull" => true, 'default' => '1', 'length' => 1));
-        $clsTable->addColumn("add_user_id", "smallint", array("notnull" => true, 'default' => '0', 'length' => 6));
-        $clsTable->addColumn("zt_id", "smallint", array("notnull" => true, 'default' => '0', 'length' => 6));
+        $clsTable->addColumn("id", "integer", array("notnull" => true, 'autoincrement' => true, 'comment' => 'ID',));
+        $clsTable->addColumn(
+            "add_time",
+            "datetime",
+            array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '添加时间')
+        );
+        $clsTable->addColumn(
+            "is_approval",
+            "boolean",
+            array("notnull" => true, 'default' => '1', 'length' => 1, 'comment' => '审核状态')
+        );
+        $clsTable->addColumn(
+            "add_user_id",
+            "smallint",
+            array("notnull" => true, 'default' => '0', 'length' => 6, 'comment' => '添加人ID')
+        );
+        $clsTable->addColumn(
+            "zt_id",
+            "smallint",
+            array("notnull" => true, 'default' => '0', 'length' => 6, 'comment' => '帐套ID')
+        );
         $clsTable->setPrimaryKey(array("id"));
         $clsTable->addOption('engine', post('engine'));
         $clsTable->addOption('collate', 'utf8_general_ci');
@@ -51,6 +67,9 @@ class DbManager extends Plugins
             $option = array();
             $option['notnull'] = true;
             $option['default'] = $default[$id];
+            if (strlen($option['default']) < 1) {
+                throw new \Exception('请配置字段' . $filedName . '的默认值');
+            }
             $length[$id] ? $option['length'] = $length[$id] : '';
             $comment[$id] ? $option['comment'] = $comment[$id] : '';
             $clsTable->addColumn($filedName, $type[$id], $option);
@@ -58,8 +77,11 @@ class DbManager extends Plugins
 
         //创建索引
         foreach (post('index') as $id => $indexType) {
-            $functionName = 'index' == $indexType ? 'addIndex' : 'addUniqueIndex';
-            $clsTable->$functionName(array($field[$id]));
+            //20200820 添加类型判断，修正所有字段都会添加唯一索引的bug
+            if (in_array($indexType, array('index', 'unique'))) {
+                $functionName = 'index' == $indexType ? 'addIndex' : 'addUniqueIndex';
+                $clsTable->$functionName(array($field[$id]));
+            }
         }
         $sqlList = $schema->toSql(Db::getConnection()->getDatabasePlatform());
         $sql = current($sqlList);

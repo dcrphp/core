@@ -182,6 +182,13 @@ class ConfigTableEditList
      */
     private $buttonAreaAdditionHtml = '';
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_show_in_table_edit_list", type="boolean", nullable=false, options={"default"="1","comment"="是不是在单表管理中显示"})
+     */
+    private $isShowInTableEditList = true;
+
 
 
     /**
@@ -744,5 +751,29 @@ class ConfigTableEditList
     public function getButtonAreaAdditionHtml()
     {
         return $this->buttonAreaAdditionHtml;
+    }
+
+    /**
+     * Set isShowInTableEditList.
+     *
+     * @param bool $isShowInTableEditList
+     *
+     * @return ConfigTableEditList
+     */
+    public function setIsShowInTableEditList($isShowInTableEditList)
+    {
+        $this->isShowInTableEditList = $isShowInTableEditList;
+
+        return $this;
+    }
+
+    /**
+     * Get isShowInTableEditList.
+     *
+     * @return bool
+     */
+    public function getIsShowInTableEditList()
+    {
+        return $this->isShowInTableEditList;
     }
 }
