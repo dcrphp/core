@@ -56,7 +56,7 @@ class Crontab extends DcrBase
         $time = microtime(true);
         $info = array(
             'time_end' => $time,
-            'time_spend' => $time - $this->timeStart,
+            'time_spend' => round($time - $this->timeStart, 4),
         );
         if ($this->result['ack']) {
             $info['status'] = '执行成功';

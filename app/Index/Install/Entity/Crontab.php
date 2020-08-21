@@ -78,9 +78,9 @@ class Crontab
     private $timeEnd = '0';
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="time_spend", type="integer", nullable=false, options={"default"=0,"comment"="消耗时间"})
+     * @ORM\Column(name="time_spend", type="float", precision=10, scale=0, nullable=false, options={"default"=0,"comment"="消耗时间"})
      */
     private $timeSpend = '0';
 

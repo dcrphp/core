@@ -78,9 +78,9 @@ class Crontab
     private $timeEnd = '0';
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="time_spend", type="integer", nullable=false, options={"comment"="消耗时间"})
+     * @ORM\Column(name="time_spend", type="float", precision=10, scale=0, nullable=false, options={"comment"="消耗时间"})
      */
     private $timeSpend = '0';
 
@@ -305,7 +305,7 @@ class Crontab
     /**
      * Set timeSpend.
      *
-     * @param int $timeSpend
+     * @param float $timeSpend
      *
      * @return Crontab
      */
@@ -319,7 +319,7 @@ class Crontab
     /**
      * Get timeSpend.
      *
-     * @return int
+     * @return float
      */
     public function getTimeSpend()
     {
