@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace app\Model;
 
+use dcr\App;
 use dcr\DcrBase;
 use dcr\facade\Db;
 
@@ -19,7 +20,7 @@ class Crontab extends DcrBase
     {
         $this->processId = $processId;
         $this->crontabName = $crontabName;
-        $this->crontabName = $this->crontabNameToClassName($this->crontabName);
+        $this->crontabName = self::crontabNameToClassName($this->crontabName);
         $this->check();
     }
 
@@ -63,6 +64,7 @@ class Crontab extends DcrBase
         } else {
             $info['status'] = '执行失败';
             $info['msg'] = $msg ? $msg : json_encode($this->result['msg']);
+            $info['msg'] = addslashes($info['msg']);
         }
         return DB::update('crontab', $info, "name='{$this->crontabName}' and process_id='{$this->processId}'");
     }
@@ -74,14 +76,20 @@ class Crontab extends DcrBase
         $this->result = $cls->handler();
     }
 
-    public function crontabNameToClassName()
+    /**
+     * 把名字格式化成类名 class->Class class_name->ClassName
+     * @param string $crontabName
+     * @return string
+     */
+    public static function crontabNameToClassName($crontabName = '')
     {
-        return ucfirst($this->crontabName);
+        $crontabName = APP::formatParam($crontabName, '_');
+        return ucfirst($crontabName);
     }
 
     public static function getClassPath($crontabName = '')
     {
-        $crontabName = ucfirst($crontabName);
+        $crontabName = self::crontabNameToClassName($crontabName);
         return ROOT_APP . DS . 'Crontab' . DS . "{$crontabName}.php";
     }
 }

@@ -46,6 +46,7 @@ class CrontabExecute extends Command
             #返回
         } catch (\Exception $e) {
             $clsCrontab->recordEnd($e->getMessage());
+            throw $e;
         }
 
         return 0;
