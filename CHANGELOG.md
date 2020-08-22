@@ -3,7 +3,6 @@
 　　2、事件机制  
 　　3、重构request及response  
 　　4、dcrphp core独立成包提供输出  
-　　5、route规则支持全量和部份替换  
 
 1.0.6-alpha2(未知)  
 　　1、计划任务中心  
