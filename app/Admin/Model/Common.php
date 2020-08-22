@@ -91,6 +91,9 @@ class Common
                     $html = Form::radio()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
                     break;
                 case 'checkbox':
+                    if (1 == $inputValue) {
+                        $inputValue = '是';
+                    }
                     $clsLabel = Form::label()->class('mr-10');
                     $html = Form::checkbox()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
                     break;

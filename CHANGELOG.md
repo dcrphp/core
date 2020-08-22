@@ -15,6 +15,7 @@
 　　2、增加查看某个命令的帮助如:php dcrphp help console:make  
 　　3、文件管理及在线代码编辑  
 　　4、增加一种短地址实现功能:config/route/web.php    
+　　5、修正单表管理属性选中失效的BUG    
 
 1.0.5(20200807)  
 　　1、修正创建命令行没有返回值的bug
