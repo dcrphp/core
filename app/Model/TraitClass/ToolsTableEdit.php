@@ -146,4 +146,32 @@ trait ToolsTableEdit
         Db::commit();
         return Admin::commonReturn(1);
     }
+
+    /**
+     * @param $tableName
+     * @param $id
+     * @param $value
+     * @param $field
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function tableEditUpdateField($tableName, $id, $value, $field)
+    {
+        if (empty($tableName)) {
+            throw new \Exception('表名不能为空');
+        }
+        if (empty($id)) {
+            throw new \Exception('ID不能为空');
+        }
+        if (!isset($value)) {
+            throw new \Exception('新值不能为空');
+        }
+        if (empty($field)) {
+            throw new \Exception('字段不能为空');
+        }
+
+        //开始改
+        $result = DB::update($tableName, array($field => $value), "id={$id}");
+        return Admin::commonReturn(1);
+    }
 }

@@ -146,4 +146,11 @@ class ConfigTableEditItem
      * @ORM\Column(name="ctel_id", type="integer", nullable=false, options={"default"="0"})
      */
     private $ctelId = '0';
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_list_edit", type="boolean", nullable=false, options={"default"="0","comment"="列表页双击配置"})
+     */
+    private $isListEdit = '0';
 }

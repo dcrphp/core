@@ -147,6 +147,13 @@ class ConfigTableEditItem
      */
     private $ctelId = '0';
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_list_edit", type="boolean", nullable=false, options={"comment"="列表页双击配置"})
+     */
+    private $isListEdit = '0';
+
 
 
     /**
@@ -589,5 +596,29 @@ class ConfigTableEditItem
     public function getCtelId()
     {
         return $this->ctelId;
+    }
+
+    /**
+     * Set isListEdit.
+     *
+     * @param bool $isListEdit
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setIsListEdit($isListEdit)
+    {
+        $this->isListEdit = $isListEdit;
+
+        return $this;
+    }
+
+    /**
+     * Get isListEdit.
+     *
+     * @return bool
+     */
+    public function getIsListEdit()
+    {
+        return $this->isListEdit;
     }
 }

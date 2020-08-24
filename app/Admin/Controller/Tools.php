@@ -6,8 +6,8 @@ use app\Admin\Model\Common;
 use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use app\Admin\Model\Tools as MTools;
-use app\Model\Tools as NMTools;
 use app\Model\Api;
+use app\Model\Tools as NMTools;
 use dcr\App;
 use dcr\facade\Db;
 use dcr\Page;
@@ -452,8 +452,14 @@ class Tools
         $assignData['config'] = $config;
         $assignData['key'] = $key;
         $assignData['add_button_addition_html'] = $clsTools->generateAdditionHtml($config['add_button_addition_html']);
-        $assignData['edit_button_addition_html'] = $clsTools->generateAdditionHtml($config['edit_button_addition_html']);
-        $assignData['button_area_addition_html'] = $clsTools->generateAdditionHtml($config['button_area_addition_html']);
+        $assignData['edit_button_addition_html'] = $clsTools->generateAdditionHtml(
+            $config['edit_button_addition_html']
+        );
+        $assignData['button_area_addition_html'] = $clsTools->generateAdditionHtml(
+            $config['button_area_addition_html']
+        );
+        #print_r($list);
+        #dump($config);
 
         return Factory::renderPage('tools/table-edit-list', $assignData);
     }
@@ -476,6 +482,19 @@ class Tools
 
         $clsTools = new \app\Model\Tools();
         $result = $clsTools->tableEditGenerate($pageModel, $keyword, $tableName, $pageTitle);
+
+        return Factory::renderJson($result);
+    }
+
+    public function tableEditUpdateFieldAjax()
+    {
+        $tableName = post('table_name');
+        $id = post('id');
+        $value = post('value');
+        $field = post('field');
+
+        $clsTools = new \app\Model\Tools();
+        $result = $clsTools->tableEditUpdateField($tableName, $id, $value, $field);
 
         return Factory::renderJson($result);
     }

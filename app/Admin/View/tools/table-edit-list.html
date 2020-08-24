@@ -28,6 +28,7 @@
             </button>
         </form>
     </div>
+    <div class="Huialert Huialert-info mt-10">本列表可以在[系统配置/单表配置]的[{{key}}]条目下配置，字段前有[编辑]标志，则说明可以双击编辑</div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         {% if 1 == config.is_add or '是' == config.is_add %}
         <span class="l">
@@ -35,7 +36,8 @@
             {{button_area_addition_html|raw}}
         </span>
         {% endif %}
-        <span class="r">共有数据：<strong>{{user_num}}</strong> 条</span></div>
+        <span class="r">共有数据：<strong>{{user_num}}</strong> 条</span>
+    </div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
@@ -50,7 +52,12 @@
             {% for info in list %}
             <tr>
                 {% for col in list_col %}
-                <td>{{info[col.db_field_name]}}</td>
+                <td {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %} ondblclick="change_field('{{config.table_name}}','{{info.id}}','{{col.db_field_name}}','{{info[col.db_field_name]}}')" {% endif %}>
+                    {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %}
+                    <i class="Hui-iconfont">&#xe60c;</i>
+                    {% endif %}
+                    <span id="{{col.db_field_name}}_{{info.id}}">{{info[col.db_field_name]}}</span>
+                </td>
                 {% endfor %}
                 <td class="td-manage">
                     {% if 1 == config.is_edit or '是' == config.is_edit %}
@@ -86,6 +93,15 @@
                     layer.msg('已删除!', {icon: 1, time: 1000});
                 }
             )
+        });
+    }
+    function change_field(table_name,id,field,current_value){
+        layer.prompt({ formType:2, title:'请填写新值', value: current_value, btnAlign:'l'},function(value,index,elem){
+            layer.close(index);
+            ajax('/admin/tools/table-edit-update-field-ajax',{table_name:table_name,id:id,field:field,value:value},'post',
+                function(result){
+                    $('#' + field + '_' + id).html(value)
+                })
         });
     }
 </script>

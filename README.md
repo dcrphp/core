@@ -23,7 +23,7 @@ php版本>=7.0，二次开发，请先看wiki里的开发者必读:https://githu
        git clone https://gitee.com/dcrphp/core.git(可能会有延迟)
        上面选一个地址下载好后进入目录执行composer install --no-dev -vvv
         
-Web服务器配置根目录为public  
+Web服务器配置根目录为:public  
 安装系统如下:    
 
     安装路径是:host/install    
@@ -37,4 +37,4 @@ location / {
 }  
 ```
 
-发版详细请看CHANGELOG.md
+更新日志请看CHANGELOG.md
