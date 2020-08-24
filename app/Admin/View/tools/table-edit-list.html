@@ -52,7 +52,7 @@
             {% for info in list %}
             <tr>
                 {% for col in list_col %}
-                <td {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %} ondblclick="change_field('{{config.table_name}}','{{info.id}}','{{col.db_field_name}}','{{info[col.db_field_name]}}')" {% endif %}>
+                <td {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %} ondblclick="change_field('{{config.table_name}}','{{info.id}}','{{col.db_field_name}}','{{info[col.db_field_name]}}','{{config['col'][col.db_field_name]['tip']}}')" {% endif %}>
                     {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %}
                     <i class="Hui-iconfont">&#xe60c;</i>
                     {% endif %}
@@ -95,8 +95,9 @@
             )
         });
     }
-    function change_field(table_name,id,field,current_value){
-        layer.prompt({ formType:2, title:'请填写新值', value: current_value, btnAlign:'l'},function(value,index,elem){
+    function change_field(table_name,id,field,current_value,tip){
+        let title = '请填写新值：' + tip;
+        layer.prompt({ formType:2, title:title, value: current_value, btnAlign:'l'},function(value,index,elem){
             layer.close(index);
             ajax('/admin/tools/table-edit-update-field-ajax',{table_name:table_name,id:id,field:field,value:value},'post',
                 function(result){
