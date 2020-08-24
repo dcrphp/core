@@ -2,14 +2,13 @@
 
 namespace app\Console;
 
-use app\Model\Crontab;
-use app\Model\Install;
+use dcr\Console;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
 
-class CrontabMake extends Command
+class ConsoleMake extends Command
 {
     public function __construct()
     {
@@ -18,41 +17,34 @@ class CrontabMake extends Command
 
     protected function configure()
     {
-        $this->addArgument('crontab_name', InputArgument::REQUIRED, 'crontab name');
-        $this->setDescription(
-            "创建计划任务,产生在app\\Crontab，如：php dcrphp crontab:make test，执行:php dcrphp help crontab:execute"
-        );
-        $this->setName('crontab:make'); //console name:php dcrphp crontab:make
+        $this->setName('console:make'); //注意这个是命令行
+        $this->addArgument('console_name', InputArgument::REQUIRED, 'console name');
+        $this->setDescription("创建命令,产生在app\\Console，如：php dcrphp console:make test:test");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $consoleName = $input->getArgument('console_name');
+        $className = Console::_consoleNameToClassName($consoleName);
+        $classFile = Console::_getConsoleClassPath($className);
+
+        if (file_exists($classFile)) {
+            throw new \Exception('Console Name is exists,you can remove this console by php dcrphp console:remove console:name');
+            exit;
+        }
+        //has exists class
+
+        $tpl = file_get_contents(__DIR__ . DS . 'template' . DS . 'ConsoleTpl.php');
+
+        //replace
+        $tpl = str_replace('ConsoleName', $className, $tpl);
+        $tpl = str_replace('console:name', $consoleName, $tpl);
+
         try {
-            $crontabName = $input->getArgument('crontab_name');
-
-            $classFile = Crontab::getClassPath($crontabName);
-            if (file_exists($classFile)) {
-                throw new \Exception(
-                    'Crontat exists,you can remove this console by php dcrphp crontab:remove ' . $input->getArgument(
-                        'crontab_name'
-                    )
-                );
-                exit;
-            }
-
-            $tpl = file_get_contents(__DIR__ . DS . 'template' . DS . 'CrontabTpl.php');
-
-            //replace
-            $tpl = str_replace('CrontabTpl', Crontab::crontabNameToClassName($crontabName), $tpl);
-
-            try {
-                file_put_contents($classFile, $tpl);
-                echo "We make the crontab,you can edit it:app\\Crontab\\{$crontabName}";
-            } catch (\Exception $e) {
-                throw new \Exception($e->getMessage());
-            }
+            file_put_contents($classFile, $tpl);
+            echo "We make the console,you can try it:php dcrphp {$consoleName}";
         } catch (\Exception $e) {
-            throw $e;
+            throw new \Exception($e->getMessage());
         }
 
         return 0;

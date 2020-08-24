@@ -43,7 +43,7 @@ class CrontabMake extends Command
             $tpl = file_get_contents(__DIR__ . DS . 'template' . DS . 'CrontabTpl.php');
 
             //replace
-            $tpl = str_replace('CrontabTpl', ucfirst($crontabName), $tpl);
+            $tpl = str_replace('CrontabTpl', Crontab::crontabNameToClassName($crontabName), $tpl);
 
             try {
                 file_put_contents($classFile, $tpl);
