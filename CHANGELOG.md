@@ -2,7 +2,10 @@
 　　1、SSO单点登陆  
 　　2、事件机制  
 　　3、重构request及response  
-　　4、dcrphp core独立成包提供输出  
+　　4、dcrphp core独立成包提供输出
+  
+1.0.6-alpha3(未知)  
+　　1、修正获取get或post值为0时无法获取的BUG  
 
 1.0.6-alpha2(20200827)  
 　　1、计划任务中心  

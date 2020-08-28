@@ -166,7 +166,7 @@ class Request extends DcrBase
         }
 
         if ($name) {
-            $info = $this->$type[$name] ? $this->$type[$name] : $default;
+            $info = isset($this->$type[$name]) ? $this->$type[$name] : $default;
         } else {
             $info = $this->$type;
         }
