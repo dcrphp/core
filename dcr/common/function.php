@@ -7,11 +7,11 @@
  * Time: 22:25
  */
 
-use dcr\Container;
 use dcr\Session;
+use DcrPHP\Container\Container;
 
 /**
- * 格式化输出变量
+ * 格式化输出变量 从1.0.7开始abandon 请用pr
  */
 if (!function_exists('dump')) {
     function dump($var)
@@ -21,12 +21,24 @@ if (!function_exists('dump')) {
         echo '</pre>';
     }
 }
+
 /**
  * 格式化输出变量
  */
+if (!function_exists('pr')) {
+    function pr($var)
+    {
+        echo '<pre>';
+        print_r($var);
+        echo '</pre>';
+    }
+}
+/**
+ * 格式化输出变量 从1.0.7开始abandon 请用pr
+ */
 if (!function_exists('dd')) {
     /**
-     * @param $var要输出的变量
+     * @param $var
      */
     function dd($var)
     {
@@ -42,7 +54,7 @@ if (!function_exists('container')) {
         if (empty($abstract)) {
             return Container::getInstance();
         } else {
-            return Container::getInstance()->make($abstract);
+            return Container::getInstance()->get($abstract);
         }
     }
 }
@@ -52,7 +64,7 @@ if (!function_exists('container')) {
 if (!function_exists('config')) {
     function config($name)
     {
-        return Container::getInstance()->make('config')->get($name);
+        return Container::getInstance()->get('config')->get($name);
     }
 }
 /**

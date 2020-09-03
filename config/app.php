@@ -7,18 +7,6 @@
  */
 return [
 
-    //别名
-    'alias' => [
-        'config' => \DcrPHP\Config\Config::class,
-        'request' => dcr\Request::class,
-        'rule' => dcr\route\Rule::class,
-        'rule_item' => dcr\route\RuleItem::class,
-        'route' => dcr\Route::class,
-        'view' => dcr\View::class,
-        'response' => dcr\facade\Response::class,
-        'cache' => \DcrPHP\Cache\Cache::class,
-    ],
-
     //时区
     'default_timezone' => 'PRC',
 

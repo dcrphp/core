@@ -14,6 +14,7 @@ use dcr\route\RuleItem;
 use DcrPHP\Annotations\Annotations;
 use DcrPHP\Cache\Cache;
 use DcrPHP\Config\Config;
+use DcrPHP\Container\Container;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 
@@ -62,8 +63,7 @@ class App
         try {
             $entityManager = \Doctrine\ORM\EntityManager::create($dbConn, $ormConfig);
             //$entityManager->getConnection()
-            $container->instance('entity_manager', $entityManager);
-            $container->instance('em', $entityManager);
+            $container->instance(\Doctrine\ORM\EntityManager::class, $entityManager);
         } catch (ORMException $e) {
             throw $e;
         }
@@ -75,8 +75,8 @@ class App
         //加载配置
         $clsConfig = new Config(CONFIG_DIR);
         //$clsConfig->addDirectory(CONFIG_DIR);
-        $clsConfig->setDriver('php');//解析php格式的
-        $clsConfig->init();
+        /*$clsConfig->setDriver('php');//解析php格式的
+        $clsConfig->init();*/
         $container->instance(\DcrPHP\Config\Config::class, $clsConfig);
         return $clsConfig;
     }
@@ -117,6 +117,13 @@ class App
         date_default_timezone_set(config('app.default_timezone'));
     }
 
+    public static function initContainer()
+    {
+        $clsConfig = new Config(CONFIG_DIR);
+
+        return Container::getInstance($clsConfig);
+    }
+
     public static function init()
     {
         error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
@@ -126,9 +133,11 @@ class App
 
         self::setRunningModel();
 
+        #初始化container
+        $container = self::initContainer();
+
         Error::init();
         Env::init();
-        $container = container();
 
         $clsConfig = self::initConfig();
 
@@ -140,7 +149,6 @@ class App
             $container->instance($clsConfig->get('app.alias.cache'), $clsCache);
         }
 
-        $container->autoBind();
         Session::init();
 
         self::initFromConfig();
