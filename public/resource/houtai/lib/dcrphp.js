@@ -20,7 +20,6 @@ function showSuccess(result){
  * @param error_callback 错误调用的function
  */
 function ajax(url, data, method, success_callback, failed_callback, error_callback) {
-
     if (method == null || method == '') {
         method = 'POST';
     }

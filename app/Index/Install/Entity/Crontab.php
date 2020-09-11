@@ -24,9 +24,9 @@ class Crontab
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
      */
-    private $addTime = 'CURRENT_TIMESTAMP';
+    private $addTime = 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
 
     /**
      * @var bool
