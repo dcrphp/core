@@ -31,7 +31,8 @@ class ApiPermission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_time", type="datetime", nullable=false, columnDefinition="timestamp default current_timestamp on update current_timestamp")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updateTime = 'CURRENT_TIMESTAMP';
 
