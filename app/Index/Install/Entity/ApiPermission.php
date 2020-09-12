@@ -31,9 +31,9 @@ class ApiPermission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="update_time", type="datetime", nullable=false, columnDefinition="timestamp default current_timestamp on update current_timestamp")
      */
-    private $updateTime = 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP';
+    private $updateTime = 'CURRENT_TIMESTAMP';
 
     /**
      * @var bool
