@@ -32,8 +32,8 @@ class ApiPermission
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="update_time", type="datetime")
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
      */
     private $updateTime = 'CURRENT_TIMESTAMP';
 
