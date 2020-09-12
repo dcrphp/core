@@ -3,7 +3,6 @@
 namespace app\Index\Install\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * ApiPermission
@@ -32,8 +31,7 @@ class ApiPermission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_time", type="datetime")
-     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="update_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $updateTime = 'CURRENT_TIMESTAMP';
 

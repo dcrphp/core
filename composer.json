@@ -34,8 +34,7 @@
         "doctrine/orm": "*",
         "zircote/swagger-php": "*",
         "symfony/http-foundation": "*",
-        "dcrphp/file": "1.0.1-alpha1",
-        "gedmo/doctrine-extensions": "*"
+        "dcrphp/file": "1.0.1-alpha1"
     },
     "autoload": {
         "psr-4":{
