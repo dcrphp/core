@@ -46,7 +46,7 @@ class DbManager extends Plugins
         $clsTable->addColumn(
             "update_time",
             "datetime",
-            array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP', 'comment' => '更新时间')
+            array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP', 'columnDefinition'=>'DATETIME on update CURRENT_TIMESTAMP', 'comment' => '更新时间')
         );
         $clsTable->addColumn(
             "is_approval",
