@@ -7,8 +7,8 @@
 1.0.6-alpha3(未知)  
 　　1、修正获取get或post值为0时无法获取的BUG  
 　　2、使用dcrphp/container替换dcr/Container，dcrphp/container提供了丰富的开箱即用的组件,具体可以看https://github.com/dcrphp/container  
-　　3、输出变量增加pr()function 原来的dd或dump已经被占用了  
-　　4、修正了update_time的值CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  
+　　3、输出变量增加function pr() 原来的dd或dump已经被占用了  
+　　4、js添加对checkbox的操作  
 
 1.0.6-alpha2(20200827)  
 　　1、计划任务中心  

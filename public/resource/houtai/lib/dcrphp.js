@@ -1,3 +1,29 @@
+function checkbox_select_all(checkbox_name)
+{
+    $("input[name='" + checkbox_name + "']").each(function () {
+        this.checked = true;
+    })
+}
+function checkbox_select_none(checkbox_name)
+{
+    $("input[name='" + checkbox_name + "']").removeAttr("checked");
+}
+function checkbox_select_invert(checkbox_name)
+{
+    $("input[name='" + checkbox_name + "']").each(function () {
+        this.checked = !this.checked;
+    })
+}
+
+/**
+ * select选中的内容
+ * @param select_id
+ * @param select_value
+ */
+function select_value(select_id,select_value){
+    $('#' + select_id).val(select_value);
+}
+
 function showError(result){
     let response = $.parseJSON(result.responseText);
     let msg = response.error.message + ',file:' + response.error.file + ',line:' + response.error.line;
