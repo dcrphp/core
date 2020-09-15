@@ -151,9 +151,11 @@ class Model
             array_push($whereArr, "parent_id={$parentId}");
         }
 
-        $list = DB::select(array('table' => 'model_category', 'col' => $option['col'], 'where' => $whereArr));
+        if ($option['where']) {
+            array_push($whereArr, $option['where']);
+        }
 
-        return $list;
+        return DB::select(array('table' => 'model_category', 'col' => $option['col'], 'where' => $whereArr));
     }
 
     public function getCategoryTrHtml($modelName, $parentId = null)

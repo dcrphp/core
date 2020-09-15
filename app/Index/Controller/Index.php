@@ -195,6 +195,7 @@ class Index
         $view = container('view');
         $view->setViewDirectoryPath(ROOT_APP . DS . 'Index' . DS . 'View');
         $view->assign('admin_resource_url', env('ADMIN_RESOURCE_URL'));
+        $view->assign('default_database_name', 'dcrphp-' . config('info.version'));
         $view->assign('sqlite_path', realpath(ROOT_PUBLIC) . DS . 'storage' . DS . 'sqlite.php');
         return $view->render('install');
     }

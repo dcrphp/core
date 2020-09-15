@@ -253,4 +253,12 @@ class Db
         $conn = self::getConnection();
         return $conn->getSchemaManager()->listTables();
     }
+
+    public static function getDatabasePlatform()
+    {
+        $conn = self::getConnection();
+        $databaseInfo = $conn->getDatabasePlatform();
+        $databaseName = $databaseInfo->getName();
+        return strtolower(substr($databaseName, 0, 5));
+    }
 }

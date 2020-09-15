@@ -239,11 +239,24 @@ SQL;
     }
 
     /**
-     * 修正字段 比如not null的字段没有default值
+     * 修正字段 比如mysql下update加上on update current_timestamp
      * @throws \Exception
      */
     public function fixField()
     {
+        $em = $this->initEntityManager();
+        $conn = $em->getConnection();
+        $databaseInfo = $conn->getDatabasePlatform();
+        $databaseName = $databaseInfo->getName();
+        $databaseName = strtolower(substr($databaseName, 0, 5));
+        if ('mysql' == $databaseName) {
+            //mysql加上on update current timestamp sqlite不支持
+            $tableList = DB::getTables();
+            foreach ($tableList as $table) {
+                $alertSql = "ALTER TABLE `{$table->getName()}` CHANGE COLUMN `update_time` `update_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;";
+                DB::exec($alertSql);
+            }
+        }
     }
 
     /**
@@ -260,7 +273,7 @@ SQL;
      * 初始化entity manager
      * @throws ORMException
      */
-    public static function initEntityManager()
+    public function initEntityManager()
     {
         $installEntityDir = ROOT_APP . DS . 'Index' . DS . 'Install' . DS . 'Entity';
         //orm加载
@@ -319,6 +332,9 @@ SQL;
                     $data['config']['DB_TYPE'] = 'pdo_sqlite';
                     $data['config']['SQLITE_DRIVER'] = 'sqlite';
                     $data['config']['SQLITE_PATH'] = $host;
+                    break;
+                default:
+                    throw new \Exception('还没有实现这个数据库的安装,请修改app\Index\Model\Install.php->function install()');
                     break;
             }
 

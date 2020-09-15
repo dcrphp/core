@@ -43,10 +43,17 @@ class DbManager extends Plugins
             "datetime",
             array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '添加时间')
         );
+        //mysql要加上on update current timestamp
+        $databasePlatformName = DB::getDatabasePlatform();
+        if ('mysql' == $databasePlatformName) {
+            $updateOption = array("notnull" => true, 'columnDefinition' => "DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ", 'comment' => '更新时间');
+        } else {
+            $updateOption = array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '更新时间');
+        }
         $clsTable->addColumn(
             "update_time",
             "datetime",
-            array("notnull" => true, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '添加时间')
+            $updateOption
         );
         $clsTable->addColumn(
             "is_approval",
