@@ -39,7 +39,7 @@
                 <ul class="cl">
                     {% for menu_key,menu_detail in menu %}
                     <li class="dropDown dropDown_hover">
-                        <a onclick="show_menu('{{menu_key}}')" href="javascript:void(0);">{{menu_detail.title}}</a>
+                        <a onclick="show_menu('{{menu_key}}')" href="javascript:void(0);"><i class="Hui-iconfont">{{menu_detail.icon|raw}}</i>{{menu_detail.title}}</a>
                     </li>
                     {% endfor %}
                     <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i
@@ -87,7 +87,8 @@
         {% for menu_key,menu_detail in menu %}
         <ul id="{{menu_key}}" class="hidden menu_item">
             {% for menu_detail_sub in menu_detail.sub %}
-            <li><a data-href="{{menu_detail_sub.url}}" data-title="{{menu_detail_sub.title}}" href="javascript:;">{{menu_detail_sub.title}}</a>
+            <li>
+                <a style="line-height: 32px;padding-left: 10px;border-bottom: none;font-weight: normal;" data-href="{{menu_detail_sub.url}}" data-title="{{menu_detail_sub.title}}" href="javascript:;">{{menu_detail_sub.title}}</a>
             </li>
             {% endfor %}
         </ul>
