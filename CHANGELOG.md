@@ -11,8 +11,7 @@
 　　4、js添加对checkbox的操作  
 　　5、字段的update_time完善  
 　　6、后台菜单改版  
-　　7、后台菜单后台配置  
-　　8、增加Log::browserLog输出日志在浏览器可看  
+　　7、增加Log::browserLog输出日志在浏览器可看  
 
 1.0.6-alpha2(20200827)  
 　　1、计划任务中心  
