@@ -42,4 +42,19 @@ class Log
         $clsSystemLogger->setLogInfo($logDetail);
         $clsSystemLogger->$level();
     }
+
+    /**
+     * 输出日志到浏览器的console中
+     * @param $logInfo
+     */
+    public static function browserLog($logInfo)
+    {
+        $logDetail = array();
+        if (!is_array($logInfo)) {
+            $logDetail['message'] = $logInfo;
+        } else {
+            $logDetail = $logInfo;
+        }
+        echo "<script>console.log('" . json_encode($logDetail) . "');</script>";
+    }
 }

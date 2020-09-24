@@ -37,24 +37,17 @@
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
                 <ul class="cl">
+                    {% for menu_key,menu_detail in menu %}
+                    <li class="dropDown dropDown_hover">
+                        <a onclick="show_menu('{{menu_key}}')" href="javascript:void(0);">{{menu_detail.title}}</a>
+                    </li>
+                    {% endfor %}
                     <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i
-                        class="Hui-iconfont">&#xe6f1;</i> 快捷 <i class="Hui-iconfont">&#xe6d5;</i></a>
-                    <ul class="dropDown-menu menu radius box-shadow">
-                        <li><a href="/" target="_blank"><i class="Hui-iconfont">&#xe616;</i> 前台</a></li>
-                        <li><a href="https://github.com/dcrphp/core/wiki" target="_blank"><i class="Hui-iconfont">&#xe633;</i> 帮助</a></li>
-                    </ul>
-                </li>
-                    <li class="dropDown dropDown_hover hidden"><a href="javascript:;" class="dropDown_A"><i
-                            class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            class="Hui-iconfont">&#xe6f1;</i> 快捷 <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i
-                                    class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-                            <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i
-                                    class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-                            <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i
-                                    class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-                            <li><a href="javascript:;" onclick="user_add('添加用户','user-add.html','','510')"><i
-                                    class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+                            <li><a href="/" target="_blank"><i class="Hui-iconfont">&#xe616;</i> 前台</a></li>
+                            <li><a href="https://github.com/dcrphp/core/wiki" target="_blank"><i class="Hui-iconfont">&#xe633;</i>
+                                帮助</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -89,19 +82,15 @@
     </div>
 </header>
 <aside class="Hui-aside">
-    <div class="menu_dropdown bk_2">
+    <div class="ml-10">
         <!--这里通过/app/Admin/Config/Menu.php配置-->
-        {% for menu_detail in menu %}
-        <dl>
-            <dt><i class="Hui-iconfont">{{menu_detail.icon|raw}}</i> {{menu_detail.title}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    {% for menu_detail_sub in menu_detail.sub %}
-                    <li><a data-href="{{menu_detail_sub.url}}" data-title="{{menu_detail_sub.title}}" href="javascript:;">{{menu_detail_sub.title}}</a></li>
-                    {% endfor %}
-                </ul>
-            </dd>
-        </dl>
+        {% for menu_key,menu_detail in menu %}
+        <ul id="{{menu_key}}" class="hidden menu_item">
+            {% for menu_detail_sub in menu_detail.sub %}
+            <li><a data-href="{{menu_detail_sub.url}}" data-title="{{menu_detail_sub.title}}" href="javascript:;">{{menu_detail_sub.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
         {% endfor %}
     </div>
 </aside>
@@ -145,63 +134,17 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="{{admin_resource_url}}/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 <script type="text/javascript">
-    $(function () {
-        /*$("#min_title_list li").contextMenu('Huiadminmenu', {
-            bindings: {
-                'closethis': function(t) {
-                    console.log(t);
-                    if(t.find("i")){
-                        t.find("i").trigger("click");
-                    }
-                },
-                'closeall': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Email');
-                },
-            }
-        });*/
-    });
-
     /*个人信息*/
     function password_edit(title, url) {
         layer_show(title, url, 500, 300);
     }
-
-    /*资讯-添加*/
-    function article_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
+    function show_menu(key){
+        $('.menu_item').each(function(index){
+            $(this).attr('class','hidden menu_item');
+            //console.log($(this))
         });
-        layer.full(index);
+        $('#'+key).attr('class','show menu_item');
     }
-
-    /*图片-添加*/
-    function picture_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-
-    /*产品-添加*/
-    function product_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
-
-    /*用户-添加*/
-    function user_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
-
-
 </script>
 </body>
 </html>
