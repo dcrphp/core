@@ -1,3 +1,12 @@
+/**
+ * 编辑页面说明
+ * @param page_name
+ */
+function edit_page_description(page_name)
+{
+
+}
+
 function checkbox_select_all(checkbox_name)
 {
     $("input[name='" + checkbox_name + "']").each(function () {

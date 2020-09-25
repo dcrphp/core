@@ -253,7 +253,7 @@ SQL;
             //mysql加上on update current timestamp sqlite不支持
             $tableList = DB::getTables();
             foreach ($tableList as $table) {
-                $alertSql = "ALTER TABLE `{$table->getName()}` CHANGE COLUMN `update_time` `update_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;";
+                $alertSql = "ALTER TABLE `{$table->getName()}` CHANGE COLUMN `update_time` `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;";
                 DB::exec($alertSql);
             }
         }

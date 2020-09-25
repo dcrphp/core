@@ -24,6 +24,13 @@ class Crontab
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $addTime = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="update_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $updateTime = 'CURRENT_TIMESTAMP';
@@ -38,14 +45,14 @@ class Crontab
     /**
      * @var int
      *
-     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"default"="0"})
      */
     private $addUserId = '0';
 
     /**
      * @var int
      *
-     * @ORM\Column(name="zt_id", type="smallint", nullable=false, options={"default"=1})
+     * @ORM\Column(name="zt_id", type="smallint", nullable=false, options={"default"="1"})
      */
     private $ztId = '1';
 

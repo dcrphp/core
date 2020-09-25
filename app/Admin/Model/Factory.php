@@ -10,6 +10,7 @@
 
 namespace app\Admin\Model;
 
+use app\Model\Entity\PageDescription;
 use dcr\Session;
 use Exception;
 use phpDocumentor\Reflection\DocBlockFactory;
@@ -32,6 +33,14 @@ class Factory
         if (!$dataList['page_model']) {
             throw new Exception('请设置本页模块,参考 Admin->Index->Index->index()');
         }
+        $pageName = $_SERVER['REDIRECT_URL'];
+        //得出编辑信息
+        $clsPageDescription = container('em')->getRepository('\app\Model\Entity\PageDescription')->findBy(array('name' => $pageName));
+        $pageDescription = '';
+        if ($clsPageDescription) {
+            $pageDescription = $clsPageDescription[0]->getDescription();
+        }
+
         $userId = session('userId');
 
         //权限系统具体文档可以看https://github.com/junqing124/dcrphp/wiki/%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F
@@ -112,6 +121,8 @@ class Factory
         $resultStr = $admin->common($view);
         $dataCommon = array('username' => Session::_get('username'));
         $dataList = array_merge($dataList, $dataCommon);
+        $dataList['page_name'] = $pageName;
+        $dataList['page_description'] = $pageDescription;
         if ($resultStr['ack']) {
             foreach ($dataList as $key => $data) {
                 $view->assign($key, $data);

@@ -5,17 +5,17 @@ namespace app\Model\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ApiPermission
+ * PageDescription
  *
- * @ORM\Table(name="api_permission", uniqueConstraints={@ORM\UniqueConstraint(name="uq_api_permission_table_name", columns={"table_name"})})
+ * @ORM\Table(name="page_description", uniqueConstraints={@ORM\UniqueConstraint(name="udx_name", columns={"name"})})
  * @ORM\Entity
  */
-class ApiPermission
+class PageDescription
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false, options={"comment"="ID"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,7 +24,7 @@ class ApiPermission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP","comment"="添加时间"})
      */
     private $addTime = 'CURRENT_TIMESTAMP';
 
@@ -38,37 +38,37 @@ class ApiPermission
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_approval", type="boolean", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="is_approval", type="boolean", nullable=false, options={"default"="1","comment"="审核状态"})
      */
     private $isApproval = true;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="add_user_id", type="smallint", nullable=false)
+     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"comment"="添加人ID"})
      */
     private $addUserId = '0';
 
     /**
      * @var int
      *
-     * @ORM\Column(name="zt_id", type="smallint", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="zt_id", type="smallint", nullable=false, options={"comment"="帐套ID"})
      */
-    private $ztId = '1';
+    private $ztId = '0';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="table_name", type="string", length=20, nullable=false, options={"comment"="表名"})
+     * @ORM\Column(name="name", type="string", length=100, nullable=false, options={"default"="''","comment"="页面uri"})
      */
-    private $tableName = '';
+    private $name = '\'\'';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="field_name", type="string", length=300, nullable=false, options={"comment"="多字段用,分隔，全部请填*"})
+     * @ORM\Column(name="description", type="string", length=300, nullable=false, options={"default"="''","comment"="页面说明"})
      */
-    private $fieldName = '';
+    private $description = '\'\'';
 
 
 
@@ -87,7 +87,7 @@ class ApiPermission
      *
      * @param \DateTime $addTime
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
     public function setAddTime($addTime)
     {
@@ -111,7 +111,7 @@ class ApiPermission
      *
      * @param \DateTime $updateTime
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
     public function setUpdateTime($updateTime)
     {
@@ -135,7 +135,7 @@ class ApiPermission
      *
      * @param bool $isApproval
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
     public function setIsApproval($isApproval)
     {
@@ -159,7 +159,7 @@ class ApiPermission
      *
      * @param int $addUserId
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
     public function setAddUserId($addUserId)
     {
@@ -183,7 +183,7 @@ class ApiPermission
      *
      * @param int $ztId
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
     public function setZtId($ztId)
     {
@@ -203,50 +203,50 @@ class ApiPermission
     }
 
     /**
-     * Set tableName.
+     * Set name.
      *
-     * @param string $tableName
+     * @param string $name
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
-    public function setTableName($tableName)
+    public function setName($name)
     {
-        $this->tableName = $tableName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get tableName.
+     * Get name.
      *
      * @return string
      */
-    public function getTableName()
+    public function getName()
     {
-        return $this->tableName;
+        return $this->name;
     }
 
     /**
-     * Set fieldName.
+     * Set description.
      *
-     * @param string $fieldName
+     * @param string $description
      *
-     * @return ApiPermission
+     * @return PageDescription
      */
-    public function setFieldName($fieldName)
+    public function setDescription($description)
     {
-        $this->fieldName = $fieldName;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get fieldName.
+     * Get description.
      *
      * @return string
      */
-    public function getFieldName()
+    public function getDescription()
     {
-        return $this->fieldName;
+        return $this->description;
     }
 }

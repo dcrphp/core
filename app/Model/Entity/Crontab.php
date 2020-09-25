@@ -24,9 +24,9 @@ class Crontab
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="add_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="update_time", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $addTime = 'CURRENT_TIMESTAMP';
+    private $updateTime = 'CURRENT_TIMESTAMP';
 
     /**
      * @var bool
@@ -38,30 +38,30 @@ class Crontab
     /**
      * @var int
      *
-     * @ORM\Column(name="add_user_id", type="smallint", nullable=false)
+     * @ORM\Column(name="add_user_id", type="smallint", nullable=false, options={"default"="1"})
      */
-    private $addUserId = '0';
+    private $addUserId = '1';
 
     /**
      * @var int
      *
-     * @ORM\Column(name="zt_id", type="smallint", nullable=false)
+     * @ORM\Column(name="zt_id", type="smallint", nullable=false, options={"default"="1"})
      */
-    private $ztId = '0';
+    private $ztId = '1';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false, options={"default"="''","comment"="名称"})
+     * @ORM\Column(name="name", type="string", length=50, nullable=false, options={"comment"="名称"})
      */
-    private $name = '\'\'';
+    private $name = '';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="process_id", type="string", length=50, nullable=false, options={"default"="''","comment"="进程id"})
+     * @ORM\Column(name="process_id", type="string", length=50, nullable=false, options={"comment"="进程id"})
      */
-    private $processId = '\'\'';
+    private $processId = '';
 
     /**
      * @var int
@@ -87,9 +87,9 @@ class Crontab
     /**
      * @var string
      *
-     * @ORM\Column(name="msg", type="string", length=500, nullable=false, options={"default"="''","comment"="消息结果"})
+     * @ORM\Column(name="msg", type="string", length=500, nullable=false, options={"comment"="消息结果"})
      */
-    private $msg = '\'\'';
+    private $msg = '';
 
     /**
      * @var string
@@ -111,27 +111,27 @@ class Crontab
     }
 
     /**
-     * Set addTime.
+     * Set updateTime.
      *
-     * @param \DateTime $addTime
+     * @param \DateTime $updateTime
      *
      * @return Crontab
      */
-    public function setAddTime($addTime)
+    public function setUpdateTime($updateTime)
     {
-        $this->addTime = $addTime;
+        $this->updateTime = $updateTime;
 
         return $this;
     }
 
     /**
-     * Get addTime.
+     * Get updateTime.
      *
      * @return \DateTime
      */
-    public function getAddTime()
+    public function getUpdateTime()
     {
-        return $this->addTime;
+        return $this->updateTime;
     }
 
     /**
