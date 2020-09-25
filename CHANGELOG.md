@@ -5,7 +5,7 @@
 　　4、dcrphp core独立成包提供输出  
 　　5、重建权限系统  
   
-1.0.6-alpha3(未知)  
+1.0.6-alpha3(20200925)  
 　　1、修正获取get或post值为0时无法获取的BUG  
 　　2、使用dcrphp/container替换dcr/Container，dcrphp/container提供了丰富的开箱即用的组件,具体可以看https://github.com/dcrphp/container  
 　　3、输出变量增加function pr() 原来的dd或dump已经被占用了  
