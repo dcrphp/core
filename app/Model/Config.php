@@ -7,6 +7,7 @@ namespace app\Model;
 use app\Admin\Model\Admin;
 use app\Model\Concerns\Model;
 use app\Model\Entity\Config as NConfig;
+use app\Model\Entity\PageDescription;
 use dcr\facade\Db;
 
 class Config extends NConfig implements Model
@@ -82,6 +83,61 @@ class Config extends NConfig implements Model
             container('em')->persist($clsConfig);
         } else {
             $clsConfig = Entity::setCommonData($clsConfig, 'updateTime');
+        }
+        container('em')->flush();
+
+        return Admin::commonReturn(array('ack' => 1));
+    }
+
+    /**
+     * @param $pageName
+     * @return string
+     */
+    public function getPageDescription($pageName)
+    {
+        $clsPageDescription = container('em')->getRepository('\app\Model\Entity\PageDescription')->findBy(array('name' => $pageName));
+        $pageDescription = '';
+        if ($clsPageDescription) {
+            $pageDescription = $clsPageDescription[0]->getDescription();
+        }
+        return $pageDescription;
+    }
+
+    /**
+     * 配置单页面的提示信息
+     * @param $pageName
+     * @param $pageDescription
+     * @return array|int[]
+     * @throws \Exception
+     */
+    public function setPageDescription($pageName, $pageDescription)
+    {
+        if (!$pageName) {
+            throw new \Exception('没有页面名');
+        }
+        if (!$pageDescription) {
+            throw new \Exception('没有描述内容');
+        }
+
+        //如果有就更新。没有就添加
+        $info = container('em')->getRepository('\app\Model\Entity\PageDescription')->findBy(
+            array('name' => $pageName)
+        );
+        $action = '';
+        if ($info) {
+            //有 更新
+            $clsPageDec = $info[0];
+            $action = 'edit';
+        } else {
+            $clsPageDec = new PageDescription();
+            $action = 'add';
+        }
+        $clsPageDec->setName($pageName);
+        $clsPageDec->setDescription($pageDescription);
+
+        if ('add' == $action) {
+            $clsPageDec = Entity::setCommonData($clsPageDec);
+            container('em')->persist($clsPageDec);
         }
         container('em')->flush();
 

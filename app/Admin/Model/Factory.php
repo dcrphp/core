@@ -10,7 +10,6 @@
 
 namespace app\Admin\Model;
 
-use app\Model\Entity\PageDescription;
 use dcr\Session;
 use Exception;
 use phpDocumentor\Reflection\DocBlockFactory;
@@ -34,12 +33,9 @@ class Factory
             throw new Exception('请设置本页模块,参考 Admin->Index->Index->index()');
         }
         $pageName = $_SERVER['REDIRECT_URL'];
-        //得出编辑信息
-        $clsPageDescription = container('em')->getRepository('\app\Model\Entity\PageDescription')->findBy(array('name' => $pageName));
-        $pageDescription = '';
-        if ($clsPageDescription) {
-            $pageDescription = $clsPageDescription[0]->getDescription();
-        }
+        //得出页面信息
+        $clsConfig = new \app\Model\Config();
+        $pageDescription = $clsConfig->getPageDescription($pageName);
 
         $userId = session('userId');
 

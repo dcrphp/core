@@ -166,4 +166,13 @@ class Config
         $result = $config->configListDelete(post('id'));
         return Factory::renderJson($result);
     }
+
+    public function editPageDescriptionAjax()
+    {
+        $name = post('name');
+        $description = post('description');
+        $clsConfig = new \app\Model\Config();
+        $result = $clsConfig->setPageDescription($name, $description);
+        return Factory::renderJson($result);
+    }
 }

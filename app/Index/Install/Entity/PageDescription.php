@@ -69,5 +69,4 @@ class PageDescription
      * @ORM\Column(name="description", type="string", length=300, nullable=false, options={"default"="","comment"="页面说明"})
      */
     private $description = '';
-
 }

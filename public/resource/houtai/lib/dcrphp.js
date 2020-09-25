@@ -2,9 +2,12 @@
  * 编辑页面说明
  * @param page_name
  */
-function edit_page_description(page_name)
+function edit_page_description(page_name,page_description)
 {
-
+    layer.prompt({ formType:2, title:'输入页面描述', value: page_description, btnAlign:'l'},function (value,index,elem) {
+        layer.close(index);
+        ajax('/admin/config/editPageDescriptionAjax','name=' + page_name + '&description=' + value);
+    });
 }
 
 function checkbox_select_all(checkbox_name)
@@ -29,19 +32,23 @@ function checkbox_select_invert(checkbox_name)
  * @param select_id
  * @param select_value
  */
-function select_value(select_id,select_value){
+function select_value(select_id,select_value)
+{
     $('#' + select_id).val(select_value);
 }
 
-function showError(result){
+function showError(result)
+{
     let response = $.parseJSON(result.responseText);
     let msg = response.error.message + ',file:' + response.error.file + ',line:' + response.error.line;
     layer.alert(msg, {icon: 2});
 }
-function showFailed(result){
+function showFailed(result)
+{
     layer.alert('操作失败:' + result.msg, {icon: 2});
 }
-function showSuccess(result){
+function showSuccess(result)
+{
     layer.msg('操作成功', {icon: 1, time: 1500});
 }
 
@@ -54,7 +61,8 @@ function showSuccess(result){
  * @param failed_callback 失败调用的function
  * @param error_callback 错误调用的function
  */
-function ajax(url, data, method, success_callback, failed_callback, error_callback) {
+function ajax(url, data, method, success_callback, failed_callback, error_callback)
+{
     if (method == null || method == '') {
         method = 'POST';
     }
@@ -98,7 +106,8 @@ function ajax(url, data, method, success_callback, failed_callback, error_callba
  * @param width 宽
  * @param height 高
  */
-function open_iframe(title, url, width, height) {
+function open_iframe(title, url, width, height)
+{
     if (title == null || title == '') {
         title = false;
     }
