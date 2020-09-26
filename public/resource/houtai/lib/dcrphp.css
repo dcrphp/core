@@ -1,0 +1,116 @@
+.dcr-menu{
+    position:absolute;
+    top:5px;
+    left:8px;
+    color:#282828;
+    font-weight: bold;
+    font-size:18px;
+}
+.nav-dcr{
+    position: absolute;
+    z-index: 10000;
+    left: 3px;
+    top: 0px;
+}
+.nav_left {
+    width: 100px;
+    background: rgba(238,238,238,0.98);
+}
+
+.nav_left ul {
+    width: 100%;
+    height: auto;
+}
+
+.nav_left ul li {
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nav_left ul li span {
+    padding-left: 10px;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    background: rgba(238,238,238);
+    color: #666;
+}
+
+.nav_left ul li span:hover {
+    color: #111;
+    background: #FFFFFF;
+}
+
+.nav_right {
+    min-width: 600px;
+    position: absolute;
+    margin-left: 100px;
+    top: 0px;
+}
+
+.sub {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 10px 0px;
+}
+
+.sub dl {
+    overflow: hidden;
+    padding: 0px 0px 10px 0px;
+}
+
+.sub dt {
+    padding-right:20px;
+    float: left;
+    display: block;
+    position: relative;
+    clear: left;
+}
+
+.sub dt a {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sub dt i {
+    width: 4px;
+    right: 12px;
+    top: 2px;
+    font-size: 10px;
+    position: absolute;
+    font-style: normal;
+}
+
+.sub dd {
+    width: 480px;
+    float: left;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding-right: 20px;
+    border-bottom: 1px dashed #E3E3E3;
+}
+
+.sub dd a {
+    font-size: 12px;
+    float: left;
+    color: #666;
+    padding: 0 10px;
+    margin: 4px 0px 10px 0px;
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 1px solid #E3E3E3;
+}
+
+.sub dd a:hover {
+    color: #FF0036;
+}

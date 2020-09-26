@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/dcrphp/core/v/stable.png)](https://packagist.org/packages/dcrphp/core) 
 [![Latest Unstable Version](https://poser.pugx.org/dcrphp/core/v/unstable.png)](https://packagist.org/packages/dcrphp/core)  
   
-要求：1、php版本>=7.0 2、数据库可用Mysql或Sqlite(可自增数据库)。二次开发请先看wiki:https://github.com/dcrphp/core/wiki/开发者必读  
+DCRPHP是定位于低代码、集群、前后端分离的应用系统。系统要求：1、php版本>=7.0 2、数据库可用Mysql或Sqlite(可自增数据库)。二次开发请先看wiki:https://github.com/dcrphp/core/wiki/开发者必读  
 
 安装源码(下面5选1)：  
 

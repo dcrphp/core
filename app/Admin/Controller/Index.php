@@ -76,6 +76,7 @@ class Index
         $assignData['db_type'] = env('MYSQL_DRIVER', 'mysql');
         $version = config('info.version');
         $assignData['version'] = $version;
+        $assignData['app_name'] = config('info.name');
 
         return Factory::renderPage('index/welcome', $assignData);
     }
