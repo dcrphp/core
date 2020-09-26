@@ -139,6 +139,13 @@
         $(".nav-dcr").addClass('show');
     });
 
+    /*选项卡导航*/
+    $(".nav-dcr").on("click",".menu_dropdown a",function () {
+        Hui_admin_tab(this);
+        //如果想点菜单后删除菜单栏，打开下面这行
+        //$('.nav-dcr').attr('class','nav-dcr hide');
+    });
+
     $("body").addClass("big-page");
 </script>
 </body>

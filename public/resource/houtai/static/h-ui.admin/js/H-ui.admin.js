@@ -268,12 +268,6 @@ $(function () {
         mainCell:'.menu_dropdown dl dd',
     });
     
-    /*选项卡导航*/
-    $(".nav-dcr").on("click",".menu_dropdown a",function () {
-        Hui_admin_tab(this);
-        $('.nav-dcr').attr('class','nav-dcr hide');
-    });
-    
     $(document).on("click","#min_title_list li",function () {
         var bStopIndex=$(this).index();
         var iframe_box=$("#iframe_box");
