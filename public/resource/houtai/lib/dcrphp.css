@@ -9,8 +9,8 @@
 .nav-dcr{
     position: absolute;
     z-index: 10000;
-    left: 3px;
-    top: 0px;
+    left: 0px;
+    top: 3px;
 }
 .nav_left {
     width: 100px;
