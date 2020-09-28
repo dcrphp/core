@@ -23,10 +23,10 @@ class TestWeb extends TestCase
             'password' => '123456'
         ]);
         $html = $ql->getHtml();
-        $this->assertRegExp('/我的桌面/', $html);
+        $this->assertRegExp('/show_menu/', $html);
 
         $html = $ql->get('http://127.0.0.1/admin/index/index')->getHtml();
-        $this->assertRegExp('/我的桌面/', $html);
+        $this->assertRegExp('/show_menu/', $html);
 
         try {
             //有些要附加参数才能自动化访问
