@@ -36,5 +36,7 @@ location / {
     try_files $uri $uri/ /index.php?$query_string;    
 }  
 ```
+apache配置:  
+1
 
 更新日志请看CHANGELOG.md
