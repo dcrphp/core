@@ -267,6 +267,11 @@ $(function () {
         titCell:'.menu_dropdown dl dt',
         mainCell:'.menu_dropdown dl dd',
     });
+
+    /*选项卡导航*/
+    $(".Hui-aside").on("click",".menu_dropdown a",function () {
+        Hui_admin_tab(this);
+    });
     
     $(document).on("click","#min_title_list li",function () {
         var bStopIndex=$(this).index();
