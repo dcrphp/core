@@ -22,6 +22,12 @@ class Captcha
      */
     public function output(int $width = 154, int $height = 40)
     {
+        if (get('width')) {
+            $width = get('width');
+        }
+        if (get('height')) {
+            $height = get('height');
+        }
         //得出等级
         $clsConfig = new \app\Model\Config();
         $level = $clsConfig->getSystemConfig('captcha_level');
