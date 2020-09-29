@@ -163,6 +163,11 @@ class Common
                 }
             }
 
+            //option the data 20200920
+            foreach ($dbInfo as $key => $value) {
+                $dbInfo[$key] = addslashes($value);
+            }
+
             //处理
             if ('edit' == $actionType) {
                 $result = Db::update($tableName, $dbInfo, $tablePreName . "id='{$option['id']}'");
