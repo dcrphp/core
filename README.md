@@ -36,7 +36,14 @@ location / {
     try_files $uri $uri/ /index.php?$query_string;    
 }  
 ```
+
 apache配置:  
-1
+　　1、打开httpd.conf  
+　　2、目录的:AllowOverride None改为AllowOverride All  
+　　3、#LoadModule rewrite_module modules/mod_rewrite.so 前面的#去掉  
+　　4、重启apache
+  
+php内置服务器:  
+php -S 127.0.0.1:8888 -t public/  
 
 更新日志请看CHANGELOG.md
