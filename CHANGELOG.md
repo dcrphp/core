@@ -7,6 +7,7 @@
 
 1.0.6-rc2(未知)  
 　　1、修正Common::CUDDbInfo添加数据时没有转义的BUG  
+　　2、集成Psysh用于制作内置命令行，使用php dcrphp console:shell启动  
 
 1.0.6-rc1(20200928) 
 　　1、菜单布局优化  
