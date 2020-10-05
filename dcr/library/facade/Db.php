@@ -74,7 +74,7 @@ class Db
             $select->setFirstResult($option['offset']);
         }
         if ($option['group']) {
-            $select->group($option['group']);
+            $select->groupby($option['group']);
         }
         if ($option['join']) {
             if (3 == count($option['join']) && $option['join']['type']) {

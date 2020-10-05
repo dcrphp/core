@@ -121,7 +121,6 @@ trait ToolsTableEdit
         $columns = Db::getConnection()->getSchemaManager()->listTableColumns($tableName);
         $defaultConfig = $this->getDefaultFieldConfig();
         foreach ($columns as $clsColumn) {
-            $dbInfoSub = array();
             $fieldName = $clsColumn->getName();
             $clsConfigTEI = new Entity\ConfigTableEditItem();
             $clsConfigTEI->setIsShowList(in_array($fieldName, $defaultConfig['list']) ? 1 : 0);
@@ -134,7 +133,14 @@ trait ToolsTableEdit
             $clsConfigTEI->setIsInsertRequired(0);
             $clsConfigTEI->setIsInsert(0);
             $clsConfigTEI->setDataType(substr($fieldName, 0, 3) == 'is_' ? 'checkbox' : 'text');
-            $clsConfigTEI->setTitle($clsColumn->getComment() ? $clsColumn->getComment() : '');
+
+            //得出显示字段
+            $comment = $clsColumn->getComment() ? $clsColumn->getComment() : '';
+            if (empty($comment)) {
+                //如果是默认要显示的字段，则显示名
+                $comment = in_array($fieldName, $defaultConfig['search']) ? ucfirst($fieldName) : '';
+            }
+            $clsConfigTEI->setTitle($comment);
             $clsConfigTEI->setDbFieldName($fieldName);
             $clsConfigTEI->setCtelId($id);
             $clsConfigTEI = Entity::setCommonData($clsConfigTEI);

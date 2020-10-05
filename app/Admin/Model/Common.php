@@ -61,10 +61,28 @@ class Common
             $html = '';
 
             //默认或设置值
+            //额外的配置，请看
             $default = $itemInfo['default_str'];
-            if ('var.' == substr($default, 0, 4)) {
+            /*if ('var.' == substr($default, 0, 4)) {
                 $var = substr($default, 4);
                 $default = $varList[$var];
+            }*/
+            //看下是不是{json}配置
+            $defaultArr = json_decode($default, 1);
+            if ($defaultArr) {
+                #pr($defaultArr);
+                switch ($defaultArr['type']) {
+                    case 'config':
+                        $default = config($defaultArr['name']);
+                        break;
+                    case 'var':
+                        $default = $default = $varList[$defaultArr['name']];
+                        break;
+                    case 'database':
+                        $databaseDataList = Db::select(array('table'=>$defaultArr['table'],'limit'=>$defaultArr['limit'],'where'=>$defaultArr['where'],'order'=>$defaultArr['order'],'group'=>$defaultArr['group'],'col'=>"{$defaultArr['key']},{$defaultArr['value']}",));
+                        $default = array_column($databaseDataList, $defaultArr['value'], $defaultArr['key']);
+                        break;
+                }
             }
 
             //确定input值
@@ -73,7 +91,6 @@ class Common
                 $valueList[$itemInfo['db_field_name']] = implode(',', $valueList[$itemInfo['db_field_name']]);
             }
             $inputValue = isset($valueList[$itemInfo['db_field_name']]) ? $valueList[$itemInfo['db_field_name']] : $default;
-            $type = '';
             $inputNameId = $option['input_name_pre'] ? $option['input_name_pre'] . $itemInfo['db_field_name'] : $itemInfo['db_field_name'];
             switch ($itemInfo['data_type']) {
                 case 'text':
@@ -91,7 +108,7 @@ class Common
                     $html = Form::radio()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
                     break;
                 case 'checkbox':
-                    if (1 == $inputValue) {
+                    if ("1" == $inputValue) {
                         $inputValue = '是';
                     }
                     $clsLabel = Form::label()->class('mr-10');

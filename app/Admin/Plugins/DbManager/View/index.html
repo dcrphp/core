@@ -111,7 +111,7 @@
                                         <option value="index">普通索引</option>
                                     </select>
                                 </td>
-                                <td><input class="btn btn-danger radius" type="button" value="删除本行"></td>
+                                <td><input class="btn btn-danger radius" onclick="remove(this)" type="button" value="删除本行"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,6 +165,14 @@
                 }
             }
         );
+    }
+    function remove(obj)
+    {
+        let l_index = layer.confirm('确认要删除吗？', function (index) {
+            $(obj).parent().parent().remove();
+            //console.log($(obj).parent().parent());
+            layer.close(l_index);
+        });
     }
 </script>
 </body>

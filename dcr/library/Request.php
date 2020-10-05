@@ -177,7 +177,7 @@ class Request extends DcrBase
      * 上传文件
      * @param $inputName
      * @param $targetDir
-     * @param array $ruler 规则，是一个数组，配置如下 newFileName=> 新文件名, maxSize=>'5M'(use "B", "K", M", or "G") allowFile=> array('image/png', 'image/gif')
+     * @param array $ruler 规则，是一个数组，配置如下 overWrite=> 同步文件覆盖 默认为false，newFileName=> 新文件名, maxSize=>'5M'(use "B", "K", M", or "G") allowFile=> array('image/png', 'image/gif')
      *  allowFile配置可见:http://www.iana.org/assignments/media-types/media-types.xhtml
      * @return array
      */
@@ -193,7 +193,11 @@ class Request extends DcrBase
             return $result;
         }
 
-        $storage = new \Upload\Storage\FileSystem($targetDir);
+        if (!isset($ruler['overWrite'])) {
+            $ruler['overWrite'] = 'false';
+        }
+
+        $storage = new \Upload\Storage\FileSystem($targetDir, $ruler['overWrite']);
         $file = new \Upload\File($inputName, $storage);
 
         $newFileName = $ruler['newFileName'] ? $ruler['newFileName'] : time() . uniqid();
@@ -201,7 +205,7 @@ class Request extends DcrBase
 
         //默认的属性和大小
         if (!isset($ruler['allowFile'])) {
-            $ruler['allowFile'] = '*.*';
+            $ruler['allowFile'] = array('image/png', 'image/gif', 'image/jpg', 'image/jpeg');
         }
         if (!isset($ruler['maxSize'])) {
             $ruler['maxSize'] = '2M';
@@ -232,7 +236,7 @@ class Request extends DcrBase
             // Fail!
             $errors = $file->getErrors();
             $result['ack'] = 0;
-            $result['msg'] = $errors . "->当前类型是:{$fileData['mime']},大小是:{$fileData['size']}";
+            $result['msg'] = $errors . "->当前类型是:{$fileData['mime']},大小是:{$fileData['size']},错误是:" . implode(',', $errors);
         }
         return $result;
     }
