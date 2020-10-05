@@ -27,7 +27,7 @@
         "dcrphp/cache": "1.0.1",
         "dcrphp/config": "1.0.3",
         "dcrphp/log": "1.0.2",
-        "dcrphp/form": "1.0.1-alpha3",
+        "dcrphp/form": "1.0.1-alpha4",
         "dcrphp/container": "1.0.1-alpha2",
         "dcrphp/annotations": "*",
         "graylog2/gelf-php": "*",
