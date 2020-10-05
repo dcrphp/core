@@ -77,8 +77,6 @@ class Config
      */
     private $clId = '0';
 
-
-
     /**
      * Get id.
      *

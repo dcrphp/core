@@ -105,8 +105,6 @@ class ConfigListItem
      */
     private $clId = '0';
 
-
-
     /**
      * Get id.
      *

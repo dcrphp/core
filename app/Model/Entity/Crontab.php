@@ -98,8 +98,6 @@ class Crontab
      */
     private $status = '0';
 
-
-
     /**
      * Get id.
      *

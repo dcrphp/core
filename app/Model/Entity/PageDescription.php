@@ -70,8 +70,6 @@ class PageDescription
      */
     private $description = '\'\'';
 
-
-
     /**
      * Get id.
      *

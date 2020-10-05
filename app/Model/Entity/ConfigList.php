@@ -84,8 +84,6 @@ class ConfigList
      */
     private $keyword = '';
 
-
-
     /**
      * Get id.
      *

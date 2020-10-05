@@ -182,8 +182,6 @@ class ConfigTableEditList
      */
     private $buttonAreaAdditionHtml = '';
 
-
-
     /**
      * Get id.
      *

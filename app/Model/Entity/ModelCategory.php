@@ -77,8 +77,6 @@ class ModelCategory
      */
     private $parentId = '0';
 
-
-
     /**
      * Get id.
      *

@@ -154,8 +154,6 @@ class ConfigTableEditItem
      */
     private $isListEdit = '0';
 
-
-
     /**
      * Get id.
      *

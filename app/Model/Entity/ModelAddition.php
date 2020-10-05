@@ -84,8 +84,6 @@ class ModelAddition
      */
     private $maMlId = '0';
 
-
-
     /**
      * Get id.
      *

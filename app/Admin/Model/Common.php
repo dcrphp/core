@@ -79,7 +79,7 @@ class Common
                         $default = $default = $varList[$defaultArr['name']];
                         break;
                     case 'database':
-                        $databaseDataList = Db::select(array('table'=>$defaultArr['table'],'limit'=>$defaultArr['limit'],'where'=>$defaultArr['where'],'order'=>$defaultArr['order'],'group'=>$defaultArr['group'],'col'=>"{$defaultArr['key']},{$defaultArr['value']}",));
+                        $databaseDataList = Db::select(array('table' => $defaultArr['table'],'limit' => $defaultArr['limit'],'where' => $defaultArr['where'],'order' => $defaultArr['order'],'group' => $defaultArr['group'],'col' => "{$defaultArr['key']},{$defaultArr['value']}",));
                         $default = array_column($databaseDataList, $defaultArr['value'], $defaultArr['key']);
                         break;
                 }
