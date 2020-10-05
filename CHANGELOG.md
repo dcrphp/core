@@ -8,8 +8,8 @@
 1.0.6-rc2(未知)  
 　　1、修正Common::CUDDbInfo添加数据时没有转义的BUG  
 　　2、集成Psysh用于制作内置命令行，使用php dcrphp console:shell启动  
-　　3、修正或增加uploads功能  
-　　4、修正插件/数据库管理里，删除本行无效，及一些默认注释的配置  
+　　3、修正或增强request.uploads  
+　　4、修正[插件/数据库管理]，[删除本行]按钮无效，及一些默认字段的注释  
 　　5、单表管理里的默认字段配置升级，支持配置、变量、数据库数据等  
 　　6、修正DB类中select的group  
 
