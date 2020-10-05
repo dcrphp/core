@@ -46,7 +46,7 @@
         <fieldset class="layui-elem-field layui-field-title">
             <legend>建表</legend>
             <div class="layui-field-box">
-                <div class='Huialert Huialert-info'><i class='Hui-iconfont'>&#xe6a6;</i>本建表语句，会自动建立核心字段:id,add_time,update_time,is_approval,add_user_id,zt_id，数据库规范请遵守:https://github.com/dcrphp/core/wiki/规范:数据库
+                <div class='Huialert Huialert-info'><i class='Hui-iconfont'>&#xe6a6;</i>本建表语句，会自动建立核心字段:id,add_time,update_time,is_approval,add_user_id,zt_id，如果字段名为name或title时，生成的单表管理会自动开启搜索及列表展示。数据库规范请遵守:https://github.com/dcrphp/core/wiki/规范:数据库
                 </div>
                 <form action="/admin/tools/plugins-ajax/create-table" method="post" class="form form-horizontal"
                       id="form">

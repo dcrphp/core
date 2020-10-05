@@ -136,10 +136,13 @@ trait ToolsTableEdit
 
             //得出显示字段
             $comment = $clsColumn->getComment() ? $clsColumn->getComment() : '';
+            //var_dump($comment);
             if (empty($comment)) {
                 //如果是默认要显示的字段，则显示名
-                $comment = in_array($fieldName, $defaultConfig['search']) ? ucfirst($fieldName) : '';
+                //pr($fieldName);
+                $comment = in_array($fieldName, $defaultConfig['search']) ? ucfirst(strtolower($fieldName)) : '';
             }
+            //pr($comment);
             $clsConfigTEI->setTitle($comment);
             $clsConfigTEI->setDbFieldName($fieldName);
             $clsConfigTEI->setCtelId($id);
