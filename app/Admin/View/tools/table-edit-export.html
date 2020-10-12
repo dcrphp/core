@@ -1,0 +1,19 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    {% include 'common/header.html' ignore missing %}
+</head>
+<body>
+<article class="page-container">
+    请复制如下sql到[系统工具/插件中心/数据库管理]里执行就行了(请先开启插件及配置好权限):
+    <textarea class="textarea radius mt-10" style="height: 500px;">{{create}}
+        {{table_insert}}
+        {{col_insert}}
+    </textarea>
+</article>
+
+{% include 'common/footer.html' ignore missing %}
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

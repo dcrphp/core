@@ -22,6 +22,22 @@ trait ToolsTableEdit
         return Db::select($option);
     }
 
+    public function getTableEditConfigById($id, $option = array())
+    {
+        $info = Db::select(
+            array(
+                'table' => 'config_table_edit_list',
+                'where' => array("id={$id}"),
+                'col' => $option['col'],
+                'limit' => 1,
+            )
+        );
+        if (!$info) {
+            throw new \Exception('没有找到信息');
+        }
+        return current($info);
+    }
+
     /**
      * 通过关键字 获取表的配置
      * @param $key

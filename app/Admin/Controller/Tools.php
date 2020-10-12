@@ -498,4 +498,38 @@ class Tools
 
         return Factory::renderJson($result);
     }
+
+    /**
+     * 导出单表的sql
+     */
+    public function tableEditExportView()
+    {
+        if ('pdo_mysql' != env('DB_TYPE')) {
+            echo '本功能目前仅支持mysql';
+            exit;
+        }
+        $assignData = array();
+        $assignData['page_title'] = '单表中心';
+        $assignData['page_model'] = '导出';
+        $id = get('ctel_id');
+        $clsTools = new \app\Model\Tools();
+        $info = $clsTools->getTableEditConfigById($id, array('col' => 'id,table_name,keyword'));
+        $sql = "show create table {$info['table_name']}";
+        $tableInfo = Db::query($sql);
+        $assignData['create'] = $tableInfo[0]['Create Table'] . ';';
+
+        $config = $clsTools->getTableEditConfig($info['keyword']);
+        $colList = $config['col'];
+        unset($config['col']);
+        $tableInsert = "insert into config_table_edit_list(" . implode(",", array_keys($config)) . ") values('". implode("','", array_values($config)) ."');";
+        $assignData['table_insert'] = $tableInsert;
+
+        $colInsert = '';
+        foreach ($colList as $detail) {
+            $colInsert .= "insert into config_table_edit_item(" . implode(",", array_keys($detail)) . ") values('". implode("','", array_values($detail)) ."');";
+        }
+        $assignData['col_insert'] = $colInsert;
+
+        return Factory::renderPage('tools/table-edit-export', $assignData);
+    }
 }
