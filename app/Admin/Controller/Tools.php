@@ -521,12 +521,12 @@ class Tools
         $config = $clsTools->getTableEditConfig($info['keyword']);
         $colList = $config['col'];
         unset($config['col']);
-        $tableInsert = "insert into config_table_edit_list(" . implode(",", array_keys($config)) . ") values('". implode("','", array_values($config)) ."');";
+        $tableInsert = "insert into config_table_edit_list(" . implode(",", array_keys($config)) . ") values('" . implode("','", array_values($config)) . "');";
         $assignData['table_insert'] = $tableInsert;
 
         $colInsert = '';
         foreach ($colList as $detail) {
-            $colInsert .= "insert into config_table_edit_item(" . implode(",", array_keys($detail)) . ") values('". implode("','", array_values($detail)) ."');";
+            $colInsert .= "insert into config_table_edit_item(" . implode(",", array_keys($detail)) . ") values('" . implode("','", array_values($detail)) . "');";
         }
         $assignData['col_insert'] = $colInsert;
 
