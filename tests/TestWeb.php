@@ -17,6 +17,7 @@ class TestWeb extends TestCase
 
     public function testWeb()
     {
+
         //登陆
         $ql = QueryList::post('http://127.0.0.1/admin/index/login', [
             'username' => 'admin',

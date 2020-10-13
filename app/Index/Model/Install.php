@@ -129,7 +129,7 @@ SQL;
                     'list_where' => '',
                     'edit_window_width' => '95%',
                     'edit_window_height' => '95%',
-                    'addition_option_html' => '<a title="字段" href="javascript:;" onclick="open_iframe(\'配置字段\',\'/admin/tools/table-edit-list-view/config_table_edit_item?ctel_id={db.index_id}&list_where=ctel_id={db.index_id}\',\'95%\',\'95%\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont Hui-iconfont-menu"></i></a>',
+                    'addition_option_html' => '<a title="字段" href="javascript:;" onclick="open_iframe(\'配置字段\',\'/admin/tools/table-edit-list-view/config_table_edit_item?ctel_id={db.index_id}&list_where=ctel_id={db.index_id}\',\'95%\',\'95%\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont Hui-iconfont-menu"></i></a> <a title="导出" href="javascript:;" onclick="open_iframe(\'导出\',\'/admin/tools/table-edit-export-view?ctel_id={db.index_id}\',\'95%\',\'95%\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont Hui-iconfont-daochu"></i></a>',
                     'allow_config_from_request' => '',
                     'add_page_addition_html' => '',
                     'edit_button_addition_html' => '',
