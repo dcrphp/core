@@ -7,9 +7,9 @@ DCRPHP是定位于低代码、集群、前后端分离的应用系统。系统�
 
 安装源码(下面5选1)：  
 
-    1、composer create-project dcrphp/core dcrphp 1.0.5  
+    1、composer create-project dcrphp/core dcrphp  
     2、进入根目录执行:
-        composer require dcrphp/core  1.0.5  
+        composer require dcrphp/core  
         把vender/dcrphp/core/下的内容剪切到根目录  
     3、源码安装:
         https://github.com/dcrphp/core/tags 下载需要的版本，解压后:  
