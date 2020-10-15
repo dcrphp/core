@@ -6,6 +6,9 @@
 　　5、重建权限系统  
 　　6、代码生成器  
 
+1.0.6(20201015)  
+　　1、修正模板选择项bug  
+
 1.0.6-rc2(20201012)  
 　　1、修正Common::CUDDbInfo添加数据时没有转义的BUG  
 　　2、集成Psysh用于制作内置命令行，使用php dcrphp console:shell启动  
