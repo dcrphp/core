@@ -3,7 +3,10 @@
 [![Latest Stable Version](https://poser.pugx.org/dcrphp/core/v/stable.png)](https://packagist.org/packages/dcrphp/core) 
 [![Latest Unstable Version](https://poser.pugx.org/dcrphp/core/v/unstable.png)](https://packagist.org/packages/dcrphp/core)  
   
-DCRPHP是定位于低代码、集群、前后端分离的应用系统。系统要求：1、php版本>=7.0 2、数据库可用Mysql或Sqlite(可自增数据库)。二次开发请先看wiki:https://github.com/dcrphp/core/wiki/开发者必读  
+DCRPHP是定位于低代码、集群、前后端分离的应用系统。  
+1、php版本>=7.0  
+2、数据库可用Mysql或Sqlite(可在安装页面增加数据库)  
+3、二次开发请先看wiki:https://github.com/dcrphp/core/wiki/开发者必读    
 
 安装源码(下面5选1)：  
 
@@ -29,21 +32,21 @@ Web服务器配置根目录为:public
     安装路径是:host/install    
     安装完成后，后台地址是:host/admin，使用配置好的用户名和密码登陆  
   
-附： 
-nginx配置:  
+附:  
+1、nginx配置:  
 ```charset utf-8;  
 location / {  
     try_files $uri $uri/ /index.php?$query_string;    
 }  
 ```
 
-apache配置:  
+2、apache配置:  
 　　1、打开httpd.conf  
 　　2、目录的:AllowOverride None改为AllowOverride All  
 　　3、#LoadModule rewrite_module modules/mod_rewrite.so 前面的#去掉  
 　　4、重启apache
   
-php内置服务器:  
+3、php内置服务器:  
 php -S 127.0.0.1:8888 -t public/  
 
 更新日志请看CHANGELOG.md
