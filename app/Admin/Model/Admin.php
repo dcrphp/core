@@ -58,8 +58,7 @@ class Admin
         $view->assign('password_len_max', $passwordLimit['max']);
         $view->assign('captcha_len_min', $captchaLimit['min']);
         $view->assign('captcha_len_max', $captchaLimit['max']);
-        $loginResult = $this->yz();
-        return $loginResult;
+        return $this->yz();
     }
 
     /**

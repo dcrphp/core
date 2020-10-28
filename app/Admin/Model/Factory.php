@@ -115,7 +115,7 @@ class Factory
             $admin->setViewDirectoryPath($templateViewDir);
         }
         $resultStr = $admin->common($view);
-        $dataCommon = array('username' => Session::_get('username'));
+        $dataCommon = array('username' => Session::_get('username'), 'user_id' => Session::_get('userId'));
         $dataList = array_merge($dataList, $dataCommon);
         $dataList['page_name'] = $pageName;
         $dataList['page_description'] = $pageDescription;

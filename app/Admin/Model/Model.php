@@ -203,6 +203,7 @@ class Model
      *  'selectId'=> 选中的分类
      *  'subEnabled'=> 只让选最末级的分类
      *  'selectName'=> 这个select的名字
+     *  'addition'=> select附加内容
      * )
      * @return string
      */
@@ -217,7 +218,7 @@ class Model
         //dd($list);
 
         $option['selectName'] = $option['selectName'] ? $option['selectName'] : 'parent_id';
-        $html = "<select name=\"{$option['selectName']}\" id='{$option['selectName']}' aria-required=\"true\" aria-invalid=\"false\">";
+        $html = "<select {$option['addition']} name=\"{$option['selectName']}\" id='{$option['selectName']}' aria-required=\"true\" aria-invalid=\"false\">";
         $html .= "<option value=\"0\">一级分类</option>";
         //dd($list);
         if ($list) {

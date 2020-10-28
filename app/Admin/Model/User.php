@@ -49,8 +49,9 @@ class User
     /**
      * 验证用户信息
      * @param $username
-     * @param $password 加密后的密码
+     * @param $password //加密后的密码
      * @return array
+     * @throws \Exception
      */
     public function check($username, $password)
     {
@@ -90,6 +91,7 @@ class User
      * 登陆用户
      * @param $userId
      * @return true
+     * @throws \Exception
      */
     public function login($userId)
     {

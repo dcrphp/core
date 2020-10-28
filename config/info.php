@@ -10,5 +10,5 @@ return [
     'name' => 'DcrPHP Core',
 
     //版本
-    'version' => '1.0.6-rc2',
+    'version' => '1.0.7-alpha1',
 ];

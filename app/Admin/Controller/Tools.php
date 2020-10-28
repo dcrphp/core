@@ -286,7 +286,7 @@ class Tools
         //开始格式化成标准格式
         //如果是编辑 则得出值
         $info = array();
-        if ('edit' == $type) {
+        if (in_array($type, array('edit', 'view'))) {
             $info = Db::select(
                 array(
                     'table' => $config['table_name'],
@@ -295,12 +295,18 @@ class Tools
                 )
             );
             $info = current($info);
-            $assignData['edit_page_addition_html'] = $clsTools->generateAdditionHtml($config['edit_page_addition_html']);
+            $assignData['edit_page_addition_html'] = $clsTools->generateAdditionHtml(
+                $config['edit_page_addition_html']
+            );
         } else {
             $assignData['add_page_addition_html'] = $clsTools->generateAdditionHtml($config['add_page_addition_html']);
         }
+        $onlyView = 0;
+        if ('view' == $type) {
+            $onlyView = 1;
+        }
         //dd($info);
-        $fieldList = Common::generalHtmlForItem($listCol, $info);
+        $fieldList = Common::generalHtmlForItem($listCol, $info, array(), array('only_view' => $onlyView));
         //dd($fieldList);
 
         $assignData['page_title'] = $config['page_title'];
@@ -417,6 +423,9 @@ class Tools
         $cols = array_keys($listCol);
         if (!in_array('id', $cols)) {
             $cols[] = 'id';
+        }
+        if (!in_array('add_user_id', $cols)) {
+            $cols[] = 'add_user_id';
         }
 
         $list = Db::select(

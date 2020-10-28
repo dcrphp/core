@@ -43,11 +43,11 @@ class Common
      * @param $configItemArr array('data_type'=>'数据类型','db_field_name'=>'数据库字段名','default'=>'默认值', 'is_input_hidden'=>'是不是hidden类型，如果是 则直接设置为hidden,这个只对date_type为date和string生效',)
      * @param array $valueList 设置Input的值 比如想把site_name的值为 DcrPHP系统 则传入传情为 array('site_name'=>'DcrPHP系统');
      * @param array $varList 外部变量列表，这个是为了实现var.abc这样的配置项 一般传get_defined_vars()
-     * @param array $option 额外的设置在这 array('input_name_pre'=>'input的name加上统一的前缀')
+     * @param array $option 额外的设置在这 array('input_name_pre'=>'input的name加上统一的前缀','only_view'=>0 是不是只查看 默认是0:可以编辑)
      * @return mixed
      */
     public static function generalHtmlForItem(
-        $configItemArr,
+        array $configItemArr,
         $valueList = array(),
         $varList = array(),
         $option = array()
@@ -92,34 +92,39 @@ class Common
             }
             $inputValue = isset($valueList[$itemInfo['db_field_name']]) ? $valueList[$itemInfo['db_field_name']] : $default;
             $inputNameId = $option['input_name_pre'] ? $option['input_name_pre'] . $itemInfo['db_field_name'] : $itemInfo['db_field_name'];
-            switch ($itemInfo['data_type']) {
-                case 'text':
-                    $html = Form::text()->class('input-text block')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
-                    //$html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='text' value='{$inputValue}'>";
-                    break;
-                case 'hidden':
-                    $html = Form::hidden()->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
-                    break;
-                case 'textarea':
-                    $html = Form::textarea()->class('textarea radius')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
-                    break;
-                case 'radio':
-                    $clsLabel = Form::label()->class('mr-10');
-                    $html = Form::radio()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
-                    break;
-                case 'checkbox':
-                    if ("1" == $inputValue) {
-                        $inputValue = '是';
-                    }
-                    $clsLabel = Form::label()->class('mr-10');
-                    $html = Form::checkbox()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
-                    break;
-                case 'select':
-                    $html = Form::select()->value($inputValue)->item($default)->id($inputNameId)->name($inputNameId)->html();
-                    break;
-                default:
-                    $html = '';
-                    break;
+            //var_dump($inputValue);
+            if ($option['only_view']) {
+                $html = $inputValue;
+            } else {
+                switch ($itemInfo['data_type']) {
+                    case 'text':
+                        $html = Form::text()->class('input-text block')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
+                        //$html = "<input class='input-text block' name='{$inputNameId}' id='{$inputNameId}' type='text' value='{$inputValue}'>";
+                        break;
+                    case 'hidden':
+                        $html = Form::hidden()->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
+                        break;
+                    case 'textarea':
+                        $html = Form::textarea()->class('textarea radius')->name($inputNameId)->id($inputNameId)->value($inputValue)->html();
+                        break;
+                    case 'radio':
+                        $clsLabel = Form::label()->class('mr-10');
+                        $html = Form::radio()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
+                        break;
+                    case 'checkbox':
+                        if ("1" == $inputValue) {
+                            $inputValue = '是';
+                        }
+                        $clsLabel = Form::label()->class('mr-10');
+                        $html = Form::checkbox()->itemLabel($clsLabel)->value($inputValue)->item($default)->name($inputNameId)->html();
+                        break;
+                    case 'select':
+                        $html = Form::select()->value($inputValue)->item($default)->id($inputNameId)->name($inputNameId)->html();
+                        break;
+                    default:
+                        $html = '';
+                        break;
+                }
             }
             $configItemArr[$itemKey]['html'] = $html;
         }
