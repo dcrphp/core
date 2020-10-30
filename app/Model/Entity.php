@@ -19,7 +19,7 @@ class Entity
             return array('ack' => 1, 'type' => 'add','entity' => new $entityName());
         }
     }
-    
+
     /**
      * 设置entity的通用数据 比如添加时间 修改时间
      * @param $clsEntity
