@@ -8,7 +8,7 @@ class Entity
      * 通过where来返回entity 如果有则返回，没有就新建一个
      * @param $entityName
      * @param $where
-     * @return array |null type:edit表示是数据存在则编辑类 add表示没有存在则新建
+     * @return array |null //type:edit表示是数据存在则编辑类 add表示没有存在则新建
      */
     public static function getByWhere(string $entityName, array $where)
     {
@@ -23,7 +23,7 @@ class Entity
     /**
      * 设置entity的通用数据 比如添加时间 修改时间
      * @param $clsEntity
-     * @param string $field 要更新的字段
+     * @param string $field //要更新的字段
      * @param int $approval
      * @return mixed
      */
