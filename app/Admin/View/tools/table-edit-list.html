@@ -60,8 +60,8 @@
                 </td>
                 {% endfor %}
                 <td class="td-manage">
-                    <a title="编辑" href="javascript:;"
-                       onclick="open_iframe('编辑','/admin/tools/table-edit-edit-view/view/{{key}}/{{info.id}}','{{config.edit_window_width}}','{{config.edit_window_height}}')"
+                    <a title="查看" href="javascript:;"
+                       onclick="open_iframe('查看','/admin/tools/table-edit-edit-view/view/{{key}}/{{info.id}}','{{config.edit_window_width}}','{{config.edit_window_height}}')"
                        class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe665;</i></a>
                     {% if user_id == info.add_user_id %}
                         {% if 1 == config.is_edit or '是' == config.is_edit %}
