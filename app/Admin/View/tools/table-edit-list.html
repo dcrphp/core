@@ -61,7 +61,7 @@
                         {{info[col.db_field_name]}}
                         {% endif %}
                         {% if '图片' == config['col'][col.db_field_name]['list_show_type'] %}
-                        <img src="{{info[col.db_field_name]}}" width="{{info.list_show_image_width}}" height="{{info.list_show_image_height}}">
+                        <img src="{{info[col.db_field_name]}}" width="{{config['col'][col.db_field_name]['list_show_image_width']}}" height="{{config['col'][col.db_field_name]['list_show_image_height']}}">
                         {% endif %}
                     </span>
                 </td>
