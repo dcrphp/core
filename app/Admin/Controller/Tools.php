@@ -308,6 +308,7 @@ class Tools
         //dd($info);
         $fieldList = Common::generalHtmlForItem($listCol, $info, array(), array('only_view' => $onlyView));
         //dd($fieldList);
+        //pr($fieldList);
 
         $assignData['page_title'] = $config['page_title'];
         $assignData['page_model'] = $config['page_model'];

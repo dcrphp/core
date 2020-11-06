@@ -155,6 +155,29 @@ class ConfigTableEditItem
     private $isListEdit = '0';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="list_show_type", type="string", length=10, nullable=false, options={"default"="文本"})
+     */
+    private $listShowType = '文本';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_image_height", type="smallint", nullable=false, options={"default"="50"})
+     */
+    private $listShowImageHeight = '50';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_image_width", type="smallint", nullable=false, options={"default"="50"})
+     */
+    private $listShowImageWidth = '50';
+
+
+
+    /**
      * Get id.
      *
      * @return int
@@ -618,5 +641,77 @@ class ConfigTableEditItem
     public function getIsListEdit()
     {
         return $this->isListEdit;
+    }
+
+    /**
+     * Set listShowType.
+     *
+     * @param string $listShowType
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setListShowType($listShowType)
+    {
+        $this->listShowType = $listShowType;
+
+        return $this;
+    }
+
+    /**
+     * Get listShowType.
+     *
+     * @return string
+     */
+    public function getListShowType()
+    {
+        return $this->listShowType;
+    }
+
+    /**
+     * Set listShowImageHeight.
+     *
+     * @param int $listShowImageHeight
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setListShowImageHeight($listShowImageHeight)
+    {
+        $this->listShowImageHeight = $listShowImageHeight;
+
+        return $this;
+    }
+
+    /**
+     * Get listShowImageHeight.
+     *
+     * @return int
+     */
+    public function getListShowImageHeight()
+    {
+        return $this->listShowImageHeight;
+    }
+
+    /**
+     * Set listShowImageWidth.
+     *
+     * @param int $listShowImageWidth
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setListShowImageWidth($listShowImageWidth)
+    {
+        $this->listShowImageWidth = $listShowImageWidth;
+
+        return $this;
+    }
+
+    /**
+     * Get listShowImageWidth.
+     *
+     * @return int
+     */
+    public function getListShowImageWidth()
+    {
+        return $this->listShowImageWidth;
     }
 }

@@ -64,7 +64,7 @@ class Model
 
         $list = $model->getList(array(
             'where' => $where,
-            'col' => 'model_list.id,ml_pic_path,ml_title,name',
+            'col' => 'model_list.id,ml_pic_path,ml_title,name,model_list.add_user_id',
             'join' => $join,
             'order' => 'model_list.id desc',
             'limit' => $pageNum,

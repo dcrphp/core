@@ -70,6 +70,8 @@ class UserPermission
      */
     private $version = '';
 
+
+
     /**
      * Get id.
      *

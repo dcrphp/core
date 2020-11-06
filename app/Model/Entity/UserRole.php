@@ -77,6 +77,8 @@ class UserRole
      */
     private $isApproval = true;
 
+
+
     /**
      * Get id.
      *

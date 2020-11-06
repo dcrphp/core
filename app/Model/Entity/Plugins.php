@@ -98,6 +98,8 @@ class Plugins
      */
     private $title = '';
 
+
+
     /**
      * Get id.
      *

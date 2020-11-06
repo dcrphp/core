@@ -153,4 +153,25 @@ class ConfigTableEditItem
      * @ORM\Column(name="is_list_edit", type="boolean", nullable=false, options={"default"="0","comment"="列表页双击配置"})
      */
     private $isListEdit = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="list_show_type", type="string", length=10, nullable=false, options={"default"="文本"})
+     */
+    private $listShowType = '文本';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_image_height", type="smallint", nullable=false, options={"default"="50"})
+     */
+    private $listShowImageHeight = '50';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_image_width", type="smallint", nullable=false, options={"default"="50"})
+     */
+    private $listShowImageWidth = '50';
 }

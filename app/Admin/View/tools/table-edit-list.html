@@ -52,11 +52,18 @@
             {% for info in list %}
             <tr>
                 {% for col in list_col %}
-                <td {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %} ondblclick="change_field('{{config.table_name}}','{{info.id}}','{{col.db_field_name}}','{{info[col.db_field_name]}}','{{config['col'][col.db_field_name]['tip']}}')" {% endif %}>
-                    {% if 1 == config['col'][col.db_field_name]['is_list_edit'] %}
+                <td {% if 1 == config['col'][col.db_field_name]['is_list_edit'] and '文本' == config['col'][col.db_field_name]['list_show_type'] %} ondblclick="change_field('{{config.table_name}}','{{info.id}}','{{col.db_field_name}}','{{info[col.db_field_name]}}','{{config['col'][col.db_field_name]['tip']}}')" {% endif %}>
+                    {% if 1 == config['col'][col.db_field_name]['is_list_edit'] and '文本' == config['col'][col.db_field_name]['list_show_type'] %}
                     <i class="Hui-iconfont">&#xe60c;</i>
                     {% endif %}
-                    <span id="{{col.db_field_name}}_{{info.id}}">{{info[col.db_field_name]}}</span>
+                    <span id="{{col.db_field_name}}_{{info.id}}">
+                        {% if '文本' == config['col'][col.db_field_name]['list_show_type'] %}
+                        {{info[col.db_field_name]}}
+                        {% endif %}
+                        {% if '图片' == config['col'][col.db_field_name]['list_show_type'] %}
+                        <img src="{{info[col.db_field_name]}}" width="{{info.list_show_image_width}}" height="{{info.list_show_image_height}}">
+                        {% endif %}
+                    </span>
                 </td>
                 {% endfor %}
                 <td class="td-manage">
