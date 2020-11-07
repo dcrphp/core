@@ -174,4 +174,11 @@ class ConfigTableEditItem
      * @ORM\Column(name="list_show_image_width", type="smallint", nullable=false, options={"default"="50"})
      */
     private $listShowImageWidth = '50';
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_index", type="smallint", nullable=false, options={"default"="10"})
+     */
+    private $listShowIndex = '10';
 }

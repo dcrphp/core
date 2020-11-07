@@ -71,6 +71,7 @@ trait ToolsTableEdit
         $fieldList = Db::select(
             array(
                 'table' => 'config_table_edit_item',
+                'order' => 'list_show_index asc',
                 'where' => "ctel_id={$info['id']}",
             )
         );

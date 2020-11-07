@@ -175,6 +175,13 @@ class ConfigTableEditItem
      */
     private $listShowImageWidth = '50';
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="list_show_index", type="smallint", nullable=false, options={"default"="10"})
+     */
+    private $listShowIndex = '10';
+
 
 
     /**
@@ -713,5 +720,29 @@ class ConfigTableEditItem
     public function getListShowImageWidth()
     {
         return $this->listShowImageWidth;
+    }
+
+    /**
+     * Set listShowIndex.
+     *
+     * @param int $listShowIndex
+     *
+     * @return ConfigTableEditItem
+     */
+    public function setListShowIndex($listShowIndex)
+    {
+        $this->listShowIndex = $listShowIndex;
+
+        return $this;
+    }
+
+    /**
+     * Get listShowIndex.
+     *
+     * @return int
+     */
+    public function getListShowIndex()
+    {
+        return $this->listShowIndex;
     }
 }
