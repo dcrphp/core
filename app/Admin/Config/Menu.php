@@ -67,6 +67,10 @@ $menu = array(
                         'title' => '单表配置',
                     ),
                     array(
+                        'url' => '/admin/tools/table-edit-list-view/config_attribute_list',
+                        'title' => '属性配置',
+                    ),
+                    array(
                         'url' => '/admin/config/config-list-view/model',
                         'title' => '模组配置',
                     ),

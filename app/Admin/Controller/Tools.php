@@ -7,6 +7,7 @@ use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use app\Admin\Model\Tools as MTools;
 use app\Model\Api;
+use app\Model\Entity\ConfigAttributeList;
 use app\Model\Tools as NMTools;
 use dcr\App;
 use dcr\facade\Db;

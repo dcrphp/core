@@ -10,6 +10,7 @@
 namespace app\Admin\Model;
 
 use app\Admin\Model\Common;
+use app\Model\TraitClass\ConfigAttribute;
 use dcr\facade\Db;
 
 class Config

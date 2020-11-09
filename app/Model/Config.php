@@ -8,10 +8,12 @@ use app\Admin\Model\Admin;
 use app\Model\Concerns\Model;
 use app\Model\Entity\Config as NConfig;
 use app\Model\Entity\PageDescription;
+use app\Model\TraitClass\ConfigAttribute;
 use dcr\facade\Db;
 
 class Config extends NConfig implements Model
 {
+    use ConfigAttribute;
 
     public function validate($entity)
     {

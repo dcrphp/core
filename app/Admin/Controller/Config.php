@@ -175,4 +175,37 @@ class Config
         $result = $clsConfig->setPageDescription($name, $description);
         return Factory::renderJson($result);
     }
+
+    public function attributeListView()
+    {
+        $assignData = array();
+        $assignData['page_title'] = '属性中心';
+        $assignData['page_model'] = '配置';
+
+        $clsConfig = new \app\Model\Config();
+        $id = get('id');
+
+        $em = container('em');
+        $attrInfo = $em->find('\app\Model\Entity\ConfigAttributeList', $id);
+        $keyword = $attrInfo->getKeyword();
+        $assignData['keyword'] = $keyword;
+
+        //得出现有的列表
+        $attrList = $clsConfig->getAttributeItemList(array('where' => "keyword_group='{$keyword}'"));
+        if (!$attrList) {
+            $attrList = array(1);
+        }
+        $assignData['attr_list'] = $attrList;
+
+        return Factory::renderPage('tools/attribute-list', $assignData);
+    }
+
+    public function updateAttributeItemAjax()
+    {
+        $data = post();
+        $clsConfig = new \app\Model\Config();
+        $result = $clsConfig->updateAttributeItem($data);
+
+        return Factory::renderJson($result);
+    }
 }
