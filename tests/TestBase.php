@@ -135,7 +135,7 @@ class TestBase extends TestCase
     {
         //看看表数是不是17个
         $tableList = DB::getTables();
-        $this->assertEquals(18, count($tableList));
+        $this->assertEquals(21, count($tableList));
     }
 
     /**

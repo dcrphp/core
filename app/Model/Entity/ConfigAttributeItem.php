@@ -98,8 +98,6 @@ class ConfigAttributeItem
      */
     private $version = '';
 
-
-
     /**
      * Get id.
      *
