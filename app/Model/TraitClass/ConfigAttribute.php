@@ -70,4 +70,38 @@ trait ConfigAttribute
         Db::commit();
         return Admin::commonReturn(array('ack' => 1));
     }
+
+    public function updateAttribute($dataList)
+    {
+        Db::beginTransaction();
+        $dataId = $dataList['data_id'];
+        foreach ($dataList['keyword'] as $key => $keyword) {
+            //开始存数据
+            $clsAttribute = container('em')->getRepository('\app\Model\Entity\Attribute')->findBy(
+                array('keyword' => $keyword, 'dataId' => $dataId)
+            );
+            $action = 'add';
+            if ($clsAttribute) {
+                $action = 'edit';
+                $clsAttribute = $clsAttribute[0];
+            } else {
+                $clsAttribute = new Entity\Attribute();
+            }
+
+            $clsAttribute->setKeywordGroup($dataList['keyword_group']);
+            $clsAttribute->setKeyword($keyword);
+            $clsAttribute->setDataId($dataId);
+            $clsAttribute->setValue($dataList['value'][$key]);
+
+            if ('add' == $action) {
+                $clsAttribute = Entity::setCommonData($clsAttribute);
+                container('em')->persist($clsAttribute);
+            } else {
+                $clsAttribute = Entity::setCommonData($clsAttribute, 'updateTime');
+            }
+            container('em')->flush();
+        }
+        Db::commit();
+        return Admin::commonReturn(array('ack' => 1));
+    }
 }

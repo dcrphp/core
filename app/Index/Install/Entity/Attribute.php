@@ -5,12 +5,12 @@ namespace app\Index\Install\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ConfigAttributeItem
+ * Attribute
  *
- * @ORM\Table(name="config_attribute_item", uniqueConstraints={@ORM\UniqueConstraint(name="udx_only", columns={"keyword", "keyword_group"})})
+ * @ORM\Table(name="attribute", uniqueConstraints={@ORM\UniqueConstraint(name="udx_only", columns={"keyword", "data_id", "keyword_group"})})
  * @ORM\Entity
  */
-class ConfigAttributeItem
+class Attribute
 {
     /**
      * @var int
@@ -59,42 +59,28 @@ class ConfigAttributeItem
     /**
      * @var string
      *
-     * @ORM\Column(name="keyword_group", type="string", length=20, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="keyword_group", type="string", length=50, nullable=false, options={"default"=""})
      */
     private $keywordGroup = '';
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="title", type="string", length=50, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="data_id", type="smallint", nullable=false)
      */
-    private $title = '';
+    private $dataId = '0';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="keyword", type="string", length=50, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="keyword", type="string", length=50, nullable=false, options={"default"=""})
      */
     private $keyword = '';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tips", type="string", length=100, nullable=false, options={"default"="''"})
+     * @ORM\Column(name="value", type="string", length=300, nullable=false, options={"default"=""})
      */
-    private $tips = '';
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="is_required", type="smallint", nullable=false)
-     */
-    private $isRequired = '0';
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="version", type="string", length=50, nullable=false)
-     */
-    private $version = '';
+    private $value = '';
 }

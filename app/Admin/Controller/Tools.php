@@ -7,7 +7,6 @@ use app\Admin\Model\Factory;
 use app\Admin\Model\Plugins;
 use app\Admin\Model\Tools as MTools;
 use app\Model\Api;
-use app\Model\Entity\ConfigAttributeList;
 use app\Model\Tools as NMTools;
 use dcr\App;
 use dcr\facade\Db;
@@ -537,10 +536,53 @@ class Tools
 
         $colInsert = '';
         foreach ($colList as $detail) {
-            $colInsert .= "insert into config_table_edit_item(" . implode(",", array_keys($detail)) . ") values('" . implode("','", array_values($detail)) . "');";
+            $colInsert .= "insert into config_table_edit_item(" . implode(
+                ",",
+                array_keys($detail)
+            ) . ") values('" . implode("','", array_values($detail)) . "');";
         }
         $assignData['col_insert'] = $colInsert;
 
         return Factory::renderPage('tools/table-edit-export', $assignData);
+    }
+
+    public function attributeView()
+    {
+        $assignData = array();
+        $assignData['page_title'] = '属性管理';
+        $assignData['page_model'] = '系统工具';
+        $keyword = get('keyword');
+        $id = get('id');
+        if (empty($keyword)) {
+            throw new \Exception('没有指明属性关键字');
+        }
+        if (empty($id)) {
+            throw new \Exception('没有指明ID');
+        }
+
+        $clsConfig = new \app\Model\Config();
+        $attributeConfigList = $clsConfig->getAttributeItemList(array('where' => "keyword_group='{$keyword}'"));
+        if (!$attributeConfigList) {
+            throw new \Exception('没有这个关键词的属性配置');
+        }
+
+        $assignData['keyword'] = $keyword;
+        $assignData['id'] = $id;
+        $assignData['attribute_config_list'] = $attributeConfigList;
+
+        $dataList = Db::select(array('table' => 'attribute','where' => "keyword_group='{$keyword}' and data_id={$id}"));
+        $dataList = array_column($dataList, 'value', 'keyword');
+        $assignData['data_list'] = $dataList;
+
+        return Factory::renderPage('tools/attribute', $assignData);
+    }
+
+    public function attributeAjax()
+    {
+        $data = post();
+        $clsConfig = new \app\Model\Config();
+        $result = $clsConfig->updateAttribute($data);
+
+        return Factory::renderJson($result);
     }
 }
