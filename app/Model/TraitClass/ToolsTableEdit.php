@@ -64,7 +64,7 @@ trait ToolsTableEdit
         $keys = array_keys($info);
         foreach ($keys as $key) {
             $keyNew = str_replace('', '', $key);
-            $config[$keyNew] = $info[$key];
+            $config[$keyNew] = addslashes($info[$key]);
         }
         //得出字段配置
 
