@@ -118,6 +118,7 @@ SQL;
         $listData = array(
             'ConfigTableEditList' => array(
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'config_table_edit_list',
                     'page_title' => '单表管理列表(勿删)',
                     'page_model' => '系统配置',
@@ -138,6 +139,7 @@ SQL;
                     'button_area_addition_html' => '<a href="javascript:;" onclick="open_iframe(\'自动生成\',\'/admin/tools/table-edit-generate-view\',\'600\',\'400\')" class="btn btn-primary radius"><i class="Hui-iconfont  Hui-iconfont-menu"></i> 自动生成</a>',
                 ),
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'config_table_edit_item',
                     'page_title' => '单表管理字段(勿删)',
                     'page_model' => '系统配置',
@@ -158,6 +160,7 @@ SQL;
                     'button_area_addition_html' => '',
                 ),
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'table_edit',
                     'page_title' => 'TableEdit(案例)',
                     'page_model' => '系统配置',
@@ -178,6 +181,7 @@ SQL;
                     'button_area_addition_html' => '',
                 ),
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'api_permission',
                     'page_title' => 'API权限',
                     'page_model' => '系统工具',
@@ -198,6 +202,7 @@ SQL;
                     'button_area_addition_html' => '',
                 ),
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'crontab',
                     'page_title' => '计划任务',
                     'page_model' => '单表中心',
@@ -218,6 +223,7 @@ SQL;
                     'button_area_addition_html' => '',
                 ),
                 array(
+                    'add_user_id' => 1,
                     'keyword' => 'config_attribute_list',
                     'page_title' => '配置属性',
                     'page_model' => '单表中心',
