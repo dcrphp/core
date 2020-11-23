@@ -39,6 +39,11 @@
                 <td width="25%">说明</td>
             </tr>
             <tr>
+                <td>当前版本</td>
+                <td>{{version}}</td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>数据库类型</td>
                 <td><select id="type" name="type" onchange="switch_db(this.value)">
                     <option>mysql</option>
@@ -165,7 +170,8 @@
                     success: function (data) {
                         data = $.parseJSON(data);
                         if (1 == data.ack) {
-                            $('#result').html('<div class="Huialert Huialert-success mt-10"><i class="Hui-iconfont">&#xe6a6;</i>安装完成,请用如上配置好的用户和密码进入后台:host/admin(<a href="/admin">点击进入</a>)，请进入后台后及时改密码</div>');
+                            let cur_date = new Date();
+                            $('#result').html('<div class="Huialert Huialert-success mt-10"><i class="Hui-iconfont">&#xe6a6;</i>' + '于[' + cur_date.getHours() + ':' + cur_date.getMinutes() + ':' + cur_date.getSeconds() + ']安装完成,请用如上配置好的用户和密码进入后台:host/admin(<a href="/admin">点击进入</a>)，请进入后台后及时改密码</div>');
                             //$.Huimodalalert(data.msg,2000);
                         } else {
                             layer.alert(data.msg, {icon: 2});
