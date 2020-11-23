@@ -138,7 +138,6 @@ if (!function_exists('sqliteEscape')) {
      */
     function sqliteEscape($key)
     {
-        $key = str_replace("/", "//", $key);
         $key = str_replace("'", "''", $key);
         return $key;
     }
