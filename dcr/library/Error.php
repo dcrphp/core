@@ -38,10 +38,11 @@ class Error
             $handler = '\Whoops\Handler\PlainTextHandler';
         }
         $whoops = new \Whoops\Run();
+        $whoops->pushHandler(new $handler());
 
         //配置的error handler
         try {
-            $configHandler = $appConfig['app.error_handler'];
+            $configHandler = $appConfig['error_handler'];
             if ($configHandler) {
                 foreach ($configHandler as $handlerClass) {
                     $whoops->pushHandler(new $handlerClass());
@@ -49,7 +50,6 @@ class Error
             }
         } catch (\Exception $e) {
         }
-        $whoops->pushHandler(new $handler());
 
         $whoops->register();
     }

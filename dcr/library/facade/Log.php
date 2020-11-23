@@ -15,10 +15,10 @@ class Log
 {
     /**
      * 写系统日志
-     * @param $logInfo 内容 可以是数组 也可以是字符串 如果是数组必要字段是message
-     * @param string $level 级别 默认是:info
-     * @param string $title 标题 默认是:日志
-     * @param string $handlerName 处理handler 默认用配置里的log.system_driver
+     * @param $logInfo //内容 可以是数组 也可以是字符串 如果是数组必要字段是message
+     * @param string $level //级别 默认是:info
+     * @param string $title //标题 默认是:日志
+     * @param string $handlerName //处理handler 默认用配置里的log.system_driver
      * @throws \Exception
      */
     public static function systemLog($logInfo, $level = 'info', $title = '日志', $handlerName = '')
