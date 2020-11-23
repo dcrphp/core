@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ConfigAttributeList
  *
- * @ORM\Table(name="config_attribute_list", uniqueConstraints={@ORM\UniqueConstraint(name="udx_keyword", columns={"keyword"})})
+ * @ORM\Table(name="config_attribute_list", uniqueConstraints={@ORM\UniqueConstraint(name="udx_cal_k", columns={"keyword"})})
  * @ORM\Entity
  */
 class ConfigAttributeList

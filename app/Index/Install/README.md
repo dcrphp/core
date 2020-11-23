@@ -1,5 +1,9 @@
-本目录用来记录是不是已经安装过了  
-entity可以从app\model\entity下复制过来，然后改下namespave和default值  
+lock存在 表示已经安装过
+
+entity里的uniqueConstraints 名字要唯一，因为sqlite会判断所有的key名是不是重复  
+所以index命名规则是udx_表名缩写_字段名缩写或idx_表名缩写_字段名缩写  
+  
+entity可以从app\model\entity下复制过来，然后改下namespace和default值  
 
 其中如果是0:  
 options={"default"=0}  

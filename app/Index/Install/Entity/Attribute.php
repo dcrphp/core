@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Attribute
  *
- * @ORM\Table(name="attribute", uniqueConstraints={@ORM\UniqueConstraint(name="udx_only", columns={"keyword", "data_id", "keyword_group"})})
+ * @ORM\Table(name="attribute", uniqueConstraints={@ORM\UniqueConstraint(name="udx_a_dk", columns={"keyword", "data_id", "keyword_group"})})
  * @ORM\Entity
  */
 class Attribute
