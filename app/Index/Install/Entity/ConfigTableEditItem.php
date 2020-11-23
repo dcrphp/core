@@ -178,7 +178,7 @@ class ConfigTableEditItem
     /**
      * @var int
      *
-     * @ORM\Column(name="list_show_index", type="smallint", nullable=false, options={"default"="10"})
+     * @ORM\Column(name="list_show_index", type="smallint", nullable=false, options={"default"="100"})
      */
-    private $listShowIndex = '10';
+    private $listShowIndex = '100';
 }
