@@ -188,7 +188,7 @@ class Common
             //option the data 20200920
             foreach ($dbInfo as $key => $value) {
                 if ('pdo_sqlite' == env('DB_TYPE')) {
-                    $dbInfo[$key] = sqliteEscape($dbInfo[$key]);
+                    $dbInfo[$key] = sqlite_escape_string($dbInfo[$key]);
                 } else {
                     $dbInfo[$key] = addslashes($value);
                 }
