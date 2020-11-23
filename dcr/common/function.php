@@ -129,9 +129,32 @@ if (!function_exists('getIp')) {
     }
 
 }
+
+if (!function_exists('sqliteEscape')) {
+    /**
+     * 用于sqlite的转义
+     * @param $key
+     * @return string
+     */
+    function sqliteEscape($key)
+    {
+        $key = str_replace("/", "//", $key);
+        $key = str_replace("'", "''", $key);
+        $key = str_replace("[", "/[", $key);
+        $key = str_replace("]", "/]", $key);
+        $key = str_replace("%", "/%", $key);
+        $key = str_replace("&", "/&", $key);
+        $key = str_replace("_", "/_", $key);
+        $key = str_replace("(", "/(", $key);
+        $key = str_replace(")", "/)", $key);
+        return $key;
+    }
+}
+
 if (!function_exists('cache')) {
     /**
      * @param mixed ...$args 一个参数表示获取 二个参数是设置 三个参数是设置加过期时间
+     * @return string
      */
     function cache(...$args)
     {
