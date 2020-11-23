@@ -193,13 +193,13 @@ class Index
             throw new \Exception('已经安装过了，如果重新安装，请删除[' . realpath($clsInstall->getLockFile()) . ']再重新运行本安装程序');
         }
         $version = config('info.version');
-        $assignData['version'] = $version;
-        
+
         $view = container('view');
         $view->setViewDirectoryPath(ROOT_APP . DS . 'Index' . DS . 'View');
         $view->assign('admin_resource_url', env('ADMIN_RESOURCE_URL'));
         $view->assign('default_database_name', 'dcrphp-' . config('info.version'));
         $view->assign('sqlite_path', realpath(ROOT_PUBLIC) . DS . 'storage' . DS . 'sqlite.php');
+        $view->assign('version', $version);
         return $view->render('install');
     }
 
