@@ -140,13 +140,6 @@ if (!function_exists('sqliteEscape')) {
     {
         $key = str_replace("/", "//", $key);
         $key = str_replace("'", "''", $key);
-        $key = str_replace("[", "/[", $key);
-        $key = str_replace("]", "/]", $key);
-        $key = str_replace("%", "/%", $key);
-        $key = str_replace("&", "/&", $key);
-        $key = str_replace("_", "/_", $key);
-        $key = str_replace("(", "/(", $key);
-        $key = str_replace(")", "/)", $key);
         return $key;
     }
 }
