@@ -153,6 +153,8 @@ class Db
         $update = self::createQueryBuilder();
         $update = $update->update($table);
         foreach ($info as $key => $value) {
+            $value = (string)$value;
+            $value = addslashes($value);
             $update = $update->set("`{$key}`", "'{$value}'");
         }
         $update = $update->where($where);
@@ -171,6 +173,8 @@ class Db
         $insert = self::createQueryBuilder();
         $insert = $insert->insert($table);
         foreach ($info as $key => $value) {
+            $value = (string)$value;
+            $value = addslashes($value);
             $insert = $insert->setValue("`{$key}`", "'{$value}'");
         }
         $sql = $insert->getSql();

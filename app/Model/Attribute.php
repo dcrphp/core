@@ -27,6 +27,20 @@ class Attribute implements Model
         return DB::select(array('limit' => 1, 'table' => 'attribute', 'where' => $where));
     }
 
+
+    /**
+     * @param string $keywordGroup
+     * @param string $keyword
+     * @param int $id
+     * @param string $value
+     * @return bool|mixed
+     * @throws \Exception
+     */
+    public function updateAttribute(string $keywordGroup, string $keyword, int $id, string $value)
+    {
+        return DB::update('attribute', array('value' => $value), "keyword_group='{$keywordGroup}' and keyword='{$keyword}' and data_id={$id}");
+    }
+
     public function validate($entity)
     {
 
