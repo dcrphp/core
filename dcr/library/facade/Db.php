@@ -94,7 +94,7 @@ class Db
                 //dd($joinDetail);
                 //exit;
                 //$select->$joinMethod($joinDetail['table'], $joinDetail['type'], $joinDetail['condition']);
-                $select->$joinMethod($option['table'], $joinDetail['table'], '', $joinDetail['condition']);
+                $select->$joinMethod($option['table'], $joinDetail['table'], $joinDetail['table'], $joinDetail['condition']);
             }
         }
         //dd($option);
