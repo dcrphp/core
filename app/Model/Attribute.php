@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\Model;
-
 
 use app\Model\Concerns\Model;
 use dcr\facade\Db;
@@ -21,7 +19,7 @@ class Attribute implements Model
     {
         $where = array();
         $where[] = "keyword_group='{$keywordGroup}'";
-        if($id){
+        if ($id) {
             $where[] = "data_id='{$id}'";
         }
         if ($keyword) {
@@ -61,6 +59,5 @@ class Attribute implements Model
 
     public function validate($entity)
     {
-
     }
 }
