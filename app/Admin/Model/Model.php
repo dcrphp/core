@@ -398,11 +398,11 @@ class Model
         //传图片
         $request = container('request');
         $fileUploadResult = array();
-        $uploadDir = 'uploads' . DS . DS . date('Y-m-d');
+        $uploadDir = 'uploads' . DS . date('Y-m-d');
         try {
             $fileUploadResult = $request->upload(
                 'list_pic_path',
-                $uploadDir,
+                ROOT_PUBLIC . DS . $uploadDir,
                 array('allowFile' => array('image/png', 'image/gif', 'image/jpg', 'image/jpeg'))
             );
             if (!$fileUploadResult['ack']) {
