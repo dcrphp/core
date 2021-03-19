@@ -70,8 +70,8 @@
                     <a title="查看" href="javascript:;"
                        onclick="open_iframe('查看','/admin/tools/table-edit-edit-view/view/{{key}}/{{info.id}}','{{config.edit_window_width}}','{{config.edit_window_height}}')"
                        class="ml-5" style="text-decoration:none"><i title="查看数据" class="Hui-iconfont">&#xe665;</i></a>
-                    <a title="查看" href="javascript:;"
-                       onclick="open_iframe('数据列表','/admin/tools/table-edit-list-view/view/{{key}}','80%','80%')"
+                    <a title="数据列表" href="javascript:;"
+                       onclick="open_iframe('数据列表','/admin/tools/table-edit-list-view/{{info.keyword}}','80%','80%')"
                        class="ml-5" style="text-decoration:none"><i title="数据列表" class="Hui-iconfont">&#xe72d;</i></a>
                     {% if user_id == info.add_user_id %}
                         {% if 1 == config.is_edit or '是' == config.is_edit %}
