@@ -119,11 +119,12 @@ class User
         );
         //如果是编辑用户 则要把用户信息传过去
         $userId = get('user_id');
+        $userId = intval($userId);
+        $assignData['cur_user_id'] = $userId;
         if ($userId) {
             $userInfo = $user->getList(array('col' => '*', 'where' => "id=" . $userId));
             $userInfo = current($userInfo);
             $assignData['user_info'] = $userInfo;
-            $assignData['user_id'] = $userId;
 
             //已经配置好的角色列表
             $roleList = $user->getRoleConfigList($userId);
