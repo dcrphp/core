@@ -62,7 +62,14 @@ class Page
         echo '<br>';
         exit;*/
         $parseUrl = parse_url($this->url);
-        $urlMain = 'http://' . $parseUrl['host'];
+        $httpType = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+        if (substr($_SERVER['HTTP_REFERER'], 0, 5) == 'https') {
+            $httpType = 'https://';
+        }
+        #pr($parseUrl);
+        #pr($_SERVER);
+        #echo $httpType;
+        $urlMain = $httpType . $parseUrl['host'];
         //dd($parseUrl);
         if ($parseUrl['port']) {
             $urlMain .= ':' . $parseUrl['port'];
