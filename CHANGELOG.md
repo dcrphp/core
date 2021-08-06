@@ -10,6 +10,7 @@
 
 1.0.7-alpha5  
 　　1、修正添加会员的bug  
+　　2、修正dcrphp/container新的版本  
 
 1.0.7-alpha4  
 　　1、修正上传产品图片产生的BUG  
