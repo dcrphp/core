@@ -8,6 +8,9 @@
 　　7、单表导入导出  
 　　8、插件导入导出  
 
+1.0.7-alpha6  
+　　1、修正View的render json  
+
 1.0.7-alpha5  
 　　1、修正添加会员的bug  
 　　2、修正dcrphp/container新的版本  

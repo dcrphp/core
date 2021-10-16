@@ -1,45 +1,46 @@
 {
-    "name": "dcrphp/core",
-    "description": "dcrphp",
-    "authors": [
-        {
-            "name": "HuanJun Huang"
-        }
-    ],
-    "license": "MIT",
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*",
-        "jaeger/querylist": "*"
-    },
-    "require": {
-        "php": "^7.0",
-        "twig/twig": "^2.0",
-        "gregwar/captcha": "^1.1",
-        "aura/sqlquery": "^2.7",
-        "respect/validation": "^1.1",
-        "symfony/filesystem": "*",
-        "codeguy/upload": "*",
-        "symfony/console": "*",
-        "matomo/ini": "*",
-        "phpdocumentor/reflection-docblock": "*",
-        "filp/whoops": "*",
-        "dcrphp/cache": "1.0.1",
-        "dcrphp/config": "1.0.3",
-        "dcrphp/log": "1.0.3",
-        "dcrphp/form": "1.0.1-alpha4",
-        "dcrphp/container": "1.0.1",
-        "dcrphp/annotations": "*",
-        "graylog2/gelf-php": "*",
-        "doctrine/orm": "*",
-        "zircote/swagger-php": "*",
-        "symfony/http-foundation": "*",
-        "dcrphp/file": "1.0.1-alpha1",
-        "psy/psysh": "*"
-    },
-    "autoload": {
-        "psr-4":{
-            "console\\": "app/Console"
-        }
+  "name": "dcrphp/core",
+  "description": "dcrphp",
+  "authors": [
+    {
+      "name": "HuanJun Huang"
     }
+  ],
+  "license": "MIT",
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "squizlabs/php_codesniffer": "*",
+    "jaeger/querylist": "*"
+  },
+  "require": {
+    "php": "^7.0",
+    "twig/twig": "^2.0",
+    "gregwar/captcha": "^1.1",
+    "aura/sqlquery": "^2.7",
+    "respect/validation": "^1.1",
+    "symfony/filesystem": "*",
+    "codeguy/upload": "*",
+    "symfony/console": "*",
+    "matomo/ini": "*",
+    "phpdocumentor/reflection-docblock": "*",
+    "filp/whoops": "*",
+    "dcrphp/cache": "1.0.1",
+    "dcrphp/config": "1.0.3",
+    "dcrphp/log": "1.0.3",
+    "dcrphp/form": "1.0.1-alpha4",
+    "dcrphp/container": "1.0.1",
+    "dcrphp/annotations": "*",
+    "graylog2/gelf-php": "*",
+    "doctrine/orm": "*",
+    "zircote/swagger-php": "*",
+    "symfony/http-foundation": "*",
+    "dcrphp/file": "1.0.1-alpha1",
+    "psy/psysh": "0.10.5",
+    "doctrine/cache": "1.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "console\\": "app/Console"
+    }
+  }
 }

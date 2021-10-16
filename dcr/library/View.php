@@ -98,9 +98,9 @@ class View extends DcrBase
         } else {
             $data = $this->data;
             //如果是数组，则转为字符串输出
-            if (is_array($data['msg'])) {
+            /*if (is_array($data['msg'])) {
                 $data['msg'] = implode(',', $data['msg']);
-            }
+            }*/
             return json_encode($data);
         }
     }
