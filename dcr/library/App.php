@@ -20,6 +20,29 @@ use Doctrine\ORM\Tools\Setup;
 
 class App
 {
+
+    /**
+     * 是不是debug模式
+     * @var int
+     */
+    public static $isDebug = false;
+
+    /**
+     * @return int
+     */
+    public static function getIsDebug(): int
+    {
+        return self::$isDebug;
+    }
+
+    /**
+     * @param int $isDebug
+     */
+    public static function setIsDebug(int $isDebug)
+    {
+        self::$isDebug = $isDebug;
+    }
+    
     /**
      * @var $phpSapiName php运行模式
      */
