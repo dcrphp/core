@@ -85,22 +85,27 @@ class Factory
         //获取父function
         $functionList = debug_backtrace();
         $parentFunction = $functionList[1];
+        $clsUser = new User();
+        $userInfo = $clsUser->getInfoById($userId);
         if ($parentFunction) {
-            //获取function的注释
-            $reClass = new \ReflectionClass(new $parentFunction['class']());
-            $functionDoc = $reClass->getMethod($parentFunction['function'])->getDocComment();
-            if ($functionDoc) {
-                //获取permission内容
-                $factory = DocBlockFactory::createInstance();
-                $docBlock = $factory->create($functionDoc);
-                $permissionTag = $docBlock->getTagsByName('permission');
-                if ($permissionTag) {
-                    $permissionGeneric = current($permissionTag);
-                    $permissionConfigName = $permissionGeneric->getDescription()->render();
-                    //判断有无权限
-                    if ($permissionConfigName && $permissionNameList) {
-                        if (!in_array($permissionConfigName, $permissionNameList)) {
-                            throw new \Exception("您没有[{$permissionConfigName}]权限，请联系系统管理员帮您开通后重新登陆");
+            if ($userInfo['is_super']) {
+            } else {
+                //获取function的注释
+                $reClass = new \ReflectionClass(new $parentFunction['class']());
+                $functionDoc = $reClass->getMethod($parentFunction['function'])->getDocComment();
+                if ($functionDoc) {
+                    //获取permission内容
+                    $factory = DocBlockFactory::createInstance();
+                    $docBlock = $factory->create($functionDoc);
+                    $permissionTag = $docBlock->getTagsByName('permission');
+                    if ($permissionTag) {
+                        $permissionGeneric = current($permissionTag);
+                        $permissionConfigName = $permissionGeneric->getDescription()->render();
+                        //判断有无权限
+                        if ($permissionConfigName && $permissionNameList) {
+                            if (!in_array($permissionConfigName, $permissionNameList)) {
+                                throw new \Exception("您没有[{$permissionConfigName}]权限，请联系系统管理员帮您开通后重新登陆");
+                            }
                         }
                     }
                 }

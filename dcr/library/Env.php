@@ -32,7 +32,10 @@ class ENV
             foreach ($envLines as $envConfig) {
                 $envConfig = str_replace('"', '', $envConfig);
                 $envConfig = str_replace(' = ', '=', $envConfig);
-                putenv(trim($envConfig));
+                $envResult = putenv(trim($envConfig));
+                if (!$envResult) {
+                    throw new \Exception('设置环境参数失败,putenv函数无法被使用,请检查配置里是不是被禁用了.');
+                }
             }
         } else {
             throw new \Exception($envPath . ' file does not exists');
