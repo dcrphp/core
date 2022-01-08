@@ -216,8 +216,8 @@ class Request extends DcrBase
             'extension' => $file->getExtension(),
             'mime' => $file->getMimetype(),
             'size' => $file->getSize(),
-            'md5' => $file->getMd5(),
-            'dimensions' => $file->getDimensions()
+            #'md5' => $file->getMd5(),
+            #'dimensions' => $file->getDimensions()
         );
         /*dd($fileData);
         dd($ruler);*/
